@@ -3,150 +3,792 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import { vsDark, github } from "@code-surfer/themes";
 
 export const theme = vsDark;
 
+<Head>
+  <title>TL;DR Accessible Components</title>
+</Head>
+
 # Hello 👋
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+---
+
+# Yuraima Estevez
+- 👩‍💻 Storylines team @ New York Times
 
 ---
 
-<CodeSurfer>
+# TL;DR Acessible Components
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+<Notes>
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+- I want to start off by breaking down the title of my talk
+- and I'm gonna break it down from back to front.
+- Starting with...
 
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```diff 1[10:14],2[15:19],3[22:27],10:12
-
-```
-
-</CodeSurfer>
+</Notes>
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+## Components
+Encapsulated, reusable, and custom elements.
 
-<Step>
+<Notes>
 
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+- Components are one of the things that make React so powerful.
+- They allow us to package up functionality and UI and utilize them in various parts of our codebase.
+- They're the building blocks of our apps and websites.
+- and if the blocks are reliable and well-built it stands to reason that our apps will be too.
+
+</Notes>
+
+---
+
+## Accessible
+Designed and developed so people with disabilities can it.
+
+<Notes>
+
+- What does it mean for something to be accessible?
+- When things are accessible it benefits all people.
+- But when we leave accessibility out of the work we do...
+
+</Notes>
+
+---
+
+## Accessible
+Designed and developed so people with disabilities can use it.
+
+<Notes>
+
+- It means someone isn't able to pay their bills online...
+- because the bank site uses divs instead of input elements
+- Or a user doesn't know who won the 2020 election because their screen reader doesn't work on that interactive.
+
+</Notes>
+
+---
+
+## Accessible Components
+
+<Notes>
+
+- But if we designed and developed the building blocks to work for everyone,
+- Then maybe we can start making some real progress in building fully accessible websites.
+
+</Notes>
+
+---
+
+## Accessible Components
+
+<Notes>
+
+- unfortunately that's easier said than done.
+- Because very few of us have had any formal training in building accessible apps.
+- And the documentation has a tendency to be long, and dry, and hard to decipher.
+
+</Notes>
+
+---
+
+## Accessible Components
+
+<Notes>
+
+- But that doesn't get us off the hook, 
+- we can't just brush accessibility under the rug.
+
+</Notes>
+
+---
+
+## TL;DR
+Too Long; Didn't Read
+
+<Notes>
+
+- Instead we have to be more strategic about how we're approaching the specs
+- and gathering requirements from the docs.
+
+</Notes>
+
+---
+
+# TL;DR Acessible Components
+
+<Notes>
+
+- So today I'm gonna share my too long; didn't read approach to building accessible components.
+
+</Notes>
+
+---
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA attributes
+- Keyboard navigation
+
+<Notes>
+
+- In general there are three easy steps to building accessible components.
+- Use semantic HTML whenever possible.
+- Identify which ARIA attributes are required.
+- And manage keyboard navigation
+
+</Notes>
+
+---
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA attributes
+- Keyboard navigation
+
+<Notes>
+
+- You may notice I have "easy" in quotes.  That's because there's a caveat.
+- Like any other skill in engineering it takes time to build up your understanding of accessibility.
+- These aren't catch-all solutions and they're definitely not the ONLY things we need to consider.
+- But by narrowing things down a bit I think it's easier and faster for us to ramp up and get to the heart of 
+
+</Notes>
+
+---
+
+# Three "Easy" Steps
+- **Semantic HTML**
+- ARIA
+- Keyboard navigation
+
+<Notes>
+So let's Start with Semantic HTML  
+</Notes>
+
+---
+
+# [Semantic HTML](https://www.w3.org/TR/wai-aria-1.1/#dfn-semantics)
+Provides your content and components with meaning beyond their visual representation.
+
+<Notes>
+
+- This is critical for building websites that can be understood by assistive technologies.
+- Assistive technologies are just software and hardware, they only understand the code you write.
+
+</Notes>
+
+---
+
+<CodeSurferColumns themes={[ github, vsDark ]}>
+
+<Step subtitle="Semantic HTML elements are understood by assistive technologies out of the box.">
+
+```jsx
+{/* Just a div */}
+<div 
+  tabindex="0"
+  role="button"
+  onKeyPress
+  onClick={eventHandler}
+  onKeyPress={eventHandler}>
+  I'm an Imposter
+</div>
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-```
-
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
+```jsx
+{/* A semantic button */}
+<button onClick={eventHandler}>
+  I Just Work
+</button>
 ```
 
 </Step>
 
 </CodeSurferColumns>
 
+<Notes>
+
+- If we wanted to make an accessible button out of a div we would need a lot more than just a click handler
+- with a button element we get accessibility for free.
+- Always consider whether you're using the right elements for the job when you're building components. 
+
+</Notes>
+
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+# Semantic HTML
+There are over 100 elements available in HTML.  The only two that have NO semantic meaning:
+- `div`
+- `span`
+
+<Notes>
+
+- You probably have the appropriate element available to you.
+
+</Notes>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element -->
+
+---
+
+<CodeSurfer>
+
+```html
+<alert>
+  I'm an alert!
+</alert>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Our semantic HTML elements only get us so far.
+- It'd be great if we had something like this in HTML that just behaved like an alert should and had the necessary a11y features baked in
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js
+<div className="alert">
+  <p>I'm an alert!</p>
+</div>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- But usually we end up having to do something like this.
+- Sometimes we won't have the element that means _exactly_ what we need it to mean.
+- In this case, unfortunately, assistive technologies have no idea that this is an alert.
+- This is just a div
+
+</Notes>
+
+---
+
+# TL;DR
+- Use semantic elements when possible.
+- You get a lot of a11y features for free.
+- `div` and `span` are not semantic elements.
+
+---
+
+# Three things to consider
+- Semantic HTML
+- ARIA *
+- Keyboard navigation
+
+<Notes>
+- That's where ARIA attributes come in handy
+</Notes>
+
+---
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+**A**ccessible **R**ich **I**nternet **A**pplications
+
+<Notes>
+
+- stands for accessible rich internet applications
+- set of HTML attributes that help define the semantics of an element or component.
+- Understood by assistive technologies
+
+</Notes>
+
+---
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+- roles
+- states
+- properties
+
+<Notes>
+
+- ARIA attributes are broken up into three categories
+- roles define the type of element or component
+- states and properties are supportive attributes that can be used with roles.
+
+</Notes>
+
+---
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+- `role`
+  - `role="menuitemcheckbox"`
+- `aria-*`
+  - `aria-checked="true"`
+
+<Notes>
+
+- roles are defined by using the `role` html attribute and providing a valid role value
+- states and properties are usually prefixed with `aria-` and then the name of valid state or property name.
+- these attribute names come from a list, you don't make up your own.
+
+</Notes>
+
+---
+
+<!-- include gif or list of  -->
+<Notes>
+
+- these attribute names come from a list, you don't make up your own.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+<li 
+  role="menuitemcheckbox" 
+  aria-checked="true"
+  onClick={checkboxHandler}>
+Option 1
+</li>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- When we combine these ARIA attributes together we can add meaning to our components that would otherwise have been completely unknown or misunderstood to assistive technologies
+
+</Notes>
+
+---
+
+# TL;DR ARIA Attributes
+- What does your component do?
+- What role best describes or provides meaning for your component?
+- What properties and states best support that role?
+
+---
+
+# TL;DR ARIA
+
+<!-- gif of design patterns https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/ -->
+
+<Notes>
+
+- A lot of this has already been figured out
+- The W3C has a lot of super helpful documentation that provides examples for common components
+
+</Notes>
+
+---
+
+# Three things to consider
+- Semantic HTML
+- ARIA
+- Keyboard navigation *
+
+<Notes>
+
+- all of our components have to support keyboard only navigation.
+- How many Vim users do we have?
+- How many people have wrist pains?
+
+</Notes>
+
+---
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+How can a user interact with this component using only a keyboard?
+
+<Notes>
+
+- Not everyone interacts with the web with a mouse.
+- We need to make sure that our components will work for a keyboard-only user.
+
+</Notes>
+
+---
+
+# Keyboard Navigation
+We're responsible for managing keyboard navigation in our custom components
+
+<Notes>
+
+- When we consider how to manage keyboard navigation we have to think of them in terms of common conventions.
+
+</Notes>
+
+---
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+## Common Conventions
+- `tab` and `shift+tab` move focus from one component to another
+- arrows keys move focus from one interactive element to another _within_ a component 
+
+<!-- A primary keyboard navigation convention common across all platforms is that the tab and shift+tab keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements. The path that the focus follows when pressing the tab key is known as the tab sequence or tab ring. -->
+
+---
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+Make sure your user knows where their keyboard focus is
+<!-- When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed. The following factors affect to what extent a web page affords users these capabilities. -->
+
+---
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+- Make sure the focus indicator is always visible.
+
+---
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+- Managing focus so that it persists between interaction events.
+
+<Notes>
+
+- If I open a modal by interacting with this button
+- My focus is moved inside of the modal.  When I close the modal, what happens to my focus?
+- It shouldn't just disappear or go back to the top of the page
+- These should be as natural and predictable as possible.
+
+</Notes>
+
+---
+
+# TL;DR
+- Use common conventions for keyboard navigation.
+- Keyboard focus idicator should always be visible.
+- Focus should persist between interaction events.
+
+---
+
+# IRL Components
+
+---
+
+## [`Alert`](https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+---
+
+## [`Alert`](https://www.w3.org/TR/wai-aria-1.1/#alert)
+An element that draws the user's attention to provide important information *without* interrupting the user from the current task.
+
+---
+
+# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+- Should NOT affect keyboard focus
+- ARIA `role="alert"`
+- Should NOT dissappear automatially*
+- Screen reader only announces changes
+
+<Notes>
+
+- don't affect keyboard focus because it should not interrupt the user's task
+- the alert should have role of alert so that the screen reader will know to announce it
+- If you need them to dissappear automatically then make the timeout long enough to give a person time to read.
+
+</Notes>
+
+---
+
+# TL;DR
+- Semantic HTML
+- ARIA
+- Keyboard navigation
+
+<Notes>
+
+- Let's break down this component using our three tl;dr topics
+
+</Notes>
+
+---
+
+# TL;DR
+- Semantic HTML *
+- ARIA
+- Keyboard navigation
+
+<Notes>
+
+- Starting with the semantic html
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = () => (
+  <div className="container">
+
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Div provides no semantic value
+- But all I want is a container
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = () => (
+  <div className="container">
+    <p className="message">This is really Important!</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Let's use a paragraph for the alert message
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage }) => (
+  <div className="container">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- We want our components to be reusable and flexible so let's make the message dynamic.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage = '' }) => (
+  <div className="container">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- let's add a default value of an empty string.
+- here's why this is really important
+
+</Notes>
+
+---
+
+# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+- Should NOT affect keyboard focus
+- ARIA `role="alert"`
+- Should NOT dissappear automatially*
+- **Screen reader only announces changes**
+
+<Notes>
+
+- which means two things
+
+</Notes>
+
+---
+
+# **Screen reader only announces changes**
+- This alert component has to be rendered on the page when it loads.
+
+<Notes>
+
+- It should be empty and visibly hidden.
+
+</Notes>
+
+---
+
+# **Screen reader only announces changes**
+- This alert component has to be rendered on the page when it loads.
+- Add or change the message when screen reader should announce alert.
+
+<Notes>
+
+- you pass in the message to the alertMessage prop
+- this will automatically render to the page, the screen reader will notice that there was a change in the element, and then announce that message.
+
+</Notes>
+
+---
+
+# TL;DR
+- Semantic HTML
+- ARIA
+- Keyboard navigation *
+
+<Notes>
+
+- Now let's talk about keyboard nav.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage = '' }) => (
+  <div className="container">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- we don't have any interactive elements in our alert component right now and i think that's ok because if we remember our requirements we shouldn't be changing focus when this alert comes up.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ 
+  alertMessage = '',
+  closeHandler = defaultCloseHandler,
+  closeMessage = 'Close' 
+}) => (
+  <div className="container">
+    <p className="message">
+      {alertMessage}
+    </p>
+    <button 
+      onClick={closeHandler}>
+      {closeMessage}
+    </button>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- If we wanted to we could add a button as our interactive element
+- this would automatically allow it to gain keyboard focus and handle keyboard interactions
+- and then we would have to manage keyboard navigation.
+- let's keep our alert as is without the button so that we can cover keyboard navigation a bit more in our next component.
+
+</Notes>
+
+---
+
+# Alert Modal
+A modal that **interrupts** the user's workflow to provide important information and **aquire a response**.
+
+<Notes>
+
+- Similar to the alert component, but this time we require our user to interact with it.
+- A terms and conditions popup or a paywall on the nytimes asking you to subscribe.
+
+</Notes>
+
+---
+
+## TL;DR [Alert Modal](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alertdialog)
+- Container element has `role="alertdialog"`
+- Container title is specified using properties `aria-labeledby` or `aria-label`
+- Container element has `aria-describedby` to designate the alert message element.
+- When the modal opens focus moves to an element inside the the alert modal.
+- `tab` and `shift+tab` move focus from one element to another inside the modal.
+- `esc` closes the modal.
+
+---
+
+<CodeSurfer>
+
+```jsx
+const AlertModal = ({ 
+  alertTitle='',
+  alertMessage='',
+  closeHanlder,
+  closeText 
+}) => (
+  <div className="modal">
+    <h2>{alertTitle}</h2>
+    <p>{alertMessage}</p>
+    <button onClick={closeHanlder}>{closeText}</button>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- start off with the markup.  a div as the container.
+- paragraph with dynamic message passed in via a prop
+- and our interactive element for the user to respond to the alert.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const AlertModal = ({ 
+  alertTitle='',
+  alertMessage='',
+  closeHanlder,
+  closeText 
+}) => (
+  <div 
+    className="modal"
+    role="alertdialog"
+    aria-labeledby="alertTitle"
+    aria-describedby="alertMessage">
+    <h2 id="alertTitle">{alertTitle}</h2>
+    <p id="alertMessage">{alertMessage}</p>
+    <button onClick={closeHanlder}>{closeText}</button>
+  </div>
+)
+
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- We have to add a few ARIA attributes.
+- we need to give our container a label.  Let's use `aria-labeledby` to do that.
+- this let's us identify another element that will be the label for the modal.  In this case it's our h2 with the matching id attribute
+- we also need to identify the message for our container using `aria-describedby`.  Similarly we'll pass the value of the id on the paragraph element that is our message.
+
+</Notes>
+
+---
