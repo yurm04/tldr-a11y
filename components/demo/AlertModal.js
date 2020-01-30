@@ -18,7 +18,7 @@ const AlertModal = ({
     <div 
       className="modal"
       role="alertdialog"
-      aria-labeledby="alertTitle"
+      aria-labelledby="alertTitle"
       aria-describedby="alertMessage">
       <h2 id="alertTitle">{alertTitle}</h2>
       <p id="alertMessage">{alertMessage}</p>

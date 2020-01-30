@@ -1,0 +1,85 @@
+# Alert Modal
+A modal that **interrupts** the user's workflow to provide important information and **aquire a response**.
+
+<Notes>
+
+- Similar to the alert component, but this time we require our user to interact with it.
+- A terms and conditions popup or a paywall on the nytimes asking you to subscribe.
+
+</Notes>
+
+---
+
+## TL;DR [Alert Modal](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alertdialog)
+- Container element has `role="alertdialog"`
+- Container title is specified using properties `aria-labelledby` or `aria-label`
+- Container element has `aria-describedby` to designate the alert message element.
+- When the modal opens focus moves to an element inside the the alert modal.
+- `tab` and `shift+tab` move focus from one element to another inside the modal.
+- `esc` closes the modal.
+
+---
+
+<CodeSurfer>
+
+```jsx
+const AlertModal = ({ 
+  alertTitle='',
+  alertMessage='',
+  closeHanlder,
+  closeText 
+}) => (
+  <div className="modal">
+    <h2>{alertTitle}</h2>
+    <p>{alertMessage}</p>
+    <button onClick={closeHanlder}>{closeText}</button>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- start off with the markup.  a div as the container.
+- paragraph with dynamic message passed in via a prop
+- and our interactive element for the user to respond to the alert.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const AlertModal = ({ 
+  alertTitle='',
+  alertMessage='',
+  closeHanlder,
+  closeText 
+}) => (
+  <div 
+    className="modal"
+    role="alertdialog"
+    aria-labelledby="alertTitle"
+    aria-describedby="alertMessage">
+    <h2 id="alertTitle">{alertTitle}</h2>
+    <p id="alertMessage">{alertMessage}</p>
+    <button onClick={closeHanlder}>{closeText}</button>
+  </div>
+)
+
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- We have to add a few ARIA attributes.
+- we need to give our container a label.  Let's use `aria-labelledby` to do that.
+- this let's us identify another element that will be the label for the modal.  In this case it's our h2 with the matching id attribute
+- we also need to identify the message for our container using `aria-describedby`.  Similarly we'll pass the value of the id on the paragraph element that is our message.
+
+</Notes>
+
+---
