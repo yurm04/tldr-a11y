@@ -47,7 +47,7 @@ Encapsulated, reusable, and custom elements.
 ---
 
 ## Accessible
-Designed and developed so people with disabilities can it.
+Designed and developed so people with disabilities can use it.
 
 <Notes>
 
@@ -212,7 +212,7 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
-- If we wanted to make an accessible button out of a div we would need a lot more than just a click handler
+- If we wanted to make an accessible button out of a div we would need to add a lot more to it to make it accessible.
 - with a button element we get accessibility for free.
 - Always consider whether you're using the right elements for the job when you're building components. 
 
@@ -225,9 +225,21 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 - `div`
 - `span`
 
+---
+
+# TL;DR
+- Use semantic elements when possible.
+- You get a lot of a11y features for free.
+- `div` and `span` are not semantic elements.
+
+---
+
+# Semantic HTML
+
 <Notes>
 
-- You probably have the appropriate element available to you.
+- But even with an arsenal of semantic elements at our disposal...
+- There's still plenty of work we have to do when we just don't have the right elements.
 
 </Notes>
 
@@ -247,7 +259,7 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 
 <Notes>
 
-- Our semantic HTML elements only get us so far.
+- For example...
 - It'd be great if we had something like this in HTML that just behaved like an alert should and had the necessary a11y features baked in
 
 </Notes>
@@ -267,24 +279,17 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 <Notes>
 
 - But usually we end up having to do something like this.
-- Sometimes we won't have the element that means _exactly_ what we need it to mean.
-- In this case, unfortunately, assistive technologies have no idea that this is an alert.
-- This is just a div
+- A lot of us will only get as far as dressing it up to _look_ like an alert and _act_ like an alert...
+- But leave out critical a11y functionality like making compatible with screen readers.
+
 
 </Notes>
 
 ---
 
-# TL;DR
-- Use semantic elements when possible.
-- You get a lot of a11y features for free.
-- `div` and `span` are not semantic elements.
-
----
-
-# Three things to consider
+# Three "Easy" Steps
 - Semantic HTML
-- ARIA *
+- **ARIA**
 - Keyboard navigation
 
 <Notes>
@@ -300,7 +305,7 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 
 - stands for accessible rich internet applications
 - set of HTML attributes that help define the semantics of an element or component.
-- Understood by assistive technologies
+- attributes that are Understood by assistive technologies
 
 </Notes>
 
@@ -329,8 +334,8 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 
 <Notes>
 
-- roles are defined by using the `role` html attribute and providing a valid role value
-- states and properties are usually prefixed with `aria-` and then the name of valid state or property name.
+- roles are defined by using the `role` html attribute and providing a valid name
+- states and properties usually start with `aria-` followed by a valid state or property name.
 - these attribute names come from a list, you don't make up your own.
 
 </Notes>
@@ -361,7 +366,7 @@ Option 1
 
 <Notes>
 
-- When we combine these ARIA attributes together we can add meaning to our components that would otherwise have been completely unknown or misunderstood to assistive technologies
+- When we combine these ARIA attributes together we can add meaning to our components that would otherwise have been completely unknown or misunderstood or ignored by assistive technologies
 
 </Notes>
 
@@ -390,13 +395,11 @@ Option 1
 # Three things to consider
 - Semantic HTML
 - ARIA
-- Keyboard navigation *
+- **Keyboard navigation**
 
 <Notes>
 
 - all of our components have to support keyboard only navigation.
-- How many Vim users do we have?
-- How many people have wrist pains?
 
 </Notes>
 
@@ -408,7 +411,7 @@ How can a user interact with this component using only a keyboard?
 <Notes>
 
 - Not everyone interacts with the web with a mouse.
-- We need to make sure that our components will work for a keyboard-only user.
+- We need to make sure that interactive elements can be accessed by a keyboard.
 
 </Notes>
 
