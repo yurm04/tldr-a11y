@@ -4,15 +4,16 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { vsDark, github } from "@code-surfer/themes";
+import { vsDark, github, dracula } from "@code-surfer/themes";
+import customTheme from './theme'
 
-export const theme = vsDark;
+export const theme = customTheme;
 
-import designPatternsImage from './designPatterns.png'
-import alertDesignPattern from './alertDesignPattern.png'
-import alertExample1 from './alertExample1.png'
-import alertExample2 from './alertExample2.png'
-import alertExample3 from './alertExample3.png'
+import designPatternsImage from './assets/designPatterns.png'
+import alertDesignPattern from './assets/alertDesignPattern.png'
+import alertExample1 from './assets/alertExample1.png'
+import alertExample2 from './assets/alertExample2.png'
+import alertExample3 from './assets/alertExample3.png'
 
 <Head>
   <title>TL;DR Accessible Components</title>
@@ -27,7 +28,7 @@ import alertExample3 from './alertExample3.png'
 
 ---
 
-# TL;DR Acessible Components
+<h1 style={{ textAlign: 'center' }}>TL;DR Accessible Components</h1>
 
 <Notes>
 
@@ -39,7 +40,7 @@ import alertExample3 from './alertExample3.png'
 
 ---
 
-## Components
+# Components
 Encapsulated, reusable, and custom elements.
 
 <Notes>
@@ -53,7 +54,7 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
-## Accessible
+# Accessible
 Designed and developed so people with disabilities can use it.
 
 <Notes>
@@ -66,7 +67,7 @@ Designed and developed so people with disabilities can use it.
 
 ---
 
-## Accessible
+# Accessible
 Designed and developed so people with disabilities can use it.
 
 <Notes>
@@ -79,7 +80,7 @@ Designed and developed so people with disabilities can use it.
 
 ---
 
-## Accessible Components
+# Accessible Components
 
 <Notes>
 
@@ -90,7 +91,7 @@ Designed and developed so people with disabilities can use it.
 
 ---
 
-## Accessible Components
+# Accessible Components
 
 <Notes>
 
@@ -102,7 +103,7 @@ Designed and developed so people with disabilities can use it.
 
 ---
 
-## Accessible Components
+# Accessible Components
 
 <Notes>
 
@@ -113,7 +114,7 @@ Designed and developed so people with disabilities can use it.
 
 ---
 
-## TL;DR
+# TL;DR
 Too Long; Didn't Read
 
 <Notes>
@@ -125,7 +126,7 @@ Too Long; Didn't Read
 
 ---
 
-# TL;DR Acessible Components
+<h1 style={{ textAlign: 'center' }}>TL;DR Accessible Components</h1>
 
 <Notes>
 
@@ -278,9 +279,9 @@ There are over 100 elements available in HTML.  The only two that have NO semant
 
 <CodeSurfer>
 
-```js
+```jsx
 <div className="alert">
-  <p>I'm an alert!</p>
+  <p>An alert!</p>
 </div>
 ```
 
@@ -388,7 +389,7 @@ Option 1
 
 - A lot of this has already been figured out
 - The W3C has a lot of super helpful documentation that provides examples for common components
-- But for all the good that come out of aira attributes, They don't really help with our next concept...
+- But for all the good that come out of aria attributes, They don't really help with our next concept...
 
 </Notes>
 
@@ -431,7 +432,7 @@ We're responsible for managing keyboard navigation in our custom components
 ---
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-## Common Conventions
+# Common Conventions
 - `tab` and `shift+tab` move focus from one component to another
 - arrows keys move focus from one interactive element to another _within_ a component 
 - `Enter` and `Space` will activate an interactive element.
@@ -467,7 +468,7 @@ Make sure your user knows where their keyboard focus is
 
 # TL;DR
 - Use common conventions for keyboard navigation.
-- Keyboard focus idicator should always be visible.
+- Keyboard focus indicator should always be visible.
 - Focus should persist between interaction events.
 
 ---
@@ -509,7 +510,7 @@ Make sure your user knows where their keyboard focus is
 
 ---
 
-## [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+# [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
 An element that draws the user's attention to provide important information *without* interrupting the user from the current task.
 
 <Notes>
@@ -564,14 +565,14 @@ An element that draws the user's attention to provide important information *wit
 # TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
 - Should NOT affect keyboard focus
 - ARIA [`role="alert"`](https://www.w3.org/TR/wai-aria-1.1/#alert)
-- Should NOT dissappear automatially*
+- Should NOT disappear automatically*
 - Screen reader only announces changes
 
 <Notes>
 
 - don't affect keyboard focus because it should not interrupt the user's task
 - the alert should have role of alert so that the screen reader will know to announce it
-- If you need them to dissappear automatically then make the timeout long enough to give a person time to read.
+- If you need them to disappear automatically then make the timeout long enough to give a person time to read.
 
 </Notes>
 
@@ -690,7 +691,7 @@ const Alert = ({ alertMessage = '' }) => (
 # TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
 - Should NOT affect keyboard focus
 - ARIA `role="alert"`
-- Should NOT dissappear automatially*
+- Should NOT disappear automatically*
 - **Screen reader only announces changes**
 
 <Notes>
@@ -785,14 +786,14 @@ const Alert = ({
 <Notes>
 
 - If we wanted to we could add a button as our interactive element
-- this would automatically allow it to gain keyboard focus and handle keyboard interactions
+- this would automatically allow it to get keyboard focus and handle keyboard interactions
 - but let's keep our alert as is without the button so that we can cover keyboard navigation a bit more in our next component.
 
 </Notes>
 
 ---
 
-## [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
 
 <Notes>
 
@@ -804,12 +805,12 @@ const Alert = ({
 
 ---
 
-## [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
 An element that enables users to trigger an action or event.
 
 ---
 
-## TL;DR [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+# TL;DR [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
 - The button should be focusable
 - `Space` and `Enter` activate the button.
 - `role="button"`
@@ -839,7 +840,7 @@ const Button = () => (
 <Notes>
 
 - So let's take this and make it a button
-- We're gunna skip our semantic HTML step because we're trying to take a non-semantic element and give it some meaning so nothing to do there.
+- We're gonna skip our semantic HTML step because we're trying to take a non-semantic element and give it some meaning so nothing to do there.
 
 </Notes>
 
@@ -902,7 +903,7 @@ const Button = ({ buttonContent, accessibleLabel }) => (
 
 <Notes>
 
-- and we also want to accept an accesible label
+- and we also want to accept an accessible label
 - and set that as the value of our `aria-label` and that's what screen readers will announce
 
 </Notes>
@@ -952,7 +953,7 @@ const Button = ({ buttonContent, accessibleLabel, disabled = false }) => (
 
 - let's move on to managing our keyboard navigation
 - whenever we want to make a non-interactive element focusable we add a non-negative tabindex value to it
-- setting it to zero will will put the element in it's natural tab order in the DOM so that we can tab or shift tab into it.
+- setting it to zero will put the element in its natural tab order in the DOM so that we can tab or shift tab into it.
 
 </Notes>
 
@@ -980,7 +981,7 @@ const Button = ({ buttonContent, accessibleLabel, disabled = false }) => {
 
 <Notes>
 
-- we have to add a onClick event handler for mouse interactions.
+- we have to add an onClick event handler for mouse interactions.
 - but we also have to add a key event handler, something like onKeyPress
 
 </Notes>
@@ -1047,7 +1048,7 @@ const Button = ({ buttonText = 'I just work!', activate}) => (
 
 ---
 
-## Recap
+# Recap
 
 <Notes>
 
@@ -1061,7 +1062,7 @@ const Button = ({ buttonText = 'I just work!', activate}) => (
 
 ---
 
-## Accessible Components
+# Accessible Components
 
 <Notes>
 
@@ -1071,7 +1072,7 @@ const Button = ({ buttonText = 'I just work!', activate}) => (
 
 ---
 
-## Accessible Components
+# Accessible Components
 - Semantic HTML
 - ARIA attributes
 - Keyboard navigation
@@ -1089,4 +1090,5 @@ const Button = ({ buttonText = 'I just work!', activate}) => (
 ---
 
 # Thank You!
+
 
