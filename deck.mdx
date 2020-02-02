@@ -8,12 +8,14 @@ import { vsDark, github, dracula } from "@code-surfer/themes";
 import customTheme from './theme'
 
 export const theme = customTheme;
+import './styles.css'
 
 import designPatternsImage from './assets/designPatterns.png'
 import alertDesignPattern from './assets/alertDesignPattern.png'
 import alertExample1 from './assets/alertExample1.png'
 import alertExample2 from './assets/alertExample2.png'
 import alertExample3 from './assets/alertExample3.png'
+import Layout from './components/Layout.js'
 
 <Head>
   <title>TL;DR Accessible Components</title>
@@ -28,7 +30,11 @@ import alertExample3 from './assets/alertExample3.png'
 
 ---
 
-<h1 style={{ textAlign: 'center' }}>TL;DR Accessible Components</h1>
+<Layout>
+
+# TL;DR Accessible Components
+
+</Layout>
 
 <Notes>
 
@@ -54,8 +60,12 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
+<Layout>
+
 # Accessible
 Designed and developed so people with disabilities can use it.
+
+</Layout>
 
 <Notes>
 

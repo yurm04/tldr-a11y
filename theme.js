@@ -1,10 +1,19 @@
-import { dracula } from '@code-surfer/themes'
+import { vsDark } from '@code-surfer/themes'
 
+const colorWhite = '#fff'
 
 export default {
-  ...dracula,
+  ...vsDark,
   fonts: {
     heading: 'Futura, sans-serif',
     body: 'Futura, sans-serif'
+  },
+  styles: {
+    p: {
+      color: colorWhite
+    },
+    li: {
+      color: colorWhite
+    }
   }
 }
