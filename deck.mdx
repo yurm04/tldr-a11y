@@ -29,18 +29,6 @@ import Layout from './components/Layout.js'
 
 ---
 
-# Hello 👋
-
----
-
-<Layout>
-
-# TL;DR Accessible Components
-
-</Layout>
-
----
-
 <Layout>
 
 # What is accessibility?
@@ -155,11 +143,12 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
+- TODO polish this section a bit
 - Unfortunately that's easier said than done.
-- Because very few of us have had any formal training in building accessible apps.
-- And the documentation has a tendency to be long, and dry, and hard to decipher.
+- One of the most challenging hurdles I had to overcome
 
 </Notes>
+
 
 ---
 
@@ -212,7 +201,7 @@ Encapsulated, reusable, and custom elements.
 <Notes>
 
 - I'm gonna share my too long; didn't read approach to building accessible components.
-- It's a way approach building accessible components by going off of the documentation
+- It's the way that I tackle building accessible components by going off of the documentation
 - and quickly identifying the critical requirements of each.
 
 </Notes>
@@ -235,12 +224,14 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- In general there are three easy steps to building accessible components.
+- In general there are three main requirements we need to consider when building our accessible components.
 - Use semantic HTML whenever possible.
 - Identify which ARIA attributes are required.
 - And manage keyboard navigation
 
 </Notes>
+
+<!-- https://www.w3.org/WAI/standards-guidelines/wcag/ -->
 
 ---
 
@@ -275,7 +266,9 @@ Encapsulated, reusable, and custom elements.
 
 
 <Notes>
+
 So let's Start with Semantic HTML  
+
 </Notes>
 
 ---
@@ -289,6 +282,8 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
+- One of the things that is so powerful about HTML is that it was fundamentally designed and built to be accessible.
+- Because of this we can rely on semantic HTML elements to do a lot of the heavy lifting.
 - This is critical for building websites that can be understood by assistive technologies.
 - Assistive technologies are just software and hardware, they only understand the code you write.
 - So if we want these technologies to properly identify and interact with our components we have to speak their language
@@ -297,27 +292,89 @@ Provides your content and components with meaning beyond their visual representa
 
 ---
 
-<CodeSurferColumns themes={[ github, vsDark ]}>
-
-<Step subtitle="Semantic HTML elements are understood by assistive technologies out of the box.">
+<CodeSurfer>
 
 ```jsx
-{/* Just a div */}
 <div 
-  tabindex="0"
-  role="button"
-  onKeyPress
-  onClick={eventHandler}
-  onKeyPress={eventHandler}>
-  I'm an Imposter
+  onClick={eventHandler}>
+  This is a "button"
 </div>
 ```
 
+</CodeSurfer>
+
+<Notes>
+
+  - RAISE HANDS: how many of us have done something like this?
+  - Unfortunately this is just a div with a click handler.
+  - Assistive technologies like screen readers will have NO idea that this element even exists.
+  - And users that navigate the web using only a keyboard won't even be able to interact with this element because it only has a click handler attached to it.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
 ```jsx
-{/* A semantic button */}
 <button onClick={eventHandler}>
-  I Just Work
+  Fully accessible
 </button>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+  - If we were to use the HTML button element we would get all of that for free.
+  - Assistive technologies understand what this is and know how to interact with it.
+  - And it's fully interactive using only a keyboard.
+
+</Notes>
+
+---
+
+<CodeSurferColumns themes={[ github, vsDark ]}>
+
+<Step>
+
+```jsx
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  disabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx
+const Button = ({ 
+  buttonContent = 'I just work!', 
+  activate
+}) => (
+  <button onClick={activate}>
+    {buttonContent}
+  </button>
+)
 ```
 
 </Step>
@@ -326,9 +383,7 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
-- If we wanted to make an accessible button out of a div we would need to add a lot more to it to make it accessible.
-- with a button element we get accessibility for free.
-- Always consider whether you're using the right elements for the job when you're building components. 
+  - And a lot of times it's just easier for us to use the semantic HTML elements than it is to try and jam accessibility support into a div.
 
 </Notes>
 
@@ -1000,273 +1055,6 @@ const Alert = ({
 - If we wanted to we could add a button as our interactive element
 - this would automatically allow it to get keyboard focus and handle keyboard interactions
 - but let's keep our alert as is without the button so that we can cover keyboard navigation a bit more in our next component.
-
-</Notes>
-
----
-
-<Layout>
-
-# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
-
-</Layout>
-
-<Notes>
-
-- I know I've been using the button element as the perfect example of a semantic HTML element to always use
-- But there may come a time when you aren't able to use the HTML button element.
-- So let's dig into what we need to make our custom Button component fully accessible.
-
-</Notes>
-
----
-
-<Layout>
-
-# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
-An element that enables users to trigger an action or event.
-
-</Layout>
-
----
-
-<Layout>
-
-# TL;DR [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
-- The button should be focusable
-- `Space` and `Enter` activate the button.
-- `role="button"`
-- Has an accessible label
-- when disabled set `aria-disabled="true"`
-
-</Layout>
-
-<Notes>
-
-- I went ahead and read the documentation and parsed our the requirements based on our three easy steps.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = () => (
-  <div>
-    I'm a Button!
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- So let's take this and make it a button
-- We're gonna skip our semantic HTML step because we're trying to take a non-semantic element and give it some meaning so nothing to do there.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent }) => (
-  <div>
-    {buttonContent}
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- and let's make the button text dynamic by passing in a buttonContent prop
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent }) => (
-  <div
-    role="button">
-    {buttonContent}
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- For the ARIA attributes we want to give this div a role of button.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent, accessibleLabel }) => (
-  <div
-    role="button"
-    aria-label={accessibleLabel || buttonContent}>
-    {buttonContent}
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- and we also want to accept an accessible label
-- and set that as the value of our `aria-label` and that's what screen readers will announce
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent, accessibleLabel, disabled = false }) => (
-  <div
-    role="button"
-    aria-label={accessibleLabel || buttonContent}
-    aria-disabled={disabled ? 'true' : 'false'}>
-    {buttonContent}
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- and if the button is in a disabled state we need to set our `aria-disabled` attribute.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent, accessibleLabel, disabled = false }) => (
-  <div
-    tabindex="0"
-    role="button"
-    aria-label={accessibleLabel || buttonContent}
-    aria-disabled={disabled ? 'true' : 'false'}>
-    {buttonContent}
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- let's move on to managing our keyboard navigation
-- whenever we want to make a non-interactive element focusable we add a non-negative tabindex value to it
-- setting it to zero will put the element in its natural tab order in the DOM so that we can tab or shift tab into it.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent, accessibleLabel, disabled = false }) => {
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={disabled ? 'true' : 'false'}
-      onClick={clickHandler}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- we have to add an onClick event handler for mouse interactions.
-- but we also have to add a key event handler, something like onKeyPress
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonContent, accessibleLabel, disabled = false, activate }) => {
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={disabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- so let's write that keyPressHandler
-- our requirements said that `Enter` and `Space` keys would activate the button
-- so in our handler let's check to see if the key that was pressed equals Enter or a whitespace character
-- if it does, then we want to launch that activate function
-- and I think that's pretty much it for keyboard navigation and aria.
-- and just to drive the point home, look at all the code we had to write to make a simple button
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Button = ({ buttonText = 'I just work!', activate}) => (
-  <button onClick={activate}>
-    {buttonText}
-  </button>
-)
-```
-
-</CodeSurfer> 
-
-<Notes>
-
-- while a button element just does all of this for you right out of the box.
-- so again, semantic elements are your friends.
 
 </Notes>
 

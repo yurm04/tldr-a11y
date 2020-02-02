@@ -1,0 +1,324 @@
+<CodeSurferColumns themes={[ github, vsDark ]}>
+
+<Step subtitle="Semantic HTML elements are understood by assistive technologies out of the box.">
+
+```jsx
+{/* Just a div */}
+<div 
+  tabindex="0"
+  role="button"
+  onKeyPress
+  onClick={eventHandler}
+  onKeyPress={eventHandler}>
+  I'm an Imposter
+</div>
+```
+
+```jsx
+{/* A semantic button */}
+<button onClick={eventHandler}>
+  I Just Work
+</button>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx
+{/* Just a div */}
+<div 
+  onClick={eventHandler}>
+  This is a "button"
+</div>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- If we wanted to make an accessible button out of a div we would need to add a lot more to it to make it accessible.
+- with a button element we get accessibility for free.
+- Always consider whether you're using the right elements for the job when you're building components. 
+
+</Notes>
+
+---
+
+<Layout>
+
+# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+
+</Layout>
+
+<Notes>
+
+- I know I've been using the button element as the perfect example of a semantic HTML element to always use
+- But there may come a time when you aren't able to use the HTML button element.
+- So let's dig into what we need to make our custom Button component fully accessible.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+An element that enables users to trigger an action or event.
+
+</Layout>
+
+---
+
+<Layout>
+
+# TL;DR [`Button`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#button)
+- The button should be focusable
+- `Space` and `Enter` activate the button.
+- `role="button"`
+- Has an accessible label
+- when disabled set `aria-disabled="true"`
+
+</Layout>
+
+<Notes>
+
+- I went ahead and read the documentation and parsed our the requirements based on our three easy steps.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = () => (
+  <div>
+    I'm a Button!
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- So let's take this and make it a button
+- We're gonna skip our semantic HTML step because we're trying to take a non-semantic element and give it some meaning so nothing to do there.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent }) => (
+  <div>
+    {buttonContent}
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- and let's make the button text dynamic by passing in a buttonContent prop
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent }) => (
+  <div
+    role="button">
+    {buttonContent}
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- For the ARIA attributes we want to give this div a role of button.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent, accessibleLabel }) => (
+  <div
+    role="button"
+    aria-label={accessibleLabel || buttonContent}>
+    {buttonContent}
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- and we also want to accept an accessible label
+- and set that as the value of our `aria-label` and that's what screen readers will announce
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent, accessibleLabel, disabled = false }) => (
+  <div
+    role="button"
+    aria-label={accessibleLabel || buttonContent}
+    aria-disabled={disabled ? 'true' : 'false'}>
+    {buttonContent}
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- and if the button is in a disabled state we need to set our `aria-disabled` attribute.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent, accessibleLabel, disabled = false }) => (
+  <div
+    tabindex="0"
+    role="button"
+    aria-label={accessibleLabel || buttonContent}
+    aria-disabled={disabled ? 'true' : 'false'}>
+    {buttonContent}
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- let's move on to managing our keyboard navigation
+- whenever we want to make a non-interactive element focusable we add a non-negative tabindex value to it
+- setting it to zero will put the element in its natural tab order in the DOM so that we can tab or shift tab into it.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonContent, accessibleLabel, disabled = false }) => {
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={clickHandler}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- we have to add an onClick event handler for mouse interactions.
+- but we also have to add a key event handler, something like onKeyPress
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ 
+  buttonContent, 
+  accessibleLabel, 
+  disabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- so let's write that keyPressHandler
+- our requirements said that `Enter` and `Space` keys would activate the button
+- so in our handler let's check to see if the key that was pressed equals Enter or a whitespace character
+- if it does, then we want to launch that activate function
+- and I think that's pretty much it for keyboard navigation and aria.
+- and just to drive the point home, look at all the code we had to write to make a simple button
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ buttonText = 'I just work!', activate}) => (
+  <button onClick={activate}>
+    {buttonText}
+  </button>
+)
+```
+
+</CodeSurfer> 
+
+<Notes>
+
+- while a button element just does all of this for you right out of the box.
+- so again, semantic elements are your friends.
+
+</Notes>
+
+---
