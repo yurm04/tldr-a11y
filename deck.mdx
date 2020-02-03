@@ -61,7 +61,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 <Notes>
 
 - There are several reasons why accessibility should be a priority for us as engineers.
-- Of coure there are monetary and legal reasons for why we should care about accessibility in our day-to-day
+- Of course there are monetary and legal reasons for why we should care about accessibility in our day-to-day
 - But I want to focus on one reason in particular, because it's the one that resonates most with me and I hope it will with you too.
 
 </Notes>
@@ -234,7 +234,7 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Steps
 
-  <ul>
+  <ul style={{ listStyle: 'none' }}>
     <Appear>
       <li>Semantic HTML</li>
       <li>ARIA attributes</li>
@@ -260,9 +260,12 @@ Encapsulated, reusable, and custom elements.
 <Layout>
 
 # Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- Keyboard navigation
+
+<ul style={{ listStyle: 'none' }}>
+    <li>Semantic HTML</li>
+    <li>ARIA attributes</li>
+    <li>Keyboard navigation</li>
+</ul>
 
 </Layout>
 
@@ -280,9 +283,12 @@ Encapsulated, reusable, and custom elements.
 <Layout>
 
 # Three "Easy" Steps
-- **Semantic HTML**
-- ARIA attributes
-- Keyboard navigation
+
+<ul style={{ listStyle: 'none' }}>
+    <li style={{ fontWeight: 'bold'}}>Semantic HTML</li>
+    <li>ARIA attributes</li>
+    <li>Keyboard navigation</li>
+</ul>
 
 </Layout>
 
@@ -661,9 +667,12 @@ There are over 100 elements available in HTML.
 <Layout>
 
 # Three "Easy" Steps
-- Semantic HTML
-- **ARIA attributes**
-- Keyboard navigation
+
+<ul style={{ listStyle: 'none' }}>
+    <li>Semantic HTML</li>
+    <li style={{ fontWeight: 'bold'}}>ARIA attributes</li>
+    <li>Keyboard navigation</li>
+</ul>
 
 </Layout>
 
@@ -694,7 +703,7 @@ There are over 100 elements available in HTML.
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
-<ul>
+<ul  style={{ listStyle: 'none' }}>
   <Appear>
       <li>roles</li>
       <li>states</li>
@@ -718,7 +727,7 @@ There are over 100 elements available in HTML.
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
-<ul>
+<ul  style={{ listStyle: 'none' }}>
   <li>roles</li>
   <li>states</li>
   <li>properties</li>
@@ -925,7 +934,7 @@ const Button = ({
 - We also want to pass in a value for an accessible button label using the aria-label or aria-labelledby properties.
 - Usually the screen reader will read the content inside of the button by default...
 - But if we needed to override that value we could explicitly pass in what should be announced for this button.
-- This is handy if we have button that have non-text content like images or icons.
+- This is handy if we have buttons that have non-text content like images or icons.
 
 </Notes>
 
@@ -1211,9 +1220,12 @@ const Modal = ({
 <Layout>
 
 # Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- **Keyboard navigation**
+
+<ul style={{ listStyle: 'none' }}>
+    <li>Semantic HTML</li>
+    <li>ARIA attributes</li>
+    <li  style={{ fontWeight: 'bold'}}>Keyboard navigation</li>
+</ul>
 
 </Layout>
 
@@ -1236,7 +1248,7 @@ How can a user interact with our components using only a keyboard?
 
 <Notes>
 
-- Unless we're relying solely on sematic HTML elements, we're entirely responsible for managing keyboard navigation.
+- Unless we're relying solely on semantic HTML elements, we're entirely responsible for managing keyboard navigation.
 - So we need to consider how a user would be able to interact with our components using only a keyboard.
 
 </Notes>
@@ -1570,7 +1582,7 @@ const Button = ({
 
 - CODE TRANSITION
 - We're gonna add a key listener to our button, i'll use onKeyPress for this one.
-- And we have to pass a handler function to it.  The docs say that our button can be activate using the ENTER and SPACE keys, so we're going to check for those keys being pressed.
+- And we have to pass a handler function to it.  The docs say that our button can be activated using the ENTER and SPACE keys, so we're going to check for those keys being pressed.
 - CODE TRANSITION
 - And if they are, we'll go ahead and run that same activate function that we passed to the onClick event.
 
@@ -1710,7 +1722,7 @@ Manage focus so that it persists between interaction events.
 
 # Three "Easy" Steps
 
-  <ul>
+  <ul style={{ listStyle: 'none' }}>
     <Appear>
       <li>Semantic HTML</li>
       <li>ARIA attributes</li>
