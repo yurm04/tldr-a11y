@@ -10,11 +10,16 @@ import customTheme from './theme'
 export const theme = customTheme;
 import './styles.css'
 
+import wcagDocsGif from './assets/wcagDocs.gif'
 import designPatternsImage from './assets/designPatterns.png'
 import alertDesignPattern from './assets/alertDesignPattern.png'
 import alertExample1 from './assets/alertExample1.png'
 import alertExample2 from './assets/alertExample2.png'
 import alertExample3 from './assets/alertExample3.png'
+import designPatternsIntro from './assets/designPatternsIntro.png'
+import designPatternsIntro2 from './assets/designPatternsIntro2.png'
+import designPatternsIntro3 from './assets/designPatternsIntro3.png'
+import designPatternsMenuExample from './assets/designPatternsMenuExample.png'
 import Layout from './components/Layout.js'
 
 <Head>
@@ -143,12 +148,23 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- TODO polish this section a bit
 - Unfortunately that's easier said than done.
-- One of the most challenging hurdles I had to overcome
+- When I first started learning accessibility concepts the hardest things to figure out were the requirements for making components I'd built dozens of times and making them compatible with screen readers or interactive using only a keyboard.
+- Naturally I thought that turning to the documentation would help clear up my confusion, but instead I was hit with this...
 
 </Notes>
 
+---
+
+<Image src={wcagDocsGif} />
+
+<Notes>
+
+- A huge wall of text.
+- Hundreds of links that go to even more documentation.
+- And dozens of concepts that I didn't even know I didn't know.
+
+</Notes>
 
 ---
 
@@ -160,8 +176,8 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- But that doesn't get us off the hook, 
-- we can't just brush accessibility under the rug.
+- But that didn't get me off the hook, 
+- I couldn't just brush accessibility under the rug.
 
 </Notes>
 
@@ -176,8 +192,7 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- Instead we have to be more strategic about how we're approaching the specs
-- and gathering requirements from the docs.
+- Instead I had to be more strategic about how I was approaching the documentation.
 
 </Notes>
 
@@ -185,9 +200,15 @@ Encapsulated, reusable, and custom elements.
 
 <Layout>
 
-<h1 style={{ textAlign: 'center' }}>TL;DR Accessible Components</h1>
+# TL;DR Accessible Components
 
 </Layout>
+
+<Notes>
+
+- And that's what we're gonna be doing today during this talk.
+
+</Notes>
 
 ---
 
@@ -202,7 +223,7 @@ Encapsulated, reusable, and custom elements.
 
 - I'm gonna share my too long; didn't read approach to building accessible components.
 - It's the way that I tackle building accessible components by going off of the documentation
-- and quickly identifying the critical requirements of each.
+- and quickly identifying the critical requirements necessary.
 
 </Notes>
 
@@ -212,7 +233,7 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Steps
 
-  <ul> attributes
+  <ul>
     <Appear>
       <li>Semantic HTML</li>
       <li>ARIA attributes</li>
@@ -224,10 +245,10 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- In general there are three main requirements we need to consider when building our accessible components.
+- I've broken it down into 3 easy steps.
 - Use semantic HTML whenever possible.
-- Identify which ARIA attributes are required.
-- And manage keyboard navigation
+- Identify which ARIA attributes we need to add to those HTML elements.
+- And manage keyboard navigation.
 
 </Notes>
 
@@ -248,8 +269,8 @@ Encapsulated, reusable, and custom elements.
 
 - You may notice I have "easy" in quotes.  That's because there's a caveat.
 - Like any other skill in engineering it takes time to build up your understanding of accessibility.
-- These aren't catch-all solutions and they're definitely not the ONLY things we need to consider.
-- But by narrowing things down a bit I think it's easier and faster for us to ramp up and get to the heart of 
+- This isn't a silver bullet life hack and they're definitely not the ONLY things we need to consider.
+- But by narrowing things down a bit I think it's easier and faster for us to ramp up and target exactly what we need to get up and running.
 
 </Notes>
 
@@ -597,9 +618,8 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- Some additional HTML elements based on common components like a dropdown list.
-- It would automatically be recognized by assistive technologies without any work on our part.
-- and the actual dropdown behavior would be managed by the browser, which would be amazing.
+- Some kind of dropdown HTML elements based on common components like a dropdown list whose behavior would be managed by the browser would be amazing.
+- And because it's a native HTML element, it would automatically be recognized by assistive technologies without any work on our part.
 
 </Notes>
 
@@ -607,7 +627,7 @@ There are over 100 elements available in HTML.
 
 <CodeSurfer>
 
-```jsx 2,4,16,17
+```jsx
 <nav className="navBar">
   <a href="/about">About Page</a>
   <ul className="dropDownList hidden">
@@ -672,9 +692,14 @@ There are over 100 elements available in HTML.
 <Layout>
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
-- roles
-- states
-- properties
+
+<ul>
+  <Appear>
+      <li>roles</li>
+      <li>states</li>
+      <li>properties</li>
+  </Appear>
+</ul>
 
 </Layout>
 
@@ -683,6 +708,66 @@ There are over 100 elements available in HTML.
 - ARIA attributes are broken up into three categories
 - roles define the type of element or component
 - states and properties are supportive attributes that can be used with roles.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+
+<ul>
+  <li>roles</li>
+  <li>states</li>
+  <li>properties</li>
+</ul>
+
+</Layout>
+
+<Notes>
+
+- ARIA roles can be combined with states and properties and together they can be understood by assistive technologies so that they can announce them to the user.
+
+</Notes>
+
+---
+
+<Image src={designPatternsIntro} />
+
+<Notes>
+
+- And a really helpful resource for figuring out which attributes do what is this design patterns and widgets section. 
+
+</Notes>
+
+---
+
+<Image src={designPatternsIntro2} />
+
+<Notes>
+
+- It contains a list of common components that we're all familiar with.
+
+</Notes>
+
+---
+
+<Image src={designPatternsIntro3} />
+
+<Notes>
+
+- And details what ARIA roles, states and properties are required and available to use for each component
+
+</Notes>
+
+---
+
+<Image src={designPatternsMenuExample} />
+
+<Notes>
+
+- It also includes code samples in vanilla HTML, CSS and JS that we can use as our reference and translate to react.
 
 </Notes>
 
