@@ -1010,7 +1010,6 @@ const Button = ({
 <Notes>
 
 - Here's another component that's listed in the design patterns documentation.
-- A Modal.  Let's take a look at the ARIA attributes we need to make our modal accessible.
 
 </Notes>
 
@@ -1018,49 +1017,103 @@ const Button = ({
 
 <CodeSurfer>
 
-```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
+```jsx title='ARIA Modal'
 const Modal = ({ 
-  title
+  title,
+  modalText
 }) => {
   
   /* ... Some more code ... */
 
   return (
     <div
-      className="modalContainer"
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
       role="dialog"
       aria-modal={isOpen ? "true" : "false"}
       aria-labelledby="modalTitle">
         <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
       </div>
     </div>
   )
 }
 ```
 
-```jsx 4,19 title='add "aria-disabled" state if button is inactive'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
+```jsx 11 title='add "dialog" role to modal container'
+const Modal = ({ 
+  title,
+  modalText
 }) => {
   
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
+  /* ... Some more code ... */
 
   return (
     <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
+      </div>
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Let's take a look at the ARIA attributes we need to make our modal accessible.
+- CODE TRANSITION
+- our modal container needs the ARIA role attribute set to "dialog"
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 11 title='add "dialog" role to modal container'
+const Modal = ({ 
+  title,
+  modalText
+}) => {
+  
+  /* ... Some more code ... */
+
+  return (
+    <div
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
+      </div>
+    </div>
+  )
+}
+```
+
+```jsx 12 title='set "aria-modal" state when active'
+const Modal = ({ 
+  title,
+  modalText
+}) => {
+  
+  /* ... Some more code ... */
+
+  return (
+    <div
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
+      </div>
     </div>
   )
 }
@@ -1071,9 +1124,67 @@ const Button = ({
 <Notes>
 
 - CODE TRANSITION
-- And lastly we have to make sure we signal to assistive tech when a button is inactive.
-- We can do that by adding the aria-disabled state attribute and set it to true or false based on the button's inactive state.
-- That's about it for ARIA attributes for our simple button
+- we need our assistive tech to know when our modal is open and active, we do that with the aria-modal state attribute.
+- set that to true based on some component state.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+
+```jsx 12 title='set "aria-modal" state when active'
+const Modal = ({ 
+  title,
+  modalText
+}) => {
+  
+  /* ... Some more code ... */
+
+  return (
+    <div
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
+      </div>
+    </div>
+  )
+}
+```
+
+```jsx 2,13,14 title='"aria-label" or "aria-labelledby"'
+const Modal = ({ 
+  title,
+  modalText
+}) => {
+  
+  /* ... Some more code ... */
+
+  return (
+    <div
+      className=`modalContainer ${isOpen ? '' : 'hidden'}`
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+        <p className="modalContent">{modalText}</p>
+      </div>
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- we also have to provide an accessible label, so I'm using aria-labelledby property for that
+- I set the value of it to the ID of an element that contains the modal title, that's my h2 here.
 
 </Notes>
 

@@ -1,0 +1,25 @@
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  disabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
