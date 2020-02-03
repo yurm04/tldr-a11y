@@ -363,7 +363,7 @@ Provides your content and components with meaning beyond their visual representa
 const Button = ({ 
   buttonContent = "So much work...", 
   accessibleLabel, 
-  disabled = false, 
+  isDisabled = false, 
   activate 
 }) => {
   
@@ -378,7 +378,7 @@ const Button = ({
       tabindex="0"
       role="button"
       aria-label={accessibleLabel || buttonContent}
-      aria-disabled={disabled ? 'true' : 'false'}
+      aria-disabled={isDisabled ? 'true' : 'false'}
       onClick={activate}
       onKeyPress={keyPressHandler}>
       {buttonContent}
@@ -776,13 +776,12 @@ There are over 100 elements available in HTML.
 <Layout>
 
 # TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
-- `role="button"`
 
 </Layout>
 
 <Notes>
 
-- Give our button the ARIA button role
+- So going off of the design pattern docs, let's break down the ARIA attributes our Button component needs
 
 </Notes>
 
@@ -794,7 +793,7 @@ There are over 100 elements available in HTML.
 const Button = ({ 
   buttonContent = "So much work...", 
   accessibleLabel, 
-  disabled = false, 
+  isDisabled = false, 
   activate 
 }) => {
   
@@ -809,7 +808,7 @@ const Button = ({
       tabindex="0"
       role="button"
       aria-label={accessibleLabel || buttonContent}
-      aria-disabled={disabled ? 'true' : 'false'}
+      aria-disabled={isDisabled ? 'true' : 'false'}
       onClick={activate}
       onKeyPress={keyPressHandler}>
       {buttonContent}
@@ -818,11 +817,11 @@ const Button = ({
 }
 ```
 
-```jsx 17
+```jsx 17 title='add "button" ARIA role attribute'
 const Button = ({ 
   buttonContent = "So much work...", 
   accessibleLabel, 
-  disabled = false, 
+  isDisabled = false, 
   activate 
 }) => {
   
@@ -837,7 +836,7 @@ const Button = ({
       tabindex="0"
       role="button"
       aria-label={accessibleLabel || buttonContent}
-      aria-disabled={disabled ? 'true' : 'false'}
+      aria-disabled={isDisabled ? 'true' : 'false'}
       onClick={activate}
       onKeyPress={keyPressHandler}>
       {buttonContent}
@@ -851,7 +850,152 @@ const Button = ({
 <Notes>
 
 - Here's our div button example from before.
-- We have to add in the button role so that assistive tech can identify this plain div as a button
+- CODE TRANSITION
+- We have to add in the button role so that assistive tech can identify this plain div as a button.
+- Let's say we have a screen reader, it will announce that this element is a button and a user will know that they can interact with it.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 17 title='add "button" ARIA role attribute'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- We also want to pass in a value for an accessible button label using the aria-label or aria-labelledby properties.
+- Usually the screen reader will read the content inside of the button by default...
+- But if we needed to override that value we could explicitly pass in what should be announced for this button.
+- This is handy if we have button that have non-text content like images or icons.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 4,19 title='add "aria-disabled" state if button is inactive'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- And lastly we have to make sure we signal to assistive tech when a button is inactive.
+- We can do that by adding the aria-disabled state attribute and set it to true or false based on the button's inactive state.
+- That's about it for ARIA attributes for our simple button
 
 </Notes>
 
@@ -859,24 +1003,79 @@ const Button = ({
 
 <Layout>
 
-# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
-- `role="button"`
-- **accessible label with `aria-labelledby` or `aria-label`**
+# TL;DR ARIA [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_roles_states_props)(Modal)
 
 </Layout>
 
 <Notes>
 
-- Give our button the ARIA button role
+- Here's another component that's listed in the design patterns documentation.
+- A Modal.  Let's take a look at the ARIA attributes we need to make our modal accessible.
 
 </Notes>
 
 ---
 
-# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
-- `role="button"`
-- accessible label with `aria-labelledby` or `aria-label`
-- `aria-disabled="true"` if unavailable.
+<CodeSurfer>
+
+```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
+const Modal = ({ 
+  title
+}) => {
+  
+  /* ... Some more code ... */
+
+  return (
+    <div
+      className="modalContainer"
+      role="dialog"
+      aria-modal={isOpen ? "true" : "false"}
+      aria-labelledby="modalTitle">
+        <h2 id="modalTitle">{title}</h2>
+      </div>
+    </div>
+  )
+}
+```
+
+```jsx 4,19 title='add "aria-disabled" state if button is inactive'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- And lastly we have to make sure we signal to assistive tech when a button is inactive.
+- We can do that by adding the aria-disabled state attribute and set it to true or false based on the button's inactive state.
+- That's about it for ARIA attributes for our simple button
+
+</Notes>
 
 ---
 
