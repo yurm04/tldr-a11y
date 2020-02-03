@@ -21,6 +21,8 @@ import designPatternsIntro2 from './assets/designPatternsIntro2.png'
 import designPatternsIntro3 from './assets/designPatternsIntro3.png'
 import designPatternsMenuExample from './assets/designPatternsMenuExample.png'
 import keyboardNav from './assets/keyboardNav.png'
+import keyboardFocus1 from './assets/keyboardFocus1.gif'
+import keyboardFocus2 from './assets/keyboardFocus2.gif'
 import Layout from './components/Layout.js'
 
 <Head>
@@ -45,8 +47,6 @@ Websites, tools and technologies that are **designed** and **developed** so that
 <Notes>
 
 - What does it mean for something to be accessible?
-- When things are accessible it benefits all people.
-- But when we leave accessibility out of the work we do...
 
 </Notes>
 
@@ -61,7 +61,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 <Notes>
 
 - There are several reasons why accessibility should be a priority for us as engineers.
-- The Legal and financial ones tend to take precedence when it comes to selling our stakeholders on why we need to prioritize accessibility on the roadmap.
+- Of coure there are monetary and legal reasons for why we should care about accessibility in our day-to-day
 - But I want to focus on one reason in particular, because it's the one that resonates most with me and I hope it will with you too.
 
 </Notes>
@@ -84,7 +84,6 @@ Websites, tools and technologies that are **designed** and **developed** so that
 - Or maybe a user doesn't know who wins the 2020 election because the page they're trying to access doesn't work with their screen reader.
 - Which is one very serious consideration we have to make at The New York Times.
 
-
 </Notes>
 
 ---
@@ -100,7 +99,8 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 <Notes>
 
-- We shouldn't be the ones gatekeeping and limiting access to the web to a privileged few.
+- We shouldn't be the ones gatekeeping and limiting access to the web.
+- But when we aren't mindful of the code we're writing and the users that are impacted by it, that can sometimes be the result.
 - Keeping the web universal and inclusive means we have to make our websites accessible.
 - And to do that, we should start with the fundamentals.
 
@@ -135,7 +135,7 @@ Encapsulated, reusable, and custom elements.
 <Notes>
 
 - So if we designed and developed the building blocks to be accessible,
-- Then maybe we can start making significant progress in building fully accessible websites.
+- Then maybe we can start making significant progress in building fully accessible websites that work for everyone.
 
 </Notes>
 
@@ -1299,7 +1299,7 @@ const Button = ({
 }
 ```
 
-```jsx 17 title='add "button" ARIA role attribute'
+```jsx 16 title='add "tabindex" attribute'
 const Button = ({ 
   buttonContent = "So much work...", 
   accessibleLabel, 
@@ -1332,9 +1332,316 @@ const Button = ({
 <Notes>
 
 - Here's our trusty div button that we've grown to love.
+- our div element is not interactive by default, so the first thing to do is make sure we can tab to it and give it keyboard focus.
 - CODE TRANSITION
-- We have to add in the button role so that assistive tech can identify this plain div as a button.
-- Let's say we have a screen reader, it will announce that this element is a button and a user will know that they can interact with it.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 16 title='add "tabindex" attribute'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- We can do that by adding the tabindex attribute to our button and setting it to "0"
+- this will allow our div to gain keyboard focus when our user tabs to it.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 16 title='add "tabindex" attribute'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 5,20
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- We're passing an activate function to our button that we can trigger onClick...
+- But we also need a way to trigger our activate function with a keyboard.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 5,20
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 21 title="add a keyboard event listener"
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 8:12 title='Listen for "Enter" and "Space"'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 10
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- We're gonna add a key listener to our button, i'll use onKeyPress for this one.
+- And we have to pass a handler function to it.  The docs say that our button can be activate using the ENTER and SPACE keys, so we're going to check for those keys being pressed.
+- CODE TRANSITION
+- And if they are, we'll go ahead and run that same activate function that we passed to the onClick event.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 10
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- And now we have a very simple div button that is keyboard accessible.
 
 </Notes>
 
@@ -1342,49 +1649,13 @@ const Button = ({
 
 <Layout>
 
-# Common Conventions
-- `tab` and `shift+tab` move focus from one component to another
-- arrows keys move focus from one interactive element to another _within_ a component 
-- `Enter` and `Space` will activate an interactive element.
-
-</Layout>
-
-<!-- A primary keyboard navigation convention common across all platforms is that the tab and shift+tab keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements. The path that the focus follows when pressing the tab key is known as the tab sequence or tab ring. -->
-
----
-
-<Layout>
-
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-Make sure your user knows where their keyboard focus is
-<!-- When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed. The following factors affect to what extent a web page affords users these capabilities. -->
-
-</Layout>
-
----
-
-<Layout>
-
-# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-- Make sure the focus indicator is always visible.
-
-</Layout>
-
----
-
-<Layout>
-
-# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-- Managing focus so that it persists between interaction events.
 
 </Layout>
 
 <Notes>
 
-- If I open a modal by interacting with this button
-- My focus is moved inside of the modal.  When I close the modal, what happens to my focus?
-- It shouldn't just disappear or go back to the top of the page
-- These should be as natural and predictable as possible.
+- There are a couple other considerations we should make when building up our component keyboard navigation
 
 </Notes>
 
@@ -1392,12 +1663,73 @@ Make sure your user knows where their keyboard focus is
 
 <Layout>
 
-# TL;DR
-- Use common conventions for keyboard navigation.
-- Keyboard focus indicator should always be visible.
-- Focus should persist between interaction events.
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+Make sure your user knows where their keyboard focus is.
 
 </Layout>
+
+---
+
+<Image src={keyboardFocus1} />
+
+<Notes>
+
+- That means we should make sure we always have some visible indicator for which elements currently have focus.
+- At the very least that means that we shouldn't eliminate or change the focus outline on active elements.
+- We also want to make sure that we're creating a predictable tab order so that our users can more or less know where their focus will go when they tab to the next or previous element.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+Manage focus so that it persists between interaction events.
+
+</Layout>
+
+---
+
+<Image src={keyboardFocus2} />
+
+<Notes>
+
+- So if we take a look at a modal example.
+- When I key into the modal via my button, the keyboard focus moves into the modal to the interactive elements there.
+- and when I close the modal, keyboard focus returns to the original activator button.
+- It doesn't go to the top of the page or drop off completely.
+- We need to make sure to manage this, especially because react makes it so easy to render and unmount components based on state.
+- So persisting keyboard focus from state to state is key.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+
+  <ul>
+    <Appear>
+      <li>Semantic HTML</li>
+      <li>ARIA attributes</li>
+      <li>Keyboard navigation</li>
+    </Appear>
+  </ul>
+  
+</Layout>
+
+<Notes>
+
+- I kind of threw a lot at y'all so let's do a quick recap
+- We have three steps that we should keep in mind when we're building our components.
+- Use semantic HTML whenever possible.
+- Identify which ARIA attributes we need to add to those HTML elements.
+- And manage keyboard navigation.
+- And we can uncover these requirements from the official docs once we know where to look.
+
+</Notes>
 
 ---
 
