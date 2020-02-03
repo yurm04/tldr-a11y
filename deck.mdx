@@ -775,19 +775,14 @@ There are over 100 elements available in HTML.
 
 <Layout>
 
-# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
-- `role`
-  - `role="menuitemcheckbox"`
-- `aria-*`
-  - `aria-checked="true"`
+# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
+- `role="button"`
 
 </Layout>
 
 <Notes>
 
-- roles are defined by using the `role` html attribute and providing a valid name
-- states and properties usually start with `aria-` followed by a valid state or property name.
-- these attribute names come from a list, you don't make up your own.
+- Give our button the ARIA button role
 
 </Notes>
 
@@ -796,19 +791,67 @@ There are over 100 elements available in HTML.
 <CodeSurfer>
 
 ```jsx
-<li 
-  role="menuitemcheckbox" 
-  aria-checked="true"
-  onClick={checkboxHandler}>
-Option 1
-</li>
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  disabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 17
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  disabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={disabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-- When we combine these ARIA attributes together we can add meaning to our components that would otherwise have been completely unknown or misunderstood or ignored by assistive technologies
+- Here's our div button example from before.
+- We have to add in the button role so that assistive tech can identify this plain div as a button
 
 </Notes>
 
@@ -816,30 +859,24 @@ Option 1
 
 <Layout>
 
-  # TL;DR ARIA Attributes
-  - What does your component do?
-  - What role best describes or provides meaning for your component?
-  - What properties and states best support that role?
+# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
+- `role="button"`
+- **accessible label with `aria-labelledby` or `aria-label`**
 
 </Layout>
-
----
-
-<Layout>
-
-# TL;DR ARIA
-
-</Layout>
-
-<!-- gif of design patterns https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/ -->
 
 <Notes>
 
-- A lot of this has already been figured out
-- The W3C has a lot of super helpful documentation that provides examples for common components
-- But for all the good that come out of aria attributes, They don't really help with our next concept...
+- Give our button the ARIA button role
 
 </Notes>
+
+---
+
+# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
+- `role="button"`
+- accessible label with `aria-labelledby` or `aria-label`
+- `aria-disabled="true"` if unavailable.
 
 ---
 
