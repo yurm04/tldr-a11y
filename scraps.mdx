@@ -334,3 +334,711 @@ const Button = ({ buttonText = 'I just work!', activate}) => (
 </Layout>
 
 ---
+
+
+<Layout>
+
+# TL;DR
+- Use semantic elements when possible.
+- You get accessibility features for free.
+- `div` and `span` are not semantic elements.
+
+</Layout>
+
+---
+
+<!-- THE ALERT STUFF -->
+---
+
+<CodeSurfer>
+
+```html
+<alert>
+  I'm an alert!
+</alert>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- For example...
+- It'd be great if we had something like this in HTML that just behaved like an alert should and had the necessary a11y features baked in
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+<div className="alert">
+  <p>An alert!</p>
+</div>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- But usually we end up having to do something like this.
+- A lot of us will only get as far as dressing it up to _look_ like an alert and _act_ like an alert...
+- But leave out critical a11y functionality like making compatible with screen readers.
+
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- **ARIA**
+- Keyboard navigation
+
+</Layout>
+
+<Notes>
+- That's where ARIA attributes come in handy
+</Notes>
+
+---
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+**A**ccessible **R**ich **I**nternet **A**pplications
+
+</Layout>
+
+<Notes>
+
+- stands for accessible rich internet applications
+- set of HTML attributes that help define the semantics of an element or component.
+- attributes that are Understood by assistive technologies
+
+</Notes>
+
+---
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+- roles
+- states
+- properties
+
+</Layout>
+
+<Notes>
+
+- ARIA attributes are broken up into three categories
+- roles define the type of element or component
+- states and properties are supportive attributes that can be used with roles.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+- `role`
+  - `role="menuitemcheckbox"`
+- `aria-*`
+  - `aria-checked="true"`
+
+</Layout>
+
+<Notes>
+
+- roles are defined by using the `role` html attribute and providing a valid name
+- states and properties usually start with `aria-` followed by a valid state or property name.
+- these attribute names come from a list, you don't make up your own.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+<li 
+  role="menuitemcheckbox" 
+  aria-checked="true"
+  onClick={checkboxHandler}>
+Option 1
+</li>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- When we combine these ARIA attributes together we can add meaning to our components that would otherwise have been completely unknown or misunderstood or ignored by assistive technologies
+
+</Notes>
+
+---
+
+<Layout>
+
+  # TL;DR ARIA Attributes
+  - What does your component do?
+  - What role best describes or provides meaning for your component?
+  - What properties and states best support that role?
+
+</Layout>
+
+---
+
+<Layout>
+
+# TL;DR ARIA
+
+</Layout>
+
+<!-- gif of design patterns https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/ -->
+
+<Notes>
+
+- A lot of this has already been figured out
+- The W3C has a lot of super helpful documentation that provides examples for common components
+- But for all the good that come out of aria attributes, They don't really help with our next concept...
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA
+- **Keyboard navigation**
+
+</Layout>
+
+<Notes>
+
+- all of our components have to support keyboard only navigation.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+How can a user interact with this component using only a keyboard?
+
+</Layout>
+
+<Notes>
+
+- Not everyone interacts with the web with a mouse.
+- We need to make sure that interactive elements can be accessed by a keyboard.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Keyboard Navigation
+We're responsible for managing keyboard navigation in our custom components
+
+</Layout>
+
+<Notes>
+
+- When we consider how to manage keyboard navigation we have to think of them in terms of common conventions.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Common Conventions
+- `tab` and `shift+tab` move focus from one component to another
+- arrows keys move focus from one interactive element to another _within_ a component 
+- `Enter` and `Space` will activate an interactive element.
+
+</Layout>
+
+<!-- A primary keyboard navigation convention common across all platforms is that the tab and shift+tab keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements. The path that the focus follows when pressing the tab key is known as the tab sequence or tab ring. -->
+
+---
+
+<Layout>
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+Make sure your user knows where their keyboard focus is
+<!-- When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed. The following factors affect to what extent a web page affords users these capabilities. -->
+
+</Layout>
+
+---
+
+<Layout>
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+- Make sure the focus indicator is always visible.
+
+</Layout>
+
+---
+
+<Layout>
+
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+- Managing focus so that it persists between interaction events.
+
+</Layout>
+
+<Notes>
+
+- If I open a modal by interacting with this button
+- My focus is moved inside of the modal.  When I close the modal, what happens to my focus?
+- It shouldn't just disappear or go back to the top of the page
+- These should be as natural and predictable as possible.
+
+</Notes>
+
+---
+
+<Layout>
+
+# TL;DR
+- Use common conventions for keyboard navigation.
+- Keyboard focus indicator should always be visible.
+- Focus should persist between interaction events.
+
+</Layout>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA
+- Keyboard navigation
+
+</Layout>
+
+<Notes>
+
+- And those are the three main concepts we want to have in mind
+- when we're building out our accessible components and reading up on the docs for how to do that
+
+</Notes>
+
+---
+
+<Layout>
+
+# [IRL Components](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#aria_ex)
+
+</Layout>
+
+<Notes>
+
+- Where do we start when we're building our accessible components?
+- Well, as we know the documentation can sometimes be a little hard to decipher and wordy
+
+</Notes>
+
+---
+
+<Image src={designPatternsImage} alt="The W3C website Design Patterns Page"/>
+
+<!-- how do you make this image component accessible with background image? -->
+
+<Notes>
+
+- BUT, there are some parts of the docs that are a bit easier to work with than others.
+- the W3C org includes a list of common design patterns that we can reference and translate into our reusable components
+- These are basically common components that we know and recognize, and they include mostly easy to digest requirements on how these components should behave.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+An element that draws the user's attention to provide important information *without* interrupting the user from the current task.
+
+</Layout>
+
+<Notes>
+
+- So let's start off with an easy example and try to build an Alert component
+
+</Notes>
+
+---
+
+<Image src={alertDesignPattern} />
+
+<Notes>
+
+- If we take a look at the `Alert` design pattern...
+- it includes a short-ish description on what an alert component is.
+
+</Notes>
+
+---
+
+<Image src={alertExample1} />
+
+<Notes>
+
+- The expected keyboard interactions
+
+</Notes>
+
+---
+
+<Image src={alertExample2} />
+
+<Notes>
+
+- And which ARIA attributes we should be using for our component.
+
+</Notes>
+
+---
+
+<Image src={alertExample3} />
+
+<Notes>
+
+- And Usually a vanilla HTML, CSS and JS example of what the code could look like.
+
+</Notes>
+
+---
+
+<Layout>
+
+# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+- Should NOT affect keyboard focus
+- ARIA [`role="alert"`](https://www.w3.org/TR/wai-aria-1.1/#alert)
+- Should NOT disappear automatically*
+- Screen reader only announces changes
+
+</Layout>
+
+<Notes>
+
+- don't affect keyboard focus because it should not interrupt the user's task
+- the alert should have role of alert so that the screen reader will know to announce it
+- If you need them to disappear automatically then make the timeout long enough to give a person time to read.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA
+- Keyboard navigation
+
+</Layout>
+
+<Notes>
+
+- Let's break down this component using our three Easy steps
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = () => (
+  <div className="container">
+
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- what semantic elements can we use in our alert
+- Div provides no semantic value
+- But all I want is a container
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = () => (
+  <div className="container">
+    <p className="message">This is really Important!</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Let's use a paragraph for the alert message
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA
+- Keyboard navigation
+
+</Layout>
+
+<Notes>
+
+- What aria elements do we need?
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage }) => (
+  <div className="container" role="alert">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- the docs told us that we need to add an aria role of alert.
+- We want our components to be reusable and flexible so let's make the message dynamic.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage = '' }) => (
+  <div className="container" role="alert">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- let's add a default value of an empty string.
+- here's why this is really important
+
+</Notes>
+
+---
+
+<Layout>
+
+# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
+- Should NOT affect keyboard focus
+- ARIA `role="alert"`
+- Should NOT disappear automatically*
+- **Screen reader only announces changes**
+
+</Layout>
+
+<Notes>
+
+- Our last requirement here says that screen readers will only announce changes to our alert component.
+- What does this mean?
+
+
+</Notes>
+
+---
+
+<Layout>
+
+# **Screen reader only announces changes**
+- Live regions have to be rendered on the page when it loads.
+
+</Layout>
+
+<Notes>
+
+- alerts are known as live regions
+
+</Notes>
+
+---
+
+<Layout>
+
+# **Screen reader only announces changes**
+- Live regions have to be rendered on the page when it loads.
+- Add or change the message when screen reader should announce alert.
+
+</Layout>
+
+<Notes>
+
+- you pass in the message to the alertMessage prop
+- this will automatically render to the page, the screen reader will notice that there was a change in the element, and then announce that message.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Three "Easy" Steps
+- Semantic HTML
+- ARIA
+- **Keyboard navigation**
+
+</Layout>
+
+<Notes>
+
+- Now let's talk about keyboard nav.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ alertMessage = '' }) => (
+  <div className="container" role="alert">
+    <p className="message">{alertMessage}</p>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- we don't have any interactive elements in our alert component right now and i think that's ok because if we remember our requirements we shouldn't be changing focus when this alert comes up.
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Alert = ({ 
+  alertMessage = '',
+  closeHandler = defaultCloseHandler,
+  closeMessage = 'Close' 
+}) => (
+  <div className="container" role="alert">
+    <p className="message">
+      {alertMessage}
+    </p>
+    <button 
+      onClick={closeHandler}>
+      {closeMessage}
+    </button>
+  </div>
+)
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- If we wanted to we could add a button as our interactive element
+- this would automatically allow it to get keyboard focus and handle keyboard interactions
+- but let's keep our alert as is without the button so that we can cover keyboard navigation a bit more in our next component.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Recap
+
+</Layout>
+
+<Notes>
+
+- We have to keep accessibility in mind when we're developing our apps and sites.
+- In a sense, we're what could potentially stand in the way of keeping the web inclusive if we're alienating users with disabilities.
+- But it's not always as easy as we hope it could be.
+- Not many of us have a long history of learning or being taught accessibility concepts for web development.
+- And when we try to venture out on our own docs can be hard to decipher, especially when we're first just starting out
+
+</Notes>
+
+---
+
+<Layout>
+
+# Accessible Components
+
+</Layout>
+
+<Notes>
+
+- But we can mitigate that by starting small.  Start with the building blocks.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Accessible Components
+- Semantic HTML
+- ARIA attributes
+- Keyboard navigation
+
+</Layout>
+
+<Notes>
+
+- We can use semantic HTML to do a lot of the heavy lifting for us
+- Where semantic HTML leaves gaps, identify the ARIA attributes that can help fill those in
+- And make sure everything we build is interactive using only a keyboard.
+- And once we have those things figured out we can take our building blocks and make them accessible.
+- And use those to lay the foundations for fully accessible apps and websites.
+
+</Notes>
+
+---
+
+<Layout>
+
+# Thank You!
+
+</Layout>
+
+

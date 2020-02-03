@@ -73,7 +73,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 <Notes>
 
 - As engineers we have a lot of power in shaping the impact we have on our users at scale.
-- It's possible that we could have prevented someone from paying their pills online.
+- It's possible that we could have prevented someone from paying for their pills online.
 - Because we used a div instead of an input element within a form.
 - Or maybe a user doesn't know who wins the 2020 election because the page they're trying to access doesn't work with their screen reader.
 - Which is one very serious consideration we have to make at The New York Times.
@@ -94,7 +94,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 <Notes>
 
-- We shouldn't be the ones gate keeping and limiting access to the web to a privileged few.
+- We shouldn't be the ones gatekeeping and limiting access to the web to a privileged few.
 - Keeping the web universal and inclusive means we have to make our websites accessible.
 - And to do that, we should start with the fundamentals.
 
@@ -212,7 +212,7 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Steps
 
-  <ul>
+  <ul> attributes
     <Appear>
       <li>Semantic HTML</li>
       <li>ARIA attributes</li>
@@ -259,7 +259,7 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Steps
 - **Semantic HTML**
-- ARIA
+- ARIA attributes
 - Keyboard navigation
 
 </Layout>
@@ -405,25 +405,37 @@ There are over 100 elements available in HTML.
 
 ---
 
-<CodeSurfer subtitle="❌">
+<CodeSurfer>
 
 ```jsx
 <div className="navBar">
-  <span onClick={goSomewhere}>Fake link 1</span>
-  <span onClick={goSomewhere}>Fake link 2</span>
-  <span onClick={goSomewhere}>Fake link 3</span>
+  <span
+    className="link"
+    onClick={goSomewhere}>
+      Fake link 1
+  </span>
+  <span 
+    className="link"
+    onClick={goSomewhere}>
+      Fake link 2
+  </span>
+  <span 
+    className="link"
+    onClick={goSomewhere}>
+      Fake link 3
+  </span>
 </div>
 ```
 
 </CodeSurfer>
 
 <Notes>
-  - If you want to build a nav bar
+  - If you want to build a nav bar...
 </Notes>
 
 ---
 
-<CodeSurfer subtitle="❌">
+<CodeSurfer>
 
 ```jsx
 <nav className="navBar">
@@ -444,19 +456,68 @@ There are over 100 elements available in HTML.
 </CodeSurfer>
 
 <Notes>
-  - use the nav element, list items and anchors
+  - use the nav element, list items and anchors for your markup
 </Notes>
 
 ---
 
-<Layout>
+<CodeSurfer>
 
-# TL;DR
-- Use semantic elements when possible.
-- You get accessibility features for free.
-- `div` and `span` are not semantic elements.
+```jsx
+<div className="table">
+  <div>
+    <div className="row">
+      <span className="rowItem">😰</span>
+      <span className="rowItem">😰</span>
+    </div>
+    <div className="row">
+      <span className="rowItem">😰</span>
+      <span className="rowItem">😰</span>
+    </div>
+    <div className="row">
+      <span className="rowItem">😰</span>
+      <span className="rowItem">😰</span>
+    </div>
+</div>
+```
 
-</Layout>
+</CodeSurfer>
+
+<Notes>
+  - and instead of trying to reinvent the wheel by styling a table out of divs...
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+<table>
+  <tbody>
+      <tr>
+        <td>😇</td>
+        <td>😇</td>
+      </tr>
+      <tr>
+        <td>😇</td>
+        <td>😇</td>
+      </tr>
+      <tr>
+        <td>😇</td>
+        <td>😇</td>
+      </tr>
+    </tbody>
+</table>
+```
+
+</CodeSurfer>
+
+<Notes>
+  
+  - Use the table element and override the default styling
+  - These elements were built with accessibility in mind and we should be leveraging them in the components we build whenever we can.
+
+</Notes>
 
 ---
 
@@ -468,8 +529,7 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- But even with an arsenal of semantic elements at our disposal...
-- There's still plenty of work we have to do when we just don't have the right elements.
+- But of course... semantic HTML can't solve ALL of our accessibility problems
 
 </Notes>
 
@@ -479,18 +539,32 @@ There are over 100 elements available in HTML.
 
 <CodeSurfer>
 
-```html
-<alert>
-  I'm an alert!
-</alert>
+```jsx
+<nav className="navBar">
+  <dropdown>
+    <a href="/about">About Page</a>
+    <dropdownlist>
+      <ul>
+        <li>
+          <a href="#">Real link 1</a>
+        </li>
+        <li>
+          <a href="#">Real link 2</a>
+        </li>
+        <li>
+          <a href="#">Real link 3</a>
+        </li>
+      </ul>
+    </dropdownlist>
+  </dropdown>
+</nav>
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-- For example...
-- It'd be great if we had something like this in HTML that just behaved like an alert should and had the necessary a11y features baked in
+- For example, it'd be GREAT if we could have something like this for when we want to build a nav bar that has a dropdown list in it.
 
 </Notes>
 
@@ -498,20 +572,66 @@ There are over 100 elements available in HTML.
 
 <CodeSurfer>
 
-```jsx
-<div className="alert">
-  <p>An alert!</p>
-</div>
+```jsx 2,4,16,17
+<nav className="navBar">
+  <dropdown>
+    <a href="/about">About Page</a>
+    <dropdownlist>
+      <ul>
+        <li>
+          <a href="#">Real link 1</a>
+        </li>
+        <li>
+          <a href="#">Real link 2</a>
+        </li>
+        <li>
+          <a href="#">Real link 3</a>
+        </li>
+      </ul>
+    </dropdownlist>
+  </dropdown>
+</nav>
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-- But usually we end up having to do something like this.
-- A lot of us will only get as far as dressing it up to _look_ like an alert and _act_ like an alert...
-- But leave out critical a11y functionality like making compatible with screen readers.
+- Some additional HTML elements based on common components like a dropdown list.
+- It would automatically be recognized by assistive technologies without any work on our part.
+- and the actual dropdown behavior would be managed by the browser, which would be amazing.
 
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx 2,4,16,17
+<nav className="navBar">
+  <a href="/about">About Page</a>
+  <ul className="dropDownList hidden">
+    <li>
+      <a href="#">Real link 1</a>
+    </li>
+    <li>
+      <a href="#">Real link 2</a>
+    </li>
+    <li>
+      <a href="#">Real link 3</a>
+    </li>
+  </ul>
+</nav>
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- But that's not the world we live in.
+- Instead we make all the magic happen with CSS and JS to get this to work the way we think a dropdown menu should.
+- But of course, this component isn't accessible as is because no screen reader or other assistive tech is going to be able to identify it as a menu bar with dropdown menu items.
+- So what we need is a way to assign semantic meaning to our elements and components so that assistive technologies can work with them.
 
 </Notes>
 
@@ -521,13 +641,13 @@ There are over 100 elements available in HTML.
 
 # Three "Easy" Steps
 - Semantic HTML
-- **ARIA**
+- **ARIA attributes**
 - Keyboard navigation
 
 </Layout>
 
 <Notes>
-- That's where ARIA attributes come in handy
+- And that's where ARIA attributes come in handy.
 </Notes>
 
 ---
@@ -642,7 +762,7 @@ Option 1
 
 # Three "Easy" Steps
 - Semantic HTML
-- ARIA
+- ARIA attributes
 - **Keyboard navigation**
 
 </Layout>
@@ -751,7 +871,7 @@ Make sure your user knows where their keyboard focus is
 
 # Three "Easy" Steps
 - Semantic HTML
-- ARIA
+- ARIA attributes
 - Keyboard navigation
 
 </Layout>
@@ -874,7 +994,7 @@ An element that draws the user's attention to provide important information *wit
 
 # Three "Easy" Steps
 - Semantic HTML
-- ARIA
+- ARIA attributes
 - Keyboard navigation
 
 </Layout>
@@ -933,7 +1053,7 @@ const Alert = () => (
 
 # Three "Easy" Steps
 - Semantic HTML
-- ARIA
+- ARIA attributes
 - Keyboard navigation
 
 </Layout>
@@ -1044,7 +1164,7 @@ const Alert = ({ alertMessage = '' }) => (
 
 # Three "Easy" Steps
 - Semantic HTML
-- ARIA
+- ARIA attributes
 - **Keyboard navigation**
 
 </Layout>
