@@ -150,8 +150,8 @@ Encapsulated, reusable, and custom elements.
 <Notes>
 
 - Unfortunately that's easier said than done.
-- When I first started learning accessibility concepts the hardest things to figure out were the requirements for making components I'd built dozens of times and making them compatible with screen readers or interactive using only a keyboard.
-- Naturally I thought that turning to the documentation would help clear up my confusion, but instead I was hit with this...
+- When I first started learning accessibility concepts one of the hardest things to figure out was how I could take components I'd built dozens of times and uncover the requirements for making them accessible
+- Naturally, I thought that turning to the documentation would help clear up my confusion, but instead I was hit with this...
 
 </Notes>
 
@@ -216,7 +216,7 @@ Encapsulated, reusable, and custom elements.
 <Layout>
 
 # Yuraima Estevez
-👩‍💻 Tech Lead @ New York Times
+👩‍💻 Tech Lead @ The New York Times 📰
 
 </Layout>
 
@@ -323,7 +323,8 @@ Provides your content and components with meaning beyond their visual representa
 <CodeSurfer>
 
 ```jsx
-<div 
+<div
+  className="button"
   onClick={eventHandler}>
   This is a "button"
 </div>
@@ -588,18 +589,6 @@ There are over 100 elements available in HTML.
 </nav>
 ```
 
-</CodeSurfer>
-
-<Notes>
-
-- For example, it'd be GREAT if we could have something like this for when we want to build a nav bar that has a dropdown list in it.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
 ```jsx 2,4,16,17
 <nav className="navBar">
   <dropdown>
@@ -625,8 +614,9 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- Some kind of dropdown HTML elements based on common components like a dropdown list whose behavior would be managed by the browser would be amazing.
-- And because it's a native HTML element, it would automatically be recognized by assistive technologies without any work on our part.
+- For example, it'd be GREAT if we could have something like this for when we want to build a nav bar that has a dropdown list in it.
+- dropdown HTML elements whose behavior is managed entirely by the browser.
+- And because it'd be a native HTML element, it would automatically be recognized by assistive technologies without any work on our part.
 
 </Notes>
 
@@ -636,7 +626,11 @@ There are over 100 elements available in HTML.
 
 ```jsx
 <nav className="navBar">
-  <a href="/about">About Page</a>
+  <a 
+    href="/about"
+    className="menuItem">
+    About Page
+  </a>
   <ul className="dropDownList hidden">
     <li>
       <a href="#">Real link 1</a>
@@ -693,7 +687,7 @@ There are over 100 elements available in HTML.
 
 - stands for accessible rich internet applications
 - set of HTML attributes that help define the semantics of an element or component.
-- attributes that are Understood by assistive technologies
+- So that they can be understood by assistive technologies
 
 </Notes>
 
@@ -737,7 +731,7 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- ARIA roles can be combined with states and properties and together they can be understood by assistive technologies so that they can announce them to the user.
+- ARIA roles can be combined with states and properties and together they can be understood by assistive technologies and properly communicated to the user.
 
 </Notes>
 
@@ -777,7 +771,7 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- It also includes code samples in vanilla HTML, CSS and JS that we can use as our reference and translate to react.
+- It also includes code samples in vanilla HTML, CSS and JS that we can use as a reference when we're building our components in React.
 
 </Notes>
 
