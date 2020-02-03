@@ -20,6 +20,7 @@ import designPatternsIntro from './assets/designPatternsIntro.png'
 import designPatternsIntro2 from './assets/designPatternsIntro2.png'
 import designPatternsIntro3 from './assets/designPatternsIntro3.png'
 import designPatternsMenuExample from './assets/designPatternsMenuExample.png'
+import keyboardNav from './assets/keyboardNav.png'
 import Layout from './components/Layout.js'
 
 <Head>
@@ -1185,6 +1186,23 @@ const Modal = ({
 - CODE TRANSITION
 - we also have to provide an accessible label, so I'm using aria-labelledby property for that
 - I set the value of it to the ID of an element that contains the modal title, that's my h2 here.
+- And that's about it for a VERY simple accessible modal.
+
+</Notes>
+
+---
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+
+</Layout>
+
+<Notes>
+
+- Now you probably noticed a very important characteristic about ARIA attribute through all of that.
+- ARIA attributes function only as a way to communicate with assistive technologies like screen readers.
+- What they DON'T do, is help with keyboard interactions.
 
 </Notes>
 
@@ -1201,7 +1219,9 @@ const Modal = ({
 
 <Notes>
 
+- That's our third and last easy step.
 - all of our components have to support keyboard only navigation.
+- and that's because not everyone uses a mouse as their primary device for navigation.
 
 </Notes>
 
@@ -1210,14 +1230,26 @@ const Modal = ({
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-How can a user interact with this component using only a keyboard?
+How can a user interact with our components using only a keyboard?
 
 </Layout>
 
 <Notes>
 
-- Not everyone interacts with the web with a mouse.
-- We need to make sure that interactive elements can be accessed by a keyboard.
+- Unless we're relying solely on sematic HTML elements, we're entirely responsible for managing keyboard navigation.
+- So we need to consider how a user would be able to interact with our components using only a keyboard.
+
+</Notes>
+
+---
+
+<Image src={keyboardNav} />
+
+<Notes>
+
+- And this is another way the W3C docs makes it fairly easy to uncover these requirements.
+- They have an entire section that explains how a component can be interacted with using only a keyboard.
+- and this includes a list of which keys do what within the component.
 
 </Notes>
 
@@ -1225,14 +1257,84 @@ How can a user interact with this component using only a keyboard?
 
 <Layout>
 
-# Keyboard Navigation
-We're responsible for managing keyboard navigation in our custom components
+# TL;DR [Button](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-3) Keyboard Navigation
 
 </Layout>
 
 <Notes>
 
-- When we consider how to manage keyboard navigation we have to think of them in terms of common conventions.
+- Let's work through what the keyboard requirements are for one of our components
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+```jsx 17 title='add "button" ARIA role attribute'
+const Button = ({ 
+  buttonContent = "So much work...", 
+  accessibleLabel, 
+  isDisabled = false, 
+  activate 
+}) => {
+  
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      activate()
+    }
+  }
+
+  return (
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={accessibleLabel || buttonContent}
+      aria-disabled={isDisabled ? 'true' : 'false'}
+      onClick={activate}
+      onKeyPress={keyPressHandler}>
+      {buttonContent}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Here's our trusty div button that we've grown to love.
+- CODE TRANSITION
+- We have to add in the button role so that assistive tech can identify this plain div as a button.
+- Let's say we have a screen reader, it will announce that this element is a button and a user will know that they can interact with it.
 
 </Notes>
 
@@ -1296,421 +1398,6 @@ Make sure your user knows where their keyboard focus is
 - Focus should persist between interaction events.
 
 </Layout>
-
----
-
-<Layout>
-
-# Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- Keyboard navigation
-
-</Layout>
-
-<Notes>
-
-- And those are the three main concepts we want to have in mind
-- when we're building out our accessible components and reading up on the docs for how to do that
-
-</Notes>
-
----
-
-<Layout>
-
-# [IRL Components](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#aria_ex)
-
-</Layout>
-
-<Notes>
-
-- Where do we start when we're building our accessible components?
-- Well, as we know the documentation can sometimes be a little hard to decipher and wordy
-
-</Notes>
-
----
-
-<Image src={designPatternsImage} alt="The W3C website Design Patterns Page"/>
-
-<!-- how do you make this image component accessible with background image? -->
-
-<Notes>
-
-- BUT, there are some parts of the docs that are a bit easier to work with than others.
-- the W3C org includes a list of common design patterns that we can reference and translate into our reusable components
-- These are basically common components that we know and recognize, and they include mostly easy to digest requirements on how these components should behave.
-
-</Notes>
-
----
-
-<Layout>
-
-# [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
-An element that draws the user's attention to provide important information *without* interrupting the user from the current task.
-
-</Layout>
-
-<Notes>
-
-- So let's start off with an easy example and try to build an Alert component
-
-</Notes>
-
----
-
-<Image src={alertDesignPattern} />
-
-<Notes>
-
-- If we take a look at the `Alert` design pattern...
-- it includes a short-ish description on what an alert component is.
-
-</Notes>
-
----
-
-<Image src={alertExample1} />
-
-<Notes>
-
-- The expected keyboard interactions
-
-</Notes>
-
----
-
-<Image src={alertExample2} />
-
-<Notes>
-
-- And which ARIA attributes we should be using for our component.
-
-</Notes>
-
----
-
-<Image src={alertExample3} />
-
-<Notes>
-
-- And Usually a vanilla HTML, CSS and JS example of what the code could look like.
-
-</Notes>
-
----
-
-<Layout>
-
-# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
-- Should NOT affect keyboard focus
-- ARIA [`role="alert"`](https://www.w3.org/TR/wai-aria-1.1/#alert)
-- Should NOT disappear automatically*
-- Screen reader only announces changes
-
-</Layout>
-
-<Notes>
-
-- don't affect keyboard focus because it should not interrupt the user's task
-- the alert should have role of alert so that the screen reader will know to announce it
-- If you need them to disappear automatically then make the timeout long enough to give a person time to read.
-
-</Notes>
-
----
-
-<Layout>
-
-# Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- Keyboard navigation
-
-</Layout>
-
-<Notes>
-
-- Let's break down this component using our three Easy steps
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = () => (
-  <div className="container">
-
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- what semantic elements can we use in our alert
-- Div provides no semantic value
-- But all I want is a container
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = () => (
-  <div className="container">
-    <p className="message">This is really Important!</p>
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- Let's use a paragraph for the alert message
-
-</Notes>
-
----
-
-<Layout>
-
-# Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- Keyboard navigation
-
-</Layout>
-
-<Notes>
-
-- What aria elements do we need?
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = ({ alertMessage }) => (
-  <div className="container" role="alert">
-    <p className="message">{alertMessage}</p>
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- the docs told us that we need to add an aria role of alert.
-- We want our components to be reusable and flexible so let's make the message dynamic.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = ({ alertMessage = '' }) => (
-  <div className="container" role="alert">
-    <p className="message">{alertMessage}</p>
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- let's add a default value of an empty string.
-- here's why this is really important
-
-</Notes>
-
----
-
-<Layout>
-
-# TL;DR [`Alert`](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#alert)
-- Should NOT affect keyboard focus
-- ARIA `role="alert"`
-- Should NOT disappear automatically*
-- **Screen reader only announces changes**
-
-</Layout>
-
-<Notes>
-
-- Our last requirement here says that screen readers will only announce changes to our alert component.
-- What does this mean?
-
-
-</Notes>
-
----
-
-<Layout>
-
-# **Screen reader only announces changes**
-- Live regions have to be rendered on the page when it loads.
-
-</Layout>
-
-<Notes>
-
-- alerts are known as live regions
-
-</Notes>
-
----
-
-<Layout>
-
-# **Screen reader only announces changes**
-- Live regions have to be rendered on the page when it loads.
-- Add or change the message when screen reader should announce alert.
-
-</Layout>
-
-<Notes>
-
-- you pass in the message to the alertMessage prop
-- this will automatically render to the page, the screen reader will notice that there was a change in the element, and then announce that message.
-
-</Notes>
-
----
-
-<Layout>
-
-# Three "Easy" Steps
-- Semantic HTML
-- ARIA attributes
-- **Keyboard navigation**
-
-</Layout>
-
-<Notes>
-
-- Now let's talk about keyboard nav.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = ({ alertMessage = '' }) => (
-  <div className="container" role="alert">
-    <p className="message">{alertMessage}</p>
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- we don't have any interactive elements in our alert component right now and i think that's ok because if we remember our requirements we shouldn't be changing focus when this alert comes up.
-
-</Notes>
-
----
-
-<CodeSurfer>
-
-```jsx
-const Alert = ({ 
-  alertMessage = '',
-  closeHandler = defaultCloseHandler,
-  closeMessage = 'Close' 
-}) => (
-  <div className="container" role="alert">
-    <p className="message">
-      {alertMessage}
-    </p>
-    <button 
-      onClick={closeHandler}>
-      {closeMessage}
-    </button>
-  </div>
-)
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- If we wanted to we could add a button as our interactive element
-- this would automatically allow it to get keyboard focus and handle keyboard interactions
-- but let's keep our alert as is without the button so that we can cover keyboard navigation a bit more in our next component.
-
-</Notes>
-
----
-
-<Layout>
-
-# Recap
-
-</Layout>
-
-<Notes>
-
-- We have to keep accessibility in mind when we're developing our apps and sites.
-- In a sense, we're what could potentially stand in the way of keeping the web inclusive if we're alienating users with disabilities.
-- But it's not always as easy as we hope it could be.
-- Not many of us have a long history of learning or being taught accessibility concepts for web development.
-- And when we try to venture out on our own docs can be hard to decipher, especially when we're first just starting out
-
-</Notes>
-
----
-
-<Layout>
-
-# Accessible Components
-
-</Layout>
-
-<Notes>
-
-- But we can mitigate that by starting small.  Start with the building blocks.
-
-</Notes>
-
----
-
-<Layout>
-
-# Accessible Components
-- Semantic HTML
-- ARIA attributes
-- Keyboard navigation
-
-</Layout>
-
-<Notes>
-
-- We can use semantic HTML to do a lot of the heavy lifting for us
-- Where semantic HTML leaves gaps, identify the ARIA attributes that can help fill those in
-- And make sure everything we build is interactive using only a keyboard.
-- And once we have those things figured out we can take our building blocks and make them accessible.
-- And use those to lay the foundations for fully accessible apps and websites.
-
-</Notes>
 
 ---
 
