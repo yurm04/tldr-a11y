@@ -101,10 +101,9 @@ Websites, tools and technologies that are **designed** and **developed** so that
 <Notes>
 
 - As engineers we have a lot of power in shaping the impact we have on our users at scale.
-- It's possible that we could have prevented someone from paying for their pills online.
-- Because we used a div instead of an input element within a form.
-- Or maybe a user doesn't know who wins the 2020 election because the page they're trying to access doesn't work with their screen reader.
-- Which is one very serious consideration we have to make at The New York Times.
+- All of us work at very different companies and across a multitude of industries.
+- something seemingly small like a meme that doesn't have alternative text.
+- or building an inaccessible checkout flow that makes it impossible for a screen reader user from buying groceries online.
 
 </Notes>
 
@@ -236,8 +235,8 @@ Encapsulated, reusable, and custom elements.
 <Notes>
 
 - And that's what we're gonna be doing today during this talk.
-- I'm gonna share my too long; didn't read approach to building accessible components.
-- It's the way that I tackle building accessible components by going off of the documentation
+- too long; didn't read approach to building accessible components.
+- by going off of the documentation
 - and quickly identifying the critical requirements necessary.
 
 </Notes>
@@ -248,7 +247,7 @@ Encapsulated, reusable, and custom elements.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
   <ul style={{ listStyle: 'none' }}>
     <Appear>
@@ -262,10 +261,10 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- I've broken it down into 3 easy steps.
-- Use semantic HTML whenever possible.
-- Identify which ARIA attributes we need to add to those HTML elements.
-- And manage keyboard navigation.
+- I've broken it down into 3 easy parts.
+- NEXT: Use semantic HTML whenever possible.
+- NEXT: Identify which ARIA attributes we need to add to those HTML elements.
+- NEXT: And manage keyboard navigation.
 
 </Notes>
 
@@ -277,7 +276,7 @@ Encapsulated, reusable, and custom elements.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
 <ul style={{ listStyle: 'none' }}>
     <li>Semantic HTML</li>
@@ -289,10 +288,10 @@ Encapsulated, reusable, and custom elements.
 
 <Notes>
 
-- You may notice I have "easy" in quotes.  That's because there's a caveat.
-- Like any other skill in engineering it takes time to build up your understanding of accessibility.
-- This isn't a silver bullet life hack and they're definitely not the ONLY things we need to consider.
-- But by narrowing things down a bit I think it's easier and faster for us to ramp up and target exactly what we need to get up and running.
+- "easy" in quotes.  there's a caveat.
+- it takes time to build up your understanding of accessibility.
+- NOT silver bullet life hack and not the ONLY things we need to consider.
+- narrowing things down makes it easier and faster for us to ramp up and target exactly what we need to get up and running.
 
 </Notes>
 
@@ -302,7 +301,7 @@ Encapsulated, reusable, and custom elements.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
 <ul style={{ listStyle: 'none' }}>
     <li style={{ fontWeight: 'bold'}}>Semantic HTML</li>
@@ -332,11 +331,10 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
-- One of the things that is so powerful about HTML is that it was fundamentally designed and built to be accessible.
-- Because of this we can rely on semantic HTML elements to do a lot of the heavy lifting.
-- This is critical for building websites that can be understood by assistive technologies.
+- HTML was fundamentally designed and built to be accessible.
+- we can rely on semantic HTML elements to do a lot of the heavy lifting when building components.
 - Assistive technologies are just software and hardware, they only understand the code you write.
-- So if we want these technologies to properly identify and interact with our components we have to speak their language
+- We have to speak their language, semantic HTML gets us there.
 
 </Notes>
 
@@ -353,10 +351,9 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
-  - RAISE HANDS: how many of us have done something like this?
-  - Unfortunately this is just a div with a click handler.
-  - Assistive technologies like screen readers will have NO idea that this element even exists.
-  - And users that navigate the web using only a keyboard won't even be able to interact with this element because it only has a click handler attached to it.
+  - We're all guilty of this.  Build a button, use a div.  Styling is easier.
+  - Divs have no semantic meaning, Assistive technologies will have NO idea that this element even exists.
+  - Keyboard only users won't be able to interact, because divs are not interactive by default.
 
 </Notes>
 
@@ -373,9 +370,28 @@ Provides your content and components with meaning beyond their visual representa
 
 <Notes>
 
-  - If we were to use the HTML button element we would get all of that for free.
+  - Luckily there's an HTML element that represents a button.
   - Assistive technologies understand what this is and know how to interact with it.
   - And it's fully interactive using only a keyboard.
+
+</Notes>
+
+---
+
+<!-- lots of html elements, all semantic -->
+
+<Layout>
+
+# Semantic HTML
+There are over 100 elements available in HTML.
+
+</Layout>
+
+<Notes>
+
+- over 100 elements.  almost all of them have some semantic meaning we can leverage.
+- div and span are the only elements with no semantic meaning.
+- So use the tools that you have available to you.
 
 </Notes>
 
@@ -401,23 +417,6 @@ Provides your content and components with meaning beyond their visual representa
 
   - And a lot of times it's just easier for us to use the semantic HTML elements than it is to try and jam accessibility support into a div.
   - We'll go over what some of this does later but for now just look at all of the code it takes to make a div button accessible vs. a regular button element.
-
-</Notes>
-
----
-
-<!-- lots of html elements, all semantic -->
-
-<Layout>
-
-# Semantic HTML
-There are over 100 elements available in HTML.
-
-</Layout>
-
-<Notes>
-
-- So use the tools that you have available to you.
 
 </Notes>
 
@@ -549,7 +548,7 @@ There are over 100 elements available in HTML.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
 <ul style={{ listStyle: 'none' }}>
     <li>Semantic HTML</li>
@@ -891,7 +890,7 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
 <ul style={{ listStyle: 'none' }}>
     <li>Semantic HTML</li>
@@ -1173,7 +1172,7 @@ Manage focus so that it persists between interaction events.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
   <ul style={{ listStyle: 'none' }}>
     <Appear>
@@ -1202,7 +1201,7 @@ Manage focus so that it persists between interaction events.
 
 <Layout>
 
-# Three "Easy" Steps
+# Three "Easy" Parts
 
   <ul style={{ listStyle: 'none' }}>
     <li>Semantic HTML</li>

@@ -15,7 +15,7 @@ const Button = ({
     <div
       tabindex="0"
       role="button"
-      aria-label={accessibleLabel || buttonContent}
+      {...accessibleLabel && { 'aria-label': accessibleLabel }}
       aria-disabled={isDisabled ? 'true' : 'false'}
       onClick={activate}
       onKeyPress={keyPressHandler}>
