@@ -37,6 +37,8 @@ import Layout from './components/Layout.js'
 
 ---
 
+<!-- intro -->
+
 <Layout>
 
 # What is accessibility?
@@ -51,6 +53,8 @@ Websites, tools and technologies that are **designed** and **developed** so that
 </Notes>
 
 ---
+
+<!-- intro -->
 
 <Layout>
 
@@ -67,6 +71,8 @@ Websites, tools and technologies that are **designed** and **developed** so that
 </Notes>
 
 ---
+
+<!-- intro and morality -->
 
 <Layout>
 
@@ -88,6 +94,8 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 ---
 
+<!-- intro and morality cont'd -->
+
 <Layout>
 
 >"The power of the Web is in its universality.  Access by everyone regardless of disability is an essential aspect."
@@ -107,6 +115,8 @@ Websites, tools and technologies that are **designed** and **developed** so that
 </Notes>
 
 ---
+
+<!-- discuss components -->
 
 <Layout>
 
@@ -156,6 +166,8 @@ Encapsulated, reusable, and custom elements.
 </Notes>
 
 ---
+
+<!-- Gif of WCAG huge wall of text -->
 
 <Image src={wcagDocsGif} />
 
@@ -230,6 +242,8 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
+<!-- talk about what we're going over -->
+
 <Layout>
 
 # Three "Easy" Steps
@@ -257,6 +271,8 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
+<!-- talk about what we're going over -->
+
 <Layout>
 
 # Three "Easy" Steps
@@ -280,6 +296,8 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
+<!-- talk about what we're going over -->
+
 <Layout>
 
 # Three "Easy" Steps
@@ -301,6 +319,8 @@ So let's Start with Semantic HTML
 
 ---
 
+<!-- Start semantic HTML topic -->
+
 <Layout>
 
 # [Semantic HTML](https://www.w3.org/TR/wai-aria-1.1/#dfn-semantics)
@@ -320,14 +340,11 @@ Provides your content and components with meaning beyond their visual representa
 
 ---
 
+<!-- inaccessible button div component -->
+
 <CodeSurfer>
 
-```jsx
-<div
-  className="button"
-  onClick={eventHandler}>
-  This is a "button"
-</div>
+```jsx file=./code/semantic-html-0.0.0.js
 ```
 
 </CodeSurfer>
@@ -343,12 +360,11 @@ Provides your content and components with meaning beyond their visual representa
 
 ---
 
+<!-- accesible button component with button html element -->
+
 <CodeSurfer>
 
-```jsx
-<button onClick={eventHandler}>
-  Fully accessible
-</button>
+```jsx file=./code/semantic-html-0.0.1.js
 ```
 
 </CodeSurfer>
@@ -363,47 +379,16 @@ Provides your content and components with meaning beyond their visual representa
 
 ---
 
+<!-- side by side button components -->
+
 <CodeSurferColumns themes={[ github, vsDark ]}>
 
 <Step>
 
-```jsx
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx file=./code/semantic-html-0.0.2.js
 ```
 
-```jsx
-const Button = ({ 
-  buttonContent = 'I just work!', 
-  activate
-}) => (
-  <button onClick={activate}>
-    {buttonContent}
-  </button>
-)
+```jsx file=./code/semantic-html-0.0.3.js
 ```
 
 </Step>
@@ -418,6 +403,8 @@ const Button = ({
 </Notes>
 
 ---
+
+<!-- lots of html elements, all semantic -->
 
 <Layout>
 
@@ -434,26 +421,10 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- inaccessible nav bar -->
 <CodeSurfer>
 
-```jsx
-<div className="navBar">
-  <span
-    className="link"
-    onClick={goSomewhere}>
-      Fake link 1
-  </span>
-  <span 
-    className="link"
-    onClick={goSomewhere}>
-      Fake link 2
-  </span>
-  <span 
-    className="link"
-    onClick={goSomewhere}>
-      Fake link 3
-  </span>
-</div>
+```jsx file=./code/semantic-html-0.0.4.js
 ```
 
 </CodeSurfer>
@@ -464,22 +435,11 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- accessible nav bar -->
+
 <CodeSurfer>
 
-```jsx
-<nav className="navBar">
-  <ul>
-    <li>
-      <a href="#">Real link 1</a>
-    </li>
-    <li>
-      <a href="#">Real link 2</a>
-    </li>
-    <li>
-      <a href="#">Real link 3</a>
-    </li>
-  </ul>
-</nav>
+```jsx file=./code/semantic-html-0.0.5.js
 ```
 
 </CodeSurfer>
@@ -490,24 +450,11 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- inaccessible table -->
+
 <CodeSurfer>
 
-```jsx
-<div className="table">
-  <div>
-    <div className="row">
-      <span className="rowItem">😰</span>
-      <span className="rowItem">😰</span>
-    </div>
-    <div className="row">
-      <span className="rowItem">😰</span>
-      <span className="rowItem">😰</span>
-    </div>
-    <div className="row">
-      <span className="rowItem">😰</span>
-      <span className="rowItem">😰</span>
-    </div>
-</div>
+```jsx file/code/semantic-html-0.0.6.js
 ```
 
 </CodeSurfer>
@@ -518,25 +465,11 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- accessible table -->
+
 <CodeSurfer>
 
-```jsx
-<table>
-  <tbody>
-      <tr>
-        <td>😇</td>
-        <td>😇</td>
-      </tr>
-      <tr>
-        <td>😇</td>
-        <td>😇</td>
-      </tr>
-      <tr>
-        <td>😇</td>
-        <td>😇</td>
-      </tr>
-    </tbody>
-</table>
+```jsx file=./code/semantic-html-0.0.7.js
 ```
 
 </CodeSurfer>
@@ -549,6 +482,8 @@ There are over 100 elements available in HTML.
 </Notes>
 
 ---
+
+<!-- semantic html wrap up -->
 
 <Layout>
 
@@ -566,48 +501,14 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- fake semantic html nav bar -->
+
 <CodeSurfer>
 
-```jsx
-<nav className="navBar">
-  <dropdown>
-    <a href="/about">About Page</a>
-    <dropdownlist>
-      <ul>
-        <li>
-          <a href="#">Real link 1</a>
-        </li>
-        <li>
-          <a href="#">Real link 2</a>
-        </li>
-        <li>
-          <a href="#">Real link 3</a>
-        </li>
-      </ul>
-    </dropdownlist>
-  </dropdown>
-</nav>
+```jsx file=./code/semantic-html-0.0.8.js
 ```
 
-```jsx 2,4,16,17
-<nav className="navBar">
-  <dropdown>
-    <a href="/about">About Page</a>
-    <dropdownlist>
-      <ul>
-        <li>
-          <a href="#">Real link 1</a>
-        </li>
-        <li>
-          <a href="#">Real link 2</a>
-        </li>
-        <li>
-          <a href="#">Real link 3</a>
-        </li>
-      </ul>
-    </dropdownlist>
-  </dropdown>
-</nav>
+```jsx 2,4,16,17 file=./code/semantic-html-0.0.8.js
 ```
 
 </CodeSurfer>
@@ -622,27 +523,11 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- actual html nav bar -->
+
 <CodeSurfer>
 
-```jsx
-<nav className="navBar">
-  <a 
-    href="/about"
-    className="menuItem">
-    About Page
-  </a>
-  <ul className="dropDownList hidden">
-    <li>
-      <a href="#">Real link 1</a>
-    </li>
-    <li>
-      <a href="#">Real link 2</a>
-    </li>
-    <li>
-      <a href="#">Real link 3</a>
-    </li>
-  </ul>
-</nav>
+```jsx file=./code/semantic-html-0.0.9.js
 ```
 
 </CodeSurfer>
@@ -657,6 +542,8 @@ There are over 100 elements available in HTML.
 </Notes>
 
 ---
+
+<!-- moving on to aria attributes -->
 
 <Layout>
 
@@ -676,6 +563,8 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- what is aria 1 -->
+
 <Layout>
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
@@ -692,6 +581,8 @@ There are over 100 elements available in HTML.
 </Notes>
 
 ---
+
+<!-- what is aria 2 -->
 
 <Layout>
 
@@ -717,6 +608,8 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- aria - different kinds of attributes -->
+
 <Layout>
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
@@ -737,6 +630,8 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- WCAG design patterns -->
+
 <Image src={designPatternsIntro} />
 
 <Notes>
@@ -746,6 +641,8 @@ There are over 100 elements available in HTML.
 </Notes>
 
 ---
+
+<!-- WCAG design patterns 2 -->
 
 <Image src={designPatternsIntro2} />
 
@@ -757,6 +654,8 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- WCAG design patterns 3 -->
+
 <Image src={designPatternsIntro3} />
 
 <Notes>
@@ -767,6 +666,8 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- WCAG design patterns menu example-->
+
 <Image src={designPatternsMenuExample} />
 
 <Notes>
@@ -776,6 +677,8 @@ There are over 100 elements available in HTML.
 </Notes>
 
 ---
+
+<!-- aria button component -->
 
 <Layout>
 
@@ -791,62 +694,33 @@ There are over 100 elements available in HTML.
 
 ---
 
+<!-- aria warning -->
+
+<Layout>
+
+# 🚨 ARIA 🚨
+The best ARIA is no ARIA at all.
+
+</Layout>
+
+<Notes>
+
+- But before we do that a quick warning, a general rule of thumb about aria is that the best aria is no aria at all.
+- What that means is, if there are HTML elements that support what you're trying to do, use those instead of using ARIA.
+- ARIA is incredibly powerful because it essentially overrides all the semantic meaning for the elements they're applied to. That means if they are used incorrectly, it could render your components completely useless to assistive tech, and create a terrible user experience.
+
+</Notes>
+
+---
+
+<!-- aria button code 1 -->
+
 <CodeSurfer>
 
-```jsx
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx file=./code/aria-0.0.0.js
 ```
 
-```jsx 17 title='add "button" ARIA role attribute'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 17 file=./code/aria-0.0.0.js title='add "button" ARIA role attribute'
 ```
 
 </CodeSurfer>
@@ -862,62 +736,14 @@ const Button = ({
 
 ---
 
+<!-- aria button code 2 -->
+
 <CodeSurfer>
 
-```jsx 17 title='add "button" ARIA role attribute'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 17 file=./code/aria-0.0.0.js title='add "button" ARIA role attribute'
 ```
 
-```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
 
 </CodeSurfer>
@@ -934,62 +760,14 @@ const Button = ({
 
 ---
 
+<!-- aria button code 3 -->
+
 <CodeSurfer>
 
-```jsx 3,18 title='add "aria-labelledby" or "aria-label" property'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
 
-```jsx 4,19 title='add "aria-disabled" state if button is inactive'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 4,19 file=./code/aria-0.0.0.js title='add "aria-disabled" state if button is inactive'
 ```
 
 </CodeSurfer>
@@ -1005,6 +783,8 @@ const Button = ({
 
 ---
 
+<!-- aria button code 4 -->
+
 <Layout>
 
 # TL;DR ARIA [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_roles_states_props)(Modal)
@@ -1019,50 +799,14 @@ const Button = ({
 
 ---
 
+<!-- aria modal example -->
+
 <CodeSurfer>
 
-```jsx title='ARIA Modal'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx file=./code/aria-0.0.1.js title='ARIA Modal'
 ```
 
-```jsx 11 title='add "dialog" role to modal container'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
 ```
 
 </CodeSurfer>
@@ -1077,50 +821,14 @@ const Modal = ({
 
 ---
 
+<!-- aria modal example 2 -->
+
 <CodeSurfer>
 
-```jsx 11 title='add "dialog" role to modal container'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
 ```
 
-```jsx 12 title='set "aria-modal" state when active'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
 ```
 
 </CodeSurfer>
@@ -1135,51 +843,15 @@ const Modal = ({
 
 ---
 
+<!-- aria modal example 3 -->
+
 <CodeSurfer>
 
 
-```jsx 12 title='set "aria-modal" state when active'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
 ```
 
-```jsx 2,13,14 title='"aria-label" or "aria-labelledby"'
-const Modal = ({ 
-  title,
-  modalText
-}) => {
-  
-  /* ... Some more code ... */
-
-  return (
-    <div
-      className=`modalContainer ${isOpen ? '' : 'hidden'}`
-      role="dialog"
-      aria-modal={isOpen ? "true" : "false"}
-      aria-labelledby="modalTitle">
-        <h2 id="modalTitle">{title}</h2>
-        <p className="modalContent">{modalText}</p>
-      </div>
-    </div>
-  )
-}
+```jsx 2,13,14 file=./code/aria-0.0.1.js title='"aria-label" or "aria-labelledby"'
 ```
 
 </CodeSurfer>
@@ -1194,6 +866,8 @@ const Modal = ({
 </Notes>
 
 ---
+
+<!-- aria wrap up -->
 
 <Layout>
 
@@ -1210,6 +884,8 @@ const Modal = ({
 </Notes>
 
 ---
+
+<!-- keyboard nav intro -->
 
 <Layout>
 
@@ -1233,6 +909,8 @@ const Modal = ({
 
 ---
 
+<!-- keyboard nav intro 2 -->
+
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
@@ -1249,6 +927,8 @@ How can a user interact with our components using only a keyboard?
 
 ---
 
+<!-- keyboard nav intro -->
+
 <Image src={keyboardNav} />
 
 <Notes>
@@ -1260,6 +940,8 @@ How can a user interact with our components using only a keyboard?
 </Notes>
 
 ---
+
+<!-- button keyboard nav -->
 
 <Layout>
 
@@ -1275,62 +957,14 @@ How can a user interact with our components using only a keyboard?
 
 ---
 
+<!-- button keyboard nav code -->
+
 <CodeSurfer>
 
-```jsx
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx file=./code/aria-0.0.0.js
 ```
 
-```jsx 16 title='add "tabindex" attribute'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
 
 </CodeSurfer>
@@ -1345,34 +979,11 @@ const Button = ({
 
 ---
 
+<!-- button keyboard nav code 2 -->
+
 <CodeSurfer>
 
-```jsx 16 title='add "tabindex" attribute'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
 
 </CodeSurfer>
@@ -1386,62 +997,14 @@ const Button = ({
 
 ---
 
+<!-- button keyboard nav code 3 -->
+
 <CodeSurfer>
 
-```jsx 16 title='add "tabindex" attribute'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
 
-```jsx 5,20
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 5,20 file=./code/aria-0.0.0.js
 ```
 
 </CodeSurfer>
@@ -1456,118 +1019,20 @@ const Button = ({
 
 ---
 
+<!-- button keyboard nav code 4 -->
+
 <CodeSurfer>
 
-```jsx 5,20
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 5,20 file=./code/aria-0.0.0.js
 ```
 
-```jsx 21 title="add a keyboard event listener"
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 21 file=./code/aria-0.0.0.js title="add a keyboard event listener"
 ```
 
-```jsx 8:12 title='Listen for "Enter" and "Space"'
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 8:12 file=./code/aria-0.0.0.js title='Listen for "Enter" and "Space"'
 ```
 
-```jsx 10
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 10 file=./code/aria-0.0.0.js
 ```
 
 </CodeSurfer>
@@ -1584,62 +1049,14 @@ const Button = ({
 
 ---
 
+<!-- button keyboard nav code 5 -->
+
 <CodeSurfer>
 
-```jsx 10
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx 10 file=./code/aria-0.0.0.js
 ```
 
-```jsx
-const Button = ({ 
-  buttonContent = "So much work...", 
-  accessibleLabel, 
-  isDisabled = false, 
-  activate 
-}) => {
-  
-  const keyPressHandler = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      activate()
-    }
-  }
-
-  return (
-    <div
-      tabindex="0"
-      role="button"
-      aria-label={accessibleLabel || buttonContent}
-      aria-disabled={isDisabled ? 'true' : 'false'}
-      onClick={activate}
-      onKeyPress={keyPressHandler}>
-      {buttonContent}
-    </div>
-  )
-}
+```jsx file=./code/aria-0.0.0.js
 ```
 
 </CodeSurfer>
@@ -1652,6 +1069,8 @@ const Button = ({
 </Notes>
 
 ---
+
+<!-- button keyboard nav code 6 -->
 
 <Layout>
 
@@ -1667,6 +1086,8 @@ const Button = ({
 
 ---
 
+<!-- button keyboard nav code 7 -->
+
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
@@ -1675,6 +1096,8 @@ Make sure your user knows where their keyboard focus is.
 </Layout>
 
 ---
+
+<!-- keyboard focus example -->
 
 <Image src={keyboardFocus1} />
 
@@ -1688,6 +1111,8 @@ Make sure your user knows where their keyboard focus is.
 
 ---
 
+<!-- manage focus -->
+
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
@@ -1696,6 +1121,8 @@ Manage focus so that it persists between interaction events.
 </Layout>
 
 ---
+
+<!-- modal example for focus -->
 
 <Image src={keyboardFocus2} />
 
@@ -1711,6 +1138,36 @@ Manage focus so that it persists between interaction events.
 </Notes>
 
 ---
+
+<!-- compare accessible button component to non -->
+
+<CodeSurferColumns themes={[ github, vsDark ]}>
+
+<Step>
+
+```jsx file=./code/aria-0.0.0.js
+```
+
+```jsx file=./code/semantic-html-0.0.3.js
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+<Notes>
+
+  - And just to really drive the point home, let's take one last look at what it took for us to build our own accessible button.
+  - When we consider how much extra code we had to write, the potential dangers with using ARIA attributes, and all the work needed to support keyboard navigation,
+  - using the semantic HTML elements available to us becomes a no brainer
+  - And that's a really easy place to start for anyone that's trying to figure out how they're going to convert they're huge component libraries and make them accessible.
+  - Take the tiny step and find where you can use semantic HTML in a single component, and then go from there.
+
+</Notes>
+
+---
+
+<!-- final recap -->
 
 <Layout>
 
@@ -1733,11 +1190,13 @@ Manage focus so that it persists between interaction events.
 - Use semantic HTML whenever possible.
 - Identify which ARIA attributes we need to add to those HTML elements.
 - And manage keyboard navigation.
-- And we can uncover these requirements from the official docs once we know where to look.
+- And we can uncover these requirements from the official docs once we know where to look and what we're looking for.
 
 </Notes>
 
 ---
+
+<!-- final recap 2 -->
 
 <Layout>
 
@@ -1762,6 +1221,8 @@ Manage focus so that it persists between interaction events.
 
 ---
 
+<!-- other things to consider -->
+
 <Layout>
 
 # Accessible design
@@ -1777,6 +1238,8 @@ Manage focus so that it persists between interaction events.
 </Notes>
 
 ---
+
+<!-- other things to consider 2 -->
 
 <Layout>
 
@@ -1803,10 +1266,13 @@ Manage focus so that it persists between interaction events.
 
 - Are we writing unit, integration and e2e tests that check to make sure we aren't breaking accessibility support with each change to our components?
 - Can we automate accessibility testing and integrate it in our CI/CD pipelines so it's considered at every stage of the development cycle?
+- And most importantly...
 
 </Notes>
 
 ---
+
+<!-- other things to consider 3 -->
 
 <Layout>
 
@@ -1816,12 +1282,14 @@ Manage focus so that it persists between interaction events.
 
 <Notes>
 
-- And most importantly, are we considering our users?
+- Are we considering our users?
 - Sometimes as engineers it's hard to remember that we are not our users, and what may work for us or what we think makes the most sense to us, may not actually be what the user needs.
 
 </Notes>
 
 ---
+
+<!-- other things to consider 4 -->
 
 <Layout>
 
@@ -1831,9 +1299,9 @@ Manage focus so that it persists between interaction events.
 
 <Notes>
 
-- Marcy Sutton wrote an amazing blog post last year that I encourage everyone to read.  She talks about how she led user testing at Gatsby to glimpse how users with disabilities navigate apps that have client-side routing.
+- There's an amazing post on the Gatsby blog, written by Marcy Sutton, that I encourage everyone to read.  She talks about how she led user testing at Gatsby to glimpse how users with disabilities navigate apps that have client-side routing.
 - It's an incredible reminder that we can't always assume that we know what's best for our users, and we should try to involve them as much as possible when we're building out our components and sites.
-- Let's not forget who our users are and why we're prioritizing accessibility.
+- Let's always remember that our users are our #1 priority, and we should strive to keep the web inclusive and universal in order to do right by them.
 
 </Notes>
 
