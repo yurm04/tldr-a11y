@@ -392,6 +392,7 @@ There are over 100 elements available in HTML.
 - over 100 elements.  almost all of them have some semantic meaning we can leverage.
 - div and span are the only elements with no semantic meaning.
 - So use the tools that you have available to you.
+- easier to use semantic HTML than try to build in accessibility support
 
 </Notes>
 
@@ -415,70 +416,9 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-  - And a lot of times it's just easier for us to use the semantic HTML elements than it is to try and jam accessibility support into a div.
-  - We'll go over what some of this does later but for now just look at all of the code it takes to make a div button accessible vs. a regular button element.
-
-</Notes>
-
----
-
-<!-- inaccessible nav bar -->
-<CodeSurfer>
-
-```jsx file=./code/semantic-html-0.0.4.js
-```
-
-</CodeSurfer>
-
-<Notes>
-  - If you want to build a nav bar...
-</Notes>
-
----
-
-<!-- accessible nav bar -->
-
-<CodeSurfer>
-
-```jsx file=./code/semantic-html-0.0.5.js
-```
-
-</CodeSurfer>
-
-<Notes>
-  - use the nav element, list items and anchors for your markup
-</Notes>
-
----
-
-<!-- inaccessible table -->
-
-<CodeSurfer>
-
-```jsx file=./code/semantic-html-0.0.6.js
-```
-
-</CodeSurfer>
-
-<Notes>
-  - and instead of trying to reinvent the wheel by styling a table out of divs...
-</Notes>
-
----
-
-<!-- accessible table -->
-
-<CodeSurfer>
-
-```jsx file=./code/semantic-html-0.0.7.js
-```
-
-</CodeSurfer>
-
-<Notes>
-  
-  - Use the table element and override the default styling
-  - These elements were built with accessibility in mind and we should be leveraging them in the components we build whenever we can.
+  - div button as an example.
+  - so much more work to make a div an accessible button than a button element
+  - These elements were built with accessibility in mind. leverage them in the components we build whenever we can.
 
 </Notes>
 
@@ -516,9 +456,10 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- For example, it'd be GREAT if we could have something like this for when we want to build a nav bar that has a dropdown list in it.
-- dropdown HTML elements whose behavior is managed entirely by the browser.
-- And because it'd be a native HTML element, it would automatically be recognized by assistive technologies without any work on our part.
+- over 100 semantic elements, but that isn't always enough. 
+- it'd be GREAT if we could have something like this, nav bar that has a dropdown list in it.
+- NEXT: wish list elements, dropdown element whose semantic meaning and behavior is managed entirely by the browser.
+- native HTML element so it would be accessible out of the box.
 
 </Notes>
 
@@ -536,9 +477,10 @@ There are over 100 elements available in HTML.
 <Notes>
 
 - But that's not the world we live in.
-- Instead we make all the magic happen with CSS and JS to get this to work the way we think a dropdown menu should.
-- But of course, this component isn't accessible as is because no screen reader or other assistive tech is going to be able to identify it as a menu bar with dropdown menu items.
-- So what we need is a way to assign semantic meaning to our elements and components so that assistive technologies can work with them.
+- Instead we make all the magic happen with CSS and JS to behave like a dropdown menu.
+- isn't accessible as is because no assistive tech can identify it as a menu bar with dropdown menu items.
+- our user won't know what this is.
+- need a way to assign additional semantic meaning to our elements and components so that assistive technologies can work with them.
 
 </Notes>
 
@@ -576,7 +518,7 @@ There are over 100 elements available in HTML.
 <Notes>
 
 - stands for accessible rich internet applications
-- set of HTML attributes that help define the semantics of an element or component.
+- set of HTML attributes that help define/enhance the semantics of an element or component.
 - So that they can be understood by assistive technologies
 
 </Notes>
@@ -602,8 +544,9 @@ There are over 100 elements available in HTML.
 <Notes>
 
 - ARIA attributes are broken up into three categories
-- roles define the type of element or component
-- states and properties are supportive attributes that can be used with roles.
+- NEXT: roles define the type of element or component
+- NEXT: states
+- NEXT: properties are supportive attributes to provide more details
 
 </Notes>
 
@@ -625,7 +568,9 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- ARIA roles can be combined with states and properties and together they can be understood by assistive technologies and properly communicated to the user.
+- roles combined with states and properties
+- together they can be understood by assistive technologies 
+- properly communicate to the user the component, how to interact
 
 </Notes>
 
