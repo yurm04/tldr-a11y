@@ -1,9 +1,10 @@
 import React from 'react'
 import { Styled } from 'theme-ui'
 import Bird from './twitterBirdDark'
-const Footer = () => (
+const Footer = ({ showWebsite }) => (
   <footer className="footer">
     <Styled.a 
+      className={`websiteLink ${!showWebsite && 'hideWebsite'}`}
       href="https://tldr-a11y.yuraima.com">
         tldr-a11y.yuraima.com
     </Styled.a>

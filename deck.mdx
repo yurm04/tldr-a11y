@@ -40,7 +40,7 @@ import List from './components/List.js'
   </style>
 </Head>
 
-<Layout theme="light">
+<Layout showWebsite={true}>
 
 # 👋 Hello!
 
@@ -48,7 +48,7 @@ import List from './components/List.js'
 
 ---
 
-<Layout>
+<Layout showWebsite={true}>
 
 # Yuraima Estevez
 <p class="accentText">Engineering Manager @ The New York Times</p>
@@ -106,8 +106,11 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 - As engineers we have a lot of power in shaping the impact we have on our users at scale.
 - All of us work at very different companies and across a multitude of industries.
-- something seemingly small like a meme that doesn't have alternative text.
-- or building an inaccessible checkout flow that makes it impossible for a screen reader user from buying groceries online.
+- that means we're building products for many different users, including those with disabilities.
+- when we don't build our apps and websites accessibly, we make it hard our impossible for some people to use them.
+- seemingly small mistake... posting meme without alternative meaning screen reader users won't be able to laugh along with us.
+- OR a detrimental mistake... building an inaccessible checkout flow that makes it impossible for some users to buy groceries online.
+- In a time like this we can all imagine what that must feel like, what effect that can have on a person's life.
 
 </Notes>
 
@@ -129,7 +132,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 - We shouldn't be the ones gatekeeping and limiting access to the web.
 - But when we aren't mindful of the code we're writing and the users that are impacted by it, that can sometimes be the result.
 - Keeping the web universal and inclusive means we have to make our websites accessible.
-- And to do that, we should start with the fundamentals.
+- And to do that, we should start at the foundation.
 
 </Notes>
 
@@ -240,8 +243,7 @@ Encapsulated, reusable, and custom elements.
 
 - And that's what we're gonna be doing today during this talk.
 - too long; didn't read approach to building accessible components.
-- and quickly identifying the critical requirements necessary.
-- by going off of the documentation
+- and quickly identifying the critical requirements necessary by going off of the documentation
 
 </Notes>
 
@@ -264,9 +266,9 @@ Encapsulated, reusable, and custom elements.
 <Notes>
 
 - I've broken it down into 3 easy parts.
-- NEXT: Use semantic HTML whenever possible.
-- NEXT: Identify which ARIA attributes we need to add to those HTML elements.
-- NEXT: And manage keyboard navigation.
+- NEXT: Use semantic HTML whenever possible to do the heavy lifting
+- NEXT: Identify which ARIA attributes we need to add to those elements when semantic HTML isn't exactly enough.
+- NEXT: And manage keyboard navigation for users that don't interact with the web using a mouse.
 
 </Notes>
 
@@ -336,7 +338,8 @@ Provides your content and components with meaning beyond their visual representa
 - HTML was fundamentally designed and built to be accessible.
 - we can rely on semantic HTML elements to do a lot of the heavy lifting when building components.
 - Assistive technologies are just software and hardware, they only understand the code you write.
-- We have to speak their language, semantic HTML gets us there.
+- Don't understand our good intentions or context on the page.
+- We have to speak their language, semantic HTML is part of that language.
 
 </Notes>
 
@@ -374,7 +377,7 @@ Provides your content and components with meaning beyond their visual representa
 
   - Luckily there's an HTML element that represents a button.
   - Assistive technologies understand what this is and know how to interact with it.
-  - And it's fully interactive using only a keyboard.
+  - Keyboard support out of the box.
 
 </Notes>
 
@@ -394,7 +397,7 @@ There are over 100 elements available in HTML.
 - over 100 elements.  almost all of them have some semantic meaning we can leverage.
 - div and span are the only elements with no semantic meaning.
 - So use the tools that you have available to you.
-- easier to use semantic HTML than try to build in accessibility support
+- It's easier to rely on semantic HTML than try to build in accessibility support after the fact.
 
 </Notes>
 
@@ -418,8 +421,10 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-  - div button as an example.
-  - so much more work to make a div an accessible button than a button element
+  - to illustrate, let's look at two button components.
+  - left, a div button.  right, html button.
+  - so many more lines of code on the left to make our div button fully accesible
+  - on the right, html button just works accessibly because design and developed to.
 
 </Notes>
 
@@ -439,6 +444,7 @@ There are over 100 elements available in HTML.
 
 - These elements were built with accessibility in mind. 
 - leverage them in the components we build whenever we can to make our lives easier
+- ...
 - But of course... semantic HTML can't solve ALL of our accessibility problems
 
 </Notes>
@@ -461,8 +467,8 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
-- over 100 semantic elements, but that isn't always enough. 
-- it'd be GREAT if we could have something like this, nav bar that has a dropdown list in it.
+- over 100 semantic elements, but that isn't always enough when building out more complext components.
+- Something like this doesn't exist in HTML.  Nav bar with dropdown menu items.
 - NEXT: wish list elements, dropdown element whose semantic meaning and behavior is managed entirely by the browser.
 - native HTML element so it would be accessible out of the box.
 
@@ -484,8 +490,7 @@ There are over 100 elements available in HTML.
 - But that's not the world we live in.
 - Instead we make all the magic happen with CSS and JS to behave like a dropdown menu.
 - isn't accessible as is because no assistive tech can identify it as a menu bar with dropdown menu items.
-- our user won't know what this is.
-- need a way to assign additional semantic meaning to our grouping of elements, or components so that assistive technologies can work with them.
+- need a way to assign additional semantic meaning to our more complex components so that assistive technologies can work with them.
 
 </Notes>
 
@@ -562,7 +567,7 @@ There are over 100 elements available in HTML.
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
-<List>
+<List appear={false}>
   <li>roles</li>
   <li>states</li>
   <li>properties</li>
@@ -574,7 +579,7 @@ There are over 100 elements available in HTML.
 
 - roles combined with states and properties
 - help properly communicate to assistive technologies what our component is, how it behaves, interaction
-- Lots of attributes to use, sometimes hard to know which to use when.
+- Lots of attributes to use, sometimes hard to know which combination of attributes to use when.
 
 </Notes>
 
@@ -671,24 +676,6 @@ The best ARIA is no ARIA at all.
 
 ---
 
-<!-- aria button code 1 -->
-
-<CodeSurfer theme={github}>
-
-```jsx file=./code/aria-0.0.0.js
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- now that that's out of the way...
-- Let's see what we can do with ARIA by going back to our div button component.
-
-</Notes>
-
----
-
 <!-- aria button component -->
 
 <Layout>
@@ -699,6 +686,8 @@ The best ARIA is no ARIA at all.
 
 <Notes>
 
+- now that that's out of the way...
+- Let's see what we can do with ARIA by going back to our button component.
 - WAI-ARIA design patterns includes a writeup for how to build an accessible button from scratch.
 - I said we should always try to use semantic html, but sometimes we do have to build our own buttons.
 - when we do, make sure they're accessible
@@ -749,7 +738,7 @@ The best ARIA is no ARIA at all.
 
 - Here's our div button example from before.
 - CODE TRANSITION
-- add in our button role and set it to "button"
+- add in our aria role attribute and set it to "button"
 - now a screen reader will announce that this element is a button and a user will know that they can interact with it.
 
 </Notes>
@@ -763,7 +752,6 @@ The best ARIA is no ARIA at all.
 <Notes>
 
 - we also need to make sure that our button has an accessible label.
-- by default, the accessible name of a button derived by any text content inside of the button
 
 </Notes>
 
@@ -771,11 +759,16 @@ The best ARIA is no ARIA at all.
 
 <!-- button docs step through -->
 
-<button>Submit</button>
-<p>Screen Reader: Submit, button</p>
+<Layout>
+
+  <button>Submit</button>
+  <p>Screen Reader: Submit, button</p>
+
+</Layout>
 
 <Notes>
 
+- according to the docs...
 - by default, the accessible name of a button derived by any text content inside of the button
 - here a screen reader would announce, "button, Submit" because the word submit is inside of our button.
 
@@ -785,13 +778,55 @@ The best ARIA is no ARIA at all.
 
 <!-- button docs step through -->
 
-<button>👋</button>
-<p>Screen Reader: waving hand, button</p>
+<Layout>
+
+  <button>👋</button>
+  <p>Screen Reader: waving hand, button</p>
+
+</Layout>
 
 <Notes>
 
 - but sometimes the content inside of our button isn't screen reader friendly
-- that's when we want to pass in a different accessible label using the aria attributes.
+- here i have an emoji inside of a button because who doesn't love a good emoji
+- in this case a screen reader would announce this as: "waving hand, button"
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<Layout>
+
+  <button>👋</button>
+  <p>Screen Reader: waving hand, button</p>
+  <p>User: 😕 🤔</p>
+
+</Layout>
+
+<Notes>
+
+- that gives the user no indication of what this button does whatsoever.
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<Layout>
+
+  <button>👋</button>
+  <p>Screen Reader: Submit form, button</p>
+  <p>User: 👍 😌</p>
+
+</Layout>
+
+<Notes>
+
+- In this case, we want a way to override what the screen reader announces
+- we can do this by setting an accessible label in our button.
 
 </Notes>
 
@@ -801,16 +836,13 @@ The best ARIA is no ARIA at all.
 
 <CodeSurfer theme={github}>
 
-```jsx 17 file=./code/aria-0.0.0.js title='add "button" ARIA role attribute'
+```jsx file=./code/aria-0.0.0.js title='add "button" ARIA role attribute'
 ```
 
 ```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
 
-```jsx 22 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
-```
-
-```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
+```jsx 18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
 
 </CodeSurfer>
@@ -821,12 +853,31 @@ The best ARIA is no ARIA at all.
 
 - CODE TRANSITION
 - I have an accessibleLabel prop that i can pass into my component
-- if the accessibleLabel prop exists, then i want to render an aria-label attribute on my button.
+- NEXT: if the accessibleLabel prop exists, then i want to render an aria-label attribute on my button.
 - notice that I'm not just setting it to an empty string
+
+</Notes>
+
+---
+
+
+<!-- button docs step through -->
+
+<Layout>
+
+  <code>aria-label=""</code>
+  <p>Screen Reader: button</p>
+  <p>User: 😕 🤔</p>
+
+</Layout>
+
+<Notes>
+
 - remember, aria attributes take precedence on the elements they're applied to.
 - even if this button has text content in it, if aria-label is present then that's what the AT will announce
-- it will not announce anything for the button content.
-- use them responsibly.
+- if aria-label is present and empty, screen reader will just announce as button
+- again, giving user no indication of what this button is or does.
+- use aria attributes responsibly.
 
 </Notes>
 
@@ -849,9 +900,6 @@ The best ARIA is no ARIA at all.
 
 <CodeSurfer theme={github}>
 
-```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
-```
-
 ```jsx 4,19 file=./code/aria-0.0.0.js title='add "aria-disabled" state if button is inactive'
 ```
 
@@ -861,7 +909,8 @@ The best ARIA is no ARIA at all.
 
 - CODE TRANSITION
 - here, isDisabled prop that gets passed in
-- true or false based on the button's inactive state set to the aria-disabled attribute.
+- true or false based on the button's inactive state 
+- value set to the aria-disabled attribute.
 - now a user can know when button is active/inactive.
 - ...
 - There are a few other points in docs around additional ARIA attributes we can add to our button.
@@ -958,8 +1007,23 @@ HTML attributes that help define/enhance the semantics of our components to make
 <Notes>
 
 - states properties used by their supported roles to help describe the component throughout its life-cycle.
-- There are many different roles states and properties we can use, and the wai-aria documentation helps decipher the combination
-- the best aria is no aria at all.  Still use semantic html attributes where appropriate.  
+- There are many different roles states and properties we can use, and the wai-aria documentation helps decipher the combination needed to make our components accessible.
+
+</Notes>
+
+---
+
+<!-- aria wrap up -->
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+
+</Layout>
+
+<Notes>
+
+- remember, the best aria is no aria at all.  Use semantic html elements where appropriate.  
 - If we're not sure we have the right combination of aria attributes, best to leave them out entirely.
 - ...
 - Now that we know how to make assistive tech understand our components...
@@ -1057,23 +1121,7 @@ How can a user interact with our components using only a keyboard?
 <Notes>
 
 - our div element is not interactive by default, so the first thing to do is make sure we can tab to it and give it keyboard focus.
-- CODE TRANSITION
-
-</Notes>
-
----
-
-<!-- button keyboard nav code 2 -->
-
-<CodeSurfer theme={github}>
-
-```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
-```
-
-</CodeSurfer>
-
-<Notes>
-
+- NEXT
 - We can do that by adding the tabindex attribute to our button and setting it to "0"
 - this will allow our div to gain keyboard focus when our user reaches in the natural taborder
 
@@ -1097,18 +1145,22 @@ How can a user interact with our components using only a keyboard?
 
 <CodeSurfer theme={github}>
 
-```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
+```jsx file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
 
-```jsx 5,20 file=./code/aria-0.0.0.js
+```jsx 5 file=./code/aria-0.0.0.js
+```
+
+```jsx 20 file=./code/aria-0.0.0.js
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-- CODE TRANSITION
-- We're passing an activate function to our button that we can trigger onClick event...
+- NEXT
+- We're passing an activate function to our button 
+- NEXT: this gets called when our onClick event fires.
 - But we also need a way to trigger our activate function when the space or enter key is pressed
 
 </Notes>
@@ -1119,7 +1171,7 @@ How can a user interact with our components using only a keyboard?
 
 <CodeSurfer theme={github}>
 
-```jsx 5,20 file=./code/aria-0.0.0.js
+```jsx 20 file=./code/aria-0.0.0.js
 ```
 
 ```jsx 21 file=./code/aria-0.0.0.js title="add a keyboard event listener"
@@ -1139,8 +1191,9 @@ How can a user interact with our components using only a keyboard?
 - add a key listener to our button, run a function when a key is pressed
 - i'll use the onKeyPress event listener.
 - CODE TRANSITION
-- our key press event handler needs to only run our activate function if space or enter was pressed.
-- And if they are, we'll go ahead and run that same activate function that we passed to the onClick event.
+- onKeyPress event handler needs to check if space or enter key pressed when it's called.
+- If space or enter was pressed...
+- NEXT: we'll go ahead and run that same activate function that we passed to the onClick event.
 
 </Notes>
 
@@ -1179,6 +1232,7 @@ How can a user interact with our components using only a keyboard?
 
 <Notes>
 
+- this was a very simple example of keyboard nav for a single button.
 - There are a couple other considerations we should make when building up our component keyboard navigation
 
 </Notes>
@@ -1226,6 +1280,12 @@ Manage focus so that it persists between interaction events.
 
 </Layout>
 
+<Notes>
+
+- Manage focus so that it persists between interaction events.
+
+</Notes>
+
 ---
 
 <!-- modal example for focus -->
@@ -1234,15 +1294,14 @@ Manage focus so that it persists between interaction events.
 
 <Notes>
 
-- Manage focus so that it persists between interaction events.
 - we've all built modals, very few of us have built them accessibly.
-- example: activate modal by pressing button using the keyboard.
-- when my modal opens, keyboard focus switches to the interactive elements inside of the modal.
-- when modal closes, keyboard focus has to return to the original activator button.
-- How would you build this in react? render/unmount based on component state.
+- How would you build a modal in react? render/unmount based on component state.
 - be mindful: what happens to focus when component gets rendered?
 - what happens to focus when my component unmounts?
-- Has to be persistent and predictable throughout component life-cycle, that's something we have to build ourselves.
+- in this example: activate modal by pressing button using the keyboard.
+- when my modal opens, keyboard focus switches to the interactive elements inside of the modal.
+- when modal closes, keyboard focus has to return to the original activator button.
+- focus Has to be persistent and predictable throughout component life-cycle, that's something we have to build ourselves.
 
 </Notes>
 
@@ -1253,22 +1312,22 @@ Manage focus so that it persists between interaction events.
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-Make sure your user knows where their keyboard focus is.
 
 </Layout>
 
 <Notes>
 
 - to recap.
-- all of our components needs to support keyboard only navigation.
-- make sure non-interactive elements can gain keyboard focus using the tabindex attribute
-- then consider how a user would navigate your component using a keyboard.
-- what are the interactions you have to include in order for your component to respond to key presses.
-- and what happens to your keyboard focus throughout your component life-cycle.
+- all of our components need to have keyboard support.
+- map out how a user would navigate your components using only a keyboard.
+- make sure non-interactive elements can gain keyboard focus using the tabindex attribute.
+- the wai-aria docs figure out which interactions you have to build in order for your component to respond to key presses.
+- Always ensure our user know where their keyboard focus is...
+- and that it persists throughout your component life-cycle.
 
 </Notes>
 
---
+---
 
 <!-- final recap -->
 
@@ -1292,7 +1351,7 @@ Make sure your user knows where their keyboard focus is.
 - Identify which ARIA attributes we need to add to those HTML elements for more complex/dynamic components.
 - But no aria is the best aria. Use responsibly, or not at all.
 - And manage keyboard navigation. Some users can't use mouse, rely on keyboards.  Keyboard navigation must be supported.
-- Uncovered the places in the wai-aria documentation that help guide our component development. 
+- Uncovered the places in the wai-aria documentation that help guide our component development when it comes to these three topics.
 
 </Notes>
 
@@ -1304,7 +1363,7 @@ Make sure your user knows where their keyboard focus is.
 
 # Three "Easy" Parts
 
-  <List>
+  <List appear={false}>
     <li>Semantic HTML</li>
     <li>ARIA attributes</li>
     <li>Keyboard navigation</li>
@@ -1386,10 +1445,10 @@ Make sure your user knows where their keyboard focus is.
 
 - Are we considering our users?
 - Sometimes as engineers it's hard to remember that we are not our users, and what may work for us or what we think makes the most sense to us, may not actually be what the user needs.
-- Hope these easy tips will make it easier to better understand all of our users
-- know how we can build cool shit that works for them.
-- make the web an open and inclusive place for everyone.
-
+- Hopefully the topics we covered today will give you a better understanding of what your users need.
+- Now that you have the tools and knowledge for building accessible components...
+- Can put it all together to build accessible websites and apps..
+- and ultimately help make the web an open and inclusive place for everyone.
 
 </Notes>
 
@@ -1403,7 +1462,7 @@ Make sure your user knows where their keyboard focus is.
 
 <Notes>
 
-- find slides on my website, and i'll tweet out the link in a few minutes.
+- find slides with the resources on my website, and i'll tweet out the link in a few minutes.
 - thank you so much for tuning into this talk
 - and thank you to the conference organizers for putting together an amazing event.
 - come hang out in the discord channel to ask questions or chat with each other

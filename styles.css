@@ -51,11 +51,15 @@ footer {
   display: block;
 }
 
+.websiteLink.hideWebsite {
+  opacity: 0;
+}
+
 table td {
   border: none
 }
 
-button {
+.layout button {
   padding: 20px;
   font-size: 4rem;
 }

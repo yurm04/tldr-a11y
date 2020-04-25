@@ -9,13 +9,13 @@ const lightTheme = {
 
 const themes = { dark: {}, light: lightTheme }
 
-const Layout = ({ children, hideFooter = false, theme = "dark" }) => (
+const Layout = ({ children, hideFooter = false, theme = "dark", showWebsite = false }) => (
   <div className={`layout ${theme}`} style={themes[theme]}>
     <div className="childContainer">
       { children }
     </div>
     {!hideFooter && (
-      <Footer />
+      <Footer showWebsite={showWebsite} />
     )}
   </div>
 )
