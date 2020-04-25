@@ -27,3 +27,7 @@ footer {
 footer a {
   font-size: 1.5rem;
 }
+
+table td {
+  border: none
+}

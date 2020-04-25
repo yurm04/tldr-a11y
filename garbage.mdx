@@ -146,3 +146,153 @@ const AlertModal = ({
 
 ---
 
+
+<!-- aria button code 4 -->
+
+<Layout>
+
+# TL;DR ARIA [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_roles_states_props)(Modal)
+
+</Layout>
+
+<Notes>
+
+- Here's another component that's listed in the design patterns documentation.
+
+</Notes>
+
+---
+
+<!-- aria modal example -->
+
+<CodeSurfer>
+
+```jsx file=./code/aria-0.0.1.js title='ARIA Modal'
+```
+
+```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Let's take a look at the ARIA attributes we need to make our modal accessible.
+- CODE TRANSITION
+- our modal container needs the ARIA role attribute set to "dialog"
+
+</Notes>
+
+---
+
+<!-- aria modal example 2 -->
+
+<CodeSurfer>
+
+```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
+```
+
+```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- we need our assistive tech to know when our modal is open and active, we do that with the aria-modal state attribute.
+- set that to true based on some component state.
+
+</Notes>
+
+---
+
+<!-- aria modal example 3 -->
+
+<CodeSurfer>
+
+
+```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
+```
+
+```jsx 2,13,14 file=./code/aria-0.0.1.js title='"aria-label" or "aria-labelledby"'
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- CODE TRANSITION
+- we also have to provide an accessible label, so I'm using aria-labelledby property for that
+- I set the value of it to the ID of an element that contains the modal title, that's my h2 here.
+- And that's about it for a VERY simple accessible modal.
+
+</Notes>
+
+---
+
+<!-- compare accessible button component to non -->
+
+<CodeSurferColumns themes={[ github, vsDark ]}>
+
+<Step>
+
+```jsx file=./code/aria-0.0.0.js
+```
+
+```jsx file=./code/semantic-html-0.0.3.js
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+<Notes>
+
+  - And just to really drive the point home, let's take one last look at what it took for us to build our own accessible button.
+  - When we consider how much extra code we had to write, the potential dangers with using ARIA attributes, and all the work needed to support keyboard navigation,
+  - using the semantic HTML elements available to us becomes a no brainer
+  - And that's a really easy place to start for anyone that's trying to figure out how they're going to convert they're huge component libraries and make them accessible.
+  - Take the tiny step and find where you can use semantic HTML in a single component, and then go from there.
+
+</Notes>
+
+---
+
+<!-- other things to consider 4 -->
+
+<Layout>
+
+# [The user](https://www.gatsbyjs.org/blog/2019-07-11-user-testing-accessible-client-routing/)
+  
+</Layout>
+
+<Notes>
+
+- There's an amazing post on the Gatsby blog, written by Marcy Sutton, that I encourage everyone to read.  She talks about how she led user testing at Gatsby to glimpse how users with disabilities navigate apps that have client-side routing.
+- It's an incredible reminder that we can't always assume that we know what's best for our users, and we should try to involve them as much as possible when we're building out our components and sites.
+- Let's always remember that our users are our #1 priority, and we should strive to keep the web inclusive and universal in order to do right by them.
+
+</Notes>
+
+---
+
+<!-- aria wrap up -->
+
+<Layout>
+
+# [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+
+</Layout>
+
+<Notes>
+
+- WAI-ARIA docs give most info for building out components accessibly
+- now that we know where to look, and what we're looking for, it'll be easier.
+- Now you probably noticed a very important characteristic about ARIA attribute through all of that.
+- ARIA attributes function only as a way to communicate with assistive technologies like screen readers.
+- What they DON'T do, is handle the interaction of component.
+
+</Notes>
+
+---

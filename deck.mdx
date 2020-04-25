@@ -1,4 +1,3 @@
-import { Image } from 'mdx-deck'
 import {
   CodeSurfer,
   CodeSurferColumns,
@@ -21,9 +20,16 @@ import designPatternsIntro2 from './assets/designPatternsIntro2.png'
 import designPatternsIntro3 from './assets/designPatternsIntro3.png'
 import designPatternsMenuExample from './assets/designPatternsMenuExample.png'
 import keyboardNav from './assets/keyboardNav.png'
+import buttonAriaDocs from './assets/buttonAriaDocs.png'
+import buttonAriaRole from './assets/buttonAriaRole.png'
+import buttonAriaLabel from './assets/buttonAriaLabel.png'
+import buttonAriaDisabled from './assets/buttonAriaDisabled.png'
+import buttonActivate from './assets/buttonActivate.png'
 import keyboardFocus1 from './assets/keyboardFocus1.gif'
 import keyboardFocus2 from './assets/keyboardFocus2.gif'
 import Layout from './components/Layout.js'
+import FullImage from './components/FullImage.js'
+import List from './components/List.js'
 
 <Head>
   <title>TL;DR Accessible Components</title>
@@ -31,7 +37,7 @@ import Layout from './components/Layout.js'
 
 <Layout>
 
-# TL;DR Accessible Components
+# 👋 Hello!
 
 </Layout>
 
@@ -40,8 +46,13 @@ import Layout from './components/Layout.js'
 <Layout>
 
 # Yuraima Estevez
-- 👩‍💻 Engineering Manager
-- 📰 The New York Times
+
+<List appear={false}>
+
+  <li>👩‍💻 Engineering Manager</li>
+  <li>📰 The New York Times</li>
+
+</List>
 
 </Layout>
 
@@ -61,12 +72,6 @@ import Layout from './components/Layout.js'
 Websites, tools and technologies that are **designed** and **developed** so that people with disabilities can use them.
 
 </Layout>
-
-<Notes>
-
-- What does it mean for something to be accessible?
-
-</Notes>
 
 ---
 
@@ -184,7 +189,7 @@ Encapsulated, reusable, and custom elements.
 
 <!-- Gif of WCAG huge wall of text -->
 
-<Image src={wcagDocsGif} />
+<FullImage src={wcagDocsGif} />
 
 <Notes>
 
@@ -236,8 +241,8 @@ Encapsulated, reusable, and custom elements.
 
 - And that's what we're gonna be doing today during this talk.
 - too long; didn't read approach to building accessible components.
-- by going off of the documentation
 - and quickly identifying the critical requirements necessary.
+- by going off of the documentation
 
 </Notes>
 
@@ -249,13 +254,11 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Parts
 
-  <ul style={{ listStyle: 'none' }}>
-    <Appear>
-      <li>Semantic HTML</li>
-      <li>ARIA attributes</li>
-      <li>Keyboard navigation</li>
-    </Appear>
-  </ul>
+  <List>
+    <li>Semantic HTML</li>
+    <li>ARIA attributes</li>
+    <li>Keyboard navigation</li>
+  </List>
   
 </Layout>
 
@@ -278,11 +281,11 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Parts
 
-<ul style={{ listStyle: 'none' }}>
-    <li>Semantic HTML</li>
-    <li>ARIA attributes</li>
-    <li>Keyboard navigation</li>
-</ul>
+<List appear={false}>
+  <li>Semantic HTML</li>
+  <li>ARIA attributes</li>
+  <li>Keyboard navigation</li>
+</List>
 
 </Layout>
 
@@ -303,11 +306,11 @@ Encapsulated, reusable, and custom elements.
 
 # Three "Easy" Parts
 
-<ul style={{ listStyle: 'none' }}>
-    <li style={{ fontWeight: 'bold'}}>Semantic HTML</li>
-    <li>ARIA attributes</li>
-    <li>Keyboard navigation</li>
-</ul>
+<List appear={false}>
+  <li style={{ fontWeight: 'bold'}}>Semantic HTML</li>
+  <li>ARIA attributes</li>
+  <li>Keyboard navigation</li>
+</List>
 
 </Layout>
 
@@ -418,9 +421,10 @@ There are over 100 elements available in HTML.
 
   - div button as an example.
   - so much more work to make a div an accessible button than a button element
-  - These elements were built with accessibility in mind. leverage them in the components we build whenever we can.
 
 </Notes>
+
+<!-- TODO: You should add some kind of transition/wrap up here to semantic HTML -->
 
 ---
 
@@ -434,6 +438,8 @@ There are over 100 elements available in HTML.
 
 <Notes>
 
+- These elements were built with accessibility in mind. 
+- leverage them in the components we build whenever we can to make our lives easier
 - But of course... semantic HTML can't solve ALL of our accessibility problems
 
 </Notes>
@@ -480,7 +486,7 @@ There are over 100 elements available in HTML.
 - Instead we make all the magic happen with CSS and JS to behave like a dropdown menu.
 - isn't accessible as is because no assistive tech can identify it as a menu bar with dropdown menu items.
 - our user won't know what this is.
-- need a way to assign additional semantic meaning to our elements and components so that assistive technologies can work with them.
+- need a way to assign additional semantic meaning to our grouping of elements, or components so that assistive technologies can work with them.
 
 </Notes>
 
@@ -492,11 +498,11 @@ There are over 100 elements available in HTML.
 
 # Three "Easy" Parts
 
-<ul style={{ listStyle: 'none' }}>
+<List appear={false}>
     <li>Semantic HTML</li>
     <li style={{ fontWeight: 'bold'}}>ARIA attributes</li>
     <li>Keyboard navigation</li>
-</ul>
+</List>
 
 </Layout>
 
@@ -520,6 +526,7 @@ There are over 100 elements available in HTML.
 - stands for accessible rich internet applications
 - set of HTML attributes that help define/enhance the semantics of an element or component.
 - So that they can be understood by assistive technologies
+- useful for dynamic and more complex behavior
 
 </Notes>
 
@@ -531,13 +538,11 @@ There are over 100 elements available in HTML.
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
-<ul  style={{ listStyle: 'none' }}>
-  <Appear>
-      <li>roles</li>
-      <li>states</li>
-      <li>properties</li>
-  </Appear>
-</ul>
+<List>
+  <li>roles</li>
+  <li>states</li>
+  <li>properties</li>
+</List>
 
 </Layout>
 
@@ -558,31 +563,46 @@ There are over 100 elements available in HTML.
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
-<ul  style={{ listStyle: 'none' }}>
+<List>
   <li>roles</li>
   <li>states</li>
   <li>properties</li>
-</ul>
+</List>
 
 </Layout>
 
 <Notes>
 
 - roles combined with states and properties
-- together they can be understood by assistive technologies 
-- properly communicate to the user the component, how to interact
+- help properly communicate to assistive technologies what our component is, how it behaves, interaction
+- Lots of attributes to use, sometimes hard to know which to use when.
 
 </Notes>
 
 ---
 
-<!-- WCAG design patterns -->
+<!-- WAI-ARIA design patterns -->
 
-<Image src={designPatternsIntro} />
+<FullImage src={designPatternsIntro} />
 
 <Notes>
 
-- And a really helpful resource for figuring out which attributes do what is this design patterns and widgets section. 
+- But this is where we can turn to the docs to help guide us
+- helpful resource for figuring out which attributes to use in our components is WAI-ARIA authoring practices.
+
+</Notes>
+
+---
+
+<!-- what is wai-aria -->
+
+# WAI-ARIA
+**W**eb **A**ccessiblity **I**nitiative ARIA
+
+<Notes>
+
+- stands for...
+- best practices and guidelines for how to use aria attributes to build out dynamic and complex user experiences in an accessible way.
 
 </Notes>
 
@@ -590,11 +610,12 @@ There are over 100 elements available in HTML.
 
 <!-- WCAG design patterns 2 -->
 
-<Image src={designPatternsIntro2} />
+<FullImage src={designPatternsIntro2} />
 
 <Notes>
 
 - It contains a list of common components that we're all familiar with.
+- alerts, checkboxes, modals, handful of others....
 
 </Notes>
 
@@ -602,11 +623,12 @@ There are over 100 elements available in HTML.
 
 <!-- WCAG design patterns 3 -->
 
-<Image src={designPatternsIntro3} />
+<FullImage src={designPatternsIntro3} />
 
 <Notes>
 
 - And details what ARIA roles, states and properties are required and available to use for each component
+- to make them work with assistive technologies
 
 </Notes>
 
@@ -614,27 +636,13 @@ There are over 100 elements available in HTML.
 
 <!-- WCAG design patterns menu example-->
 
-<Image src={designPatternsMenuExample} />
+<FullImage src={designPatternsMenuExample} />
 
 <Notes>
 
-- It also includes code samples in vanilla HTML, CSS and JS that we can use as a reference when we're building our components in React.
-
-</Notes>
-
----
-
-<!-- aria button component -->
-
-<Layout>
-
-# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
-
-</Layout>
-
-<Notes>
-
-- So going off of the design pattern docs, let's break down the ARIA attributes our Button component needs
+- It also includes code samples in HTML, CSS and vanilla JS
+- I like to refer to those when I'm building out my React components to get a sense of the component logic
+- translate that to react.
 
 </Notes>
 
@@ -651,9 +659,76 @@ The best ARIA is no ARIA at all.
 
 <Notes>
 
-- But before we do that a quick warning, a general rule of thumb about aria is that the best aria is no aria at all.
-- What that means is, if there are HTML elements that support what you're trying to do, use those instead of using ARIA.
-- ARIA is incredibly powerful because it essentially overrides all the semantic meaning for the elements they're applied to. That means if they are used incorrectly, it could render your components completely useless to assistive tech, and create a terrible user experience.
+- before digging into Aria.
+- quick warning, a general rule of thumb is...
+- The best aria is no aria at all.
+- If there are HTML elements that support what you're trying to do, use those instead of using ARIA.
+- If you don't know if your ARIA setup is correct, better not to use it.
+- ARIA is incredibly powerful because it overrides all the semantic meaning for the elements they're applied to. 
+- if they are used incorrectly, it could render your components completely useless to assistive tech, and create a terrible user experience.
+- when used correctly they add the additional accessibility support necessary for our users to be able to interact with dynamic and complex components.
+
+</Notes>
+
+---
+
+<!-- aria button code 1 -->
+
+<CodeSurfer>
+
+```jsx file=./code/aria-0.0.0.js
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- now that that's out of the way...
+- Let's see what we can do with ARIA by going back to our div button component.
+
+</Notes>
+
+---
+
+<!-- aria button component -->
+
+<Layout>
+
+# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
+
+</Layout>
+
+<Notes>
+
+- WAI-ARIA design patterns includes a writeup for how to build an accessible button from scratch.
+- I said we should always try to use semantic html, but sometimes we do have to build our own buttons.
+- when we do, make sure they're accessible
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<FullImage src={buttonAriaDocs} />
+
+<Notes>
+
+- the wai-aria design patterns doc includes a write up of roles states properties for making an accessible button.
+- let's step through and work through what that looks like
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<FullImage src={buttonAriaRole} />
+
+<Notes>
+
+- the first thing listed... our component needs an aria role attribute set to "button"
+- Add so assistive tech can identify this plain div as a button.
 
 </Notes>
 
@@ -675,8 +750,47 @@ The best ARIA is no ARIA at all.
 
 - Here's our div button example from before.
 - CODE TRANSITION
-- We have to add in the button role so that assistive tech can identify this plain div as a button.
-- Let's say we have a screen reader, it will announce that this element is a button and a user will know that they can interact with it.
+- add in our button role and set it to "button"
+- now a screen reader will announce that this element is a button and a user will know that they can interact with it.
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<FullImage src={buttonAriaLabel} />
+
+<Notes>
+
+- we also need to make sure that our button has an accessible label.
+- by default, the accessible name of a button derived by any text content inside of the button
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+# button code make it work
+
+<Notes>
+
+- by default, the accessible name of a button derived by any text content inside of the button
+- here a screen reader would announce, "button, Submit" because the word submit is inside of our button.
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+# yay
+
+<Notes>
+
+- but sometimes the content inside of our button isn't screen reader friendly
+- that's when we want to pass in a different accessible label using the aria attributes.
 
 </Notes>
 
@@ -692,15 +806,39 @@ The best ARIA is no ARIA at all.
 ```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
 
+```jsx 22 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
+```
+
+```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
+```
+
 </CodeSurfer>
+
+<!-- TODO: add in screenshots of specific doc areas and example of non-text button content -->
 
 <Notes>
 
 - CODE TRANSITION
-- We also want to pass in a value for an accessible button label using the aria-label or aria-labelledby properties.
-- Usually the screen reader will read the content inside of the button by default...
-- But if we needed to override that value we could explicitly pass in what should be announced for this button.
-- This is handy if we have buttons that have non-text content like images or icons.
+- I have an accessibleLabel prop that i can pass into my component
+- if the accessibleLabel prop exists, then i want to render an aria-label attribute on my button.
+- notice that I'm not just setting it to an empty string
+- remember, aria attributes take precedence on the elements they're applied to.
+- even if this button has text content in it, if aria-label is present then that's what the AT will announce
+- it will not announce anything for the button content.
+- use them responsibly.
+
+</Notes>
+
+---
+
+<!-- button docs step through -->
+
+<FullImage src={buttonAriaDisabled} />
+
+<Notes>
+
+- last, signal to assistive tech when a button is inactive.
+- set the aria-disabled state attribute and set that to true or false.
 
 </Notes>
 
@@ -721,95 +859,16 @@ The best ARIA is no ARIA at all.
 <Notes>
 
 - CODE TRANSITION
-- And lastly we have to make sure we signal to assistive tech when a button is inactive.
-- We can do that by adding the aria-disabled state attribute and set it to true or false based on the button's inactive state.
-- That's about it for ARIA attributes for our simple button
+- here, isDisabled prop that gets passed in
+- true or false based on the button's inactive state set to the aria-disabled attribute.
+- now a user can know when button is active/inactive.
+- ...
+- There are a few other points in docs around additional ARIA attributes we can add to our button.
+- This is all we need for our simple button, let's recap
 
 </Notes>
 
----
-
-<!-- aria button code 4 -->
-
-<Layout>
-
-# TL;DR ARIA [Dialog](https://www.w3.org/TR/wai-aria-practices/#dialog_roles_states_props)(Modal)
-
-</Layout>
-
-<Notes>
-
-- Here's another component that's listed in the design patterns documentation.
-
-</Notes>
-
----
-
-<!-- aria modal example -->
-
-<CodeSurfer>
-
-```jsx file=./code/aria-0.0.1.js title='ARIA Modal'
-```
-
-```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- Let's take a look at the ARIA attributes we need to make our modal accessible.
-- CODE TRANSITION
-- our modal container needs the ARIA role attribute set to "dialog"
-
-</Notes>
-
----
-
-<!-- aria modal example 2 -->
-
-<CodeSurfer>
-
-```jsx 11 file=./code/aria-0.0.1.js title='add "dialog" role to modal container'
-```
-
-```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- CODE TRANSITION
-- we need our assistive tech to know when our modal is open and active, we do that with the aria-modal state attribute.
-- set that to true based on some component state.
-
-</Notes>
-
----
-
-<!-- aria modal example 3 -->
-
-<CodeSurfer>
-
-
-```jsx 12 file=./code/aria-0.0.1.js title='set "aria-modal" state when active'
-```
-
-```jsx 2,13,14 file=./code/aria-0.0.1.js title='"aria-label" or "aria-labelledby"'
-```
-
-</CodeSurfer>
-
-<Notes>
-
-- CODE TRANSITION
-- we also have to provide an accessible label, so I'm using aria-labelledby property for that
-- I set the value of it to the ID of an element that contains the modal title, that's my h2 here.
-- And that's about it for a VERY simple accessible modal.
-
-</Notes>
+<!-- TODO: needs a better transition/wrap up to keyboard nav -->
 
 ---
 
@@ -818,14 +877,91 @@ The best ARIA is no ARIA at all.
 <Layout>
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
+HTML attributes that help define/enhance the semantics of our components to make them accessible.
 
 </Layout>
 
 <Notes>
 
-- Now you probably noticed a very important characteristic about ARIA attribute through all of that.
-- ARIA attributes function only as a way to communicate with assistive technologies like screen readers.
-- What they DON'T do, is help with keyboard interactions.
+- define/enhance semantics of complex and dynamic components to make accessible.
+
+</Notes>
+
+---
+
+<!-- roles wrap up -->
+
+<Layout>
+
+# [ARIA `role`]()
+<code>
+  <table>
+    <tr>
+      <td>button</td>
+      <td>radio</td>
+      <td>alert</td>
+    </tr>
+    <tr>
+      <td>tab</td>
+      <td>menu</td>
+      <td>tooltip</td>
+    </tr>
+    <tr>
+      <td>dialog</td>
+      <td>timer</td>
+      <td>checkbox</td>
+    </tr>
+  </table>
+</code>
+
+
+</Layout>
+
+<Notes>
+
+- aria roles identify the kind of component to assistive technologies
+
+</Notes>
+
+---
+
+<!-- states and properties wrap up -->
+
+<Layout>
+
+# [ARIA states and properties]()
+<code>
+  <table>
+    <tr>
+      <td>aria-checked</td>
+      <td>aria-live</td>
+    </tr>
+    <tr>
+      <td>aria-required</td>
+      <td>aria-disabled</td>
+    </tr>
+    <tr>
+      <td>aria-busy</td>
+      <td>aria-controls</td>
+    </tr>
+    <tr>
+      <td>aria-selected</td>
+      <td>aria-describedby</td>
+    </tr>
+  </table>
+</code>
+
+
+</Layout>
+
+<Notes>
+
+- states properties used by their supported roles to help describe the component throughout its life-cycle.
+- There are many different roles states and properties we can use, and the wai-aria documentation helps decipher the combination
+- the best aria is no aria at all.  Still use semantic html attributes where appropriate.  
+- If we're not sure we have the right combination of aria attributes, best to leave them out entirely.
+- ...
+- Now that we know how to make assistive tech understand our components...
 
 </Notes>
 
@@ -837,19 +973,20 @@ The best ARIA is no ARIA at all.
 
 # Three "Easy" Parts
 
-<ul style={{ listStyle: 'none' }}>
-    <li>Semantic HTML</li>
-    <li>ARIA attributes</li>
-    <li  style={{ fontWeight: 'bold'}}>Keyboard navigation</li>
-</ul>
+<List appear={false}>
+  <li>Semantic HTML</li>
+  <li>ARIA attributes</li>
+  <li  style={{ fontWeight: 'bold'}}>Keyboard navigation</li>
+</List>
 
 </Layout>
 
 <Notes>
 
-- That's our third and last easy step.
-- all of our components have to support keyboard only navigation.
-- and that's because not everyone uses a mouse as their primary device for navigation.
+- talk about how our users can INTERACT with our components accessibly.
+- Not everyone uses a mouse as their primary device for navigation.
+- some use the keyboard or some assistive tech that maps more or less to keyboard interactions.
+- that means all of our components have to support keyboard only navigation.
 
 </Notes>
 
@@ -866,8 +1003,8 @@ How can a user interact with our components using only a keyboard?
 
 <Notes>
 
-- Unless we're relying solely on semantic HTML elements, we're entirely responsible for managing keyboard navigation.
 - So we need to consider how a user would be able to interact with our components using only a keyboard.
+- Unless we're relying solely on semantic HTML elements, we're entirely responsible for managing keyboard navigation.
 
 </Notes>
 
@@ -875,13 +1012,13 @@ How can a user interact with our components using only a keyboard?
 
 <!-- keyboard nav intro -->
 
-<Image src={keyboardNav} />
+<FullImage src={keyboardNav} />
 
 <Notes>
 
-- And this is another way the W3C docs makes it fairly easy to uncover these requirements.
+- Different components require different keyboard support
+- wai-aria documentation clearly spells out expected support for many different components
 - They have an entire section that explains how a component can be interacted with using only a keyboard.
-- and this includes a list of which keys do what within the component.
 
 </Notes>
 
@@ -897,7 +1034,8 @@ How can a user interact with our components using only a keyboard?
 
 <Notes>
 
-- Let's work through what the keyboard requirements are for one of our components
+- Back to our div button component
+- work through the docs to figure out how we can support keyboard navigation
 
 </Notes>
 
@@ -917,7 +1055,6 @@ How can a user interact with our components using only a keyboard?
 
 <Notes>
 
-- Here's our trusty div button that we've grown to love.
 - our div element is not interactive by default, so the first thing to do is make sure we can tab to it and give it keyboard focus.
 - CODE TRANSITION
 
@@ -937,7 +1074,19 @@ How can a user interact with our components using only a keyboard?
 <Notes>
 
 - We can do that by adding the tabindex attribute to our button and setting it to "0"
-- this will allow our div to gain keyboard focus when our user tabs to it.
+- this will allow our div to gain keyboard focus when our user reaches in the natural taborder
+
+</Notes>
+
+---
+
+<FullImage src={buttonActivate} />
+
+<Notes>
+
+- According to the docs...
+- when button has focus we can interact with it using the space and enter keys
+- these keys will activate our button
 
 </Notes>
 
@@ -958,8 +1107,8 @@ How can a user interact with our components using only a keyboard?
 <Notes>
 
 - CODE TRANSITION
-- We're passing an activate function to our button that we can trigger onClick...
-- But we also need a way to trigger our activate function with a keyboard.
+- We're passing an activate function to our button that we can trigger onClick event...
+- But we also need a way to trigger our activate function when the space or enter key is pressed
 
 </Notes>
 
@@ -986,9 +1135,10 @@ How can a user interact with our components using only a keyboard?
 <Notes>
 
 - CODE TRANSITION
-- We're gonna add a key listener to our button, i'll use onKeyPress for this one.
-- And we have to pass a handler function to it.  The docs say that our button can be activated using the ENTER and SPACE keys, so we're going to check for those keys being pressed.
+- add a key listener to our button, run a function when a key is pressed
+- i'll use the onKeyPress event listener.
 - CODE TRANSITION
+- our key press event handler needs to only run our activate function if space or enter was pressed.
 - And if they are, we'll go ahead and run that same activate function that we passed to the onClick event.
 
 </Notes>
@@ -1011,6 +1161,8 @@ How can a user interact with our components using only a keyboard?
 
 - CODE TRANSITION
 - And now we have a very simple div button that is keyboard accessible.
+- Made sure our button could be interacted with, add to taborder using tabindex
+- assigned an onKeyPress event handler to listen to the space and enter key and activate button
 
 </Notes>
 
@@ -1041,17 +1193,24 @@ Make sure your user knows where their keyboard focus is.
 
 </Layout>
 
+<Notes>
+
+- Make sure your user knows where their keyboard focus is.
+
+</Notes>
+
 ---
 
 <!-- keyboard focus example -->
 
-<Image src={keyboardFocus1} />
+<FullImage src={keyboardFocus1} />
 
 <Notes>
 
 - That means we should make sure we always have some visible indicator for which elements currently have focus.
 - At the very least that means that we shouldn't eliminate or change the focus outline on active elements.
-- We also want to make sure that we're creating a predictable tab order so that our users can more or less know where their focus will go when they tab to the next or previous element.
+- there will always be someone that asks if you can get rid of it.
+- Also, need a predictable tab order so that our users can more or less know where their focus will go when they tab to the next or previous element.
 
 </Notes>
 
@@ -1070,48 +1229,45 @@ Manage focus so that it persists between interaction events.
 
 <!-- modal example for focus -->
 
-<Image src={keyboardFocus2} />
+<FullImage src={keyboardFocus2} />
 
 <Notes>
 
-- So if we take a look at a modal example.
-- When I key into the modal via my button, the keyboard focus moves into the modal to the interactive elements there.
-- and when I close the modal, keyboard focus returns to the original activator button.
-- It doesn't go to the top of the page or drop off completely.
-- We need to make sure to manage this, especially because react makes it so easy to render and unmount components based on state.
-- So persisting keyboard focus from state to state is key.
+- Manage focus so that it persists between interaction events.
+- we've all built modals, very few of us have built them accessibly.
+- example: activate modal by pressing button using the keyboard.
+- when my modal opens, keyboard focus switches to the interactive elements inside of the modal.
+- when modal closes, keyboard focus has to return to the original activator button.
+- How would you build this in react? render/unmount based on component state.
+- be mindful: what happens to focus when component gets rendered?
+- what happens to focus when my component unmounts?
+- Has to be persistent and predictable throughout component life-cycle, that's something we have to build ourselves.
 
 </Notes>
 
 ---
 
-<!-- compare accessible button component to non -->
+<!-- keyboard recap -->
 
-<CodeSurferColumns themes={[ github, vsDark ]}>
+<Layout>
 
-<Step>
+# [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+Make sure your user knows where their keyboard focus is.
 
-```jsx file=./code/aria-0.0.0.js
-```
-
-```jsx file=./code/semantic-html-0.0.3.js
-```
-
-</Step>
-
-</CodeSurferColumns>
+</Layout>
 
 <Notes>
 
-  - And just to really drive the point home, let's take one last look at what it took for us to build our own accessible button.
-  - When we consider how much extra code we had to write, the potential dangers with using ARIA attributes, and all the work needed to support keyboard navigation,
-  - using the semantic HTML elements available to us becomes a no brainer
-  - And that's a really easy place to start for anyone that's trying to figure out how they're going to convert they're huge component libraries and make them accessible.
-  - Take the tiny step and find where you can use semantic HTML in a single component, and then go from there.
+- to recap.
+- all of our components needs to support keyboard only navigation.
+- make sure non-interactive elements can gain keyboard focus using the tabindex attribute
+- then consider how a user would navigate your component using a keyboard.
+- what are the interactions you have to include in order for your component to respond to key presses.
+- and what happens to your keyboard focus throughout your component life-cycle.
 
 </Notes>
 
----
+--
 
 <!-- final recap -->
 
@@ -1119,24 +1275,23 @@ Manage focus so that it persists between interaction events.
 
 # Three "Easy" Parts
 
-  <ul style={{ listStyle: 'none' }}>
-    <Appear>
-      <li>Semantic HTML</li>
-      <li>ARIA attributes</li>
-      <li>Keyboard navigation</li>
-    </Appear>
-  </ul>
+  <List>
+    <li>Semantic HTML</li>
+    <li>ARIA attributes</li>
+    <li>Keyboard navigation</li>
+  </List>
   
 </Layout>
 
 <Notes>
 
-- I kind of threw a lot at y'all so let's do a quick recap
-- We have three steps that we should keep in mind when we're building our components.
-- Use semantic HTML whenever possible.
-- Identify which ARIA attributes we need to add to those HTML elements.
-- And manage keyboard navigation.
-- And we can uncover these requirements from the official docs once we know where to look and what we're looking for.
+- quick recap
+- We have three things that we should keep in mind when we're building our components.
+- Use semantic HTML whenever possible, these will do a lot of the hard work for us.
+- Identify which ARIA attributes we need to add to those HTML elements for more complex/dynamic components.
+- But no aria is the best aria. Use responsibly, or not at all.
+- And manage keyboard navigation. Some users can't use mouse, rely on keyboards.  Keyboard navigation must be supported.
+- Uncovered the places in the wai-aria documentation that help guide our component development. 
 
 </Notes>
 
@@ -1148,11 +1303,11 @@ Manage focus so that it persists between interaction events.
 
 # Three "Easy" Parts
 
-  <ul style={{ listStyle: 'none' }}>
+  <List>
     <li>Semantic HTML</li>
     <li>ARIA attributes</li>
     <li>Keyboard navigation</li>
-  </ul>
+  </List>
   
 </Layout>
 
@@ -1160,7 +1315,7 @@ Manage focus so that it persists between interaction events.
 
 - And I want to reiterate that these are just techniques to hopefully make building accessible components easier.
 - They are not the only things we have to consider.
-- There are a lot of other factors to weight.
+- There are a lot of other factors to weigh..
 - things like...
 
 </Notes>
@@ -1179,7 +1334,7 @@ Manage focus so that it persists between interaction events.
 
 - Whether or not our visual design is accessible.
 - Do we meet the requirements for color contrast.
-- and are we making sure that we consider folks that are color blind when choosing our color schemes?
+- and are we making sure that we consider folks with different visual impairments during our design phase.
 
 </Notes>
 
@@ -1195,8 +1350,8 @@ Manage focus so that it persists between interaction events.
 
 <Notes>
 
-- will our single page applications, that rely on javascript in the browser, still work if a user doesn't have javascript enabled?
-- Have we worked out how navigation between pages using react router will affect screen readers and keyboard navigation?
+- what if we have a single page application?
+- how does navigation between pages using something like react router affect screen readers and keyboard navigation?
 
 </Notes>
 
@@ -1211,7 +1366,7 @@ Manage focus so that it persists between interaction events.
 <Notes>
 
 - Are we writing unit, integration and e2e tests that check to make sure we aren't breaking accessibility support with each change to our components?
-- Can we automate accessibility testing and integrate it in our CI/CD pipelines so it's considered at every stage of the development cycle?
+- shameless plug... my talk, check it out
 - And most importantly...
 
 </Notes>
@@ -1230,33 +1385,29 @@ Manage focus so that it persists between interaction events.
 
 - Are we considering our users?
 - Sometimes as engineers it's hard to remember that we are not our users, and what may work for us or what we think makes the most sense to us, may not actually be what the user needs.
+- Hope these easy tips will make it easier to better understand all of our users
+- know how we can build cool shit that works for them.
+- make the web an open and inclusive place for everyone.
+
 
 </Notes>
 
 ---
 
-<!-- other things to consider 4 -->
-
 <Layout>
 
-# [The user](https://www.gatsbyjs.org/blog/2019-07-11-user-testing-accessible-client-routing/)
-  
+# Thank You ❤️
+
 </Layout>
 
 <Notes>
 
-- There's an amazing post on the Gatsby blog, written by Marcy Sutton, that I encourage everyone to read.  She talks about how she led user testing at Gatsby to glimpse how users with disabilities navigate apps that have client-side routing.
-- It's an incredible reminder that we can't always assume that we know what's best for our users, and we should try to involve them as much as possible when we're building out our components and sites.
-- Let's always remember that our users are our #1 priority, and we should strive to keep the web inclusive and universal in order to do right by them.
+- find slides on my website, and i'll tweet out the link in a few minutes.
+- thank you so much for tuning into this talk
+- and thank you to the conference organizers for putting together an amazing event.
+- come hang out in the discord channel to ask questions or chat with each other
+- stick around for the incredible day we have ahead of us!
 
 </Notes>
-
----
-
-<Layout>
-
-# Thank You!
-
-</Layout>
 
 
