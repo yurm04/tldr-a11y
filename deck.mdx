@@ -1,3 +1,4 @@
+import { Head, Notes, Image } from 'mdx-deck'
 import {
   CodeSurfer,
   CodeSurferColumns,
@@ -33,9 +34,13 @@ import List from './components/List.js'
 
 <Head>
   <title>TL;DR Accessible Components</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+  </style>
 </Head>
 
-<Layout>
+<Layout theme="light">
 
 # 👋 Hello!
 
@@ -46,13 +51,7 @@ import List from './components/List.js'
 <Layout>
 
 # Yuraima Estevez
-
-<List appear={false}>
-
-  <li>👩‍💻 Engineering Manager</li>
-  <li>📰 The New York Times</li>
-
-</List>
+<p class="accentText">Engineering Manager @ The New York Times</p>
 
 </Layout>
 
@@ -345,7 +344,7 @@ Provides your content and components with meaning beyond their visual representa
 
 <!-- inaccessible button div component -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/semantic-html-0.0.0.js
 ```
@@ -364,7 +363,7 @@ Provides your content and components with meaning beyond their visual representa
 
 <!-- accesible button component with button html element -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/semantic-html-0.0.1.js
 ```
@@ -403,7 +402,7 @@ There are over 100 elements available in HTML.
 
 <!-- side by side button components -->
 
-<CodeSurferColumns themes={[ github, vsDark ]}>
+<CodeSurferColumns themes={[ vsDark, github ]}>
 
 <Step>
 
@@ -450,7 +449,7 @@ There are over 100 elements available in HTML.
 
 <!-- fake semantic html nav bar -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/semantic-html-0.0.8.js
 ```
@@ -473,7 +472,7 @@ There are over 100 elements available in HTML.
 
 <!-- actual html nav bar -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/semantic-html-0.0.9.js
 ```
@@ -674,7 +673,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria button code 1 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/aria-0.0.0.js
 ```
@@ -736,7 +735,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria button code 1 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/aria-0.0.0.js
 ```
@@ -772,7 +771,8 @@ The best ARIA is no ARIA at all.
 
 <!-- button docs step through -->
 
-# button code make it work
+<button>Submit</button>
+<p>Screen Reader: Submit, button</p>
 
 <Notes>
 
@@ -785,7 +785,8 @@ The best ARIA is no ARIA at all.
 
 <!-- button docs step through -->
 
-# yay
+<button>👋</button>
+<p>Screen Reader: waving hand, button</p>
 
 <Notes>
 
@@ -798,7 +799,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria button code 2 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 17 file=./code/aria-0.0.0.js title='add "button" ARIA role attribute'
 ```
@@ -846,7 +847,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria button code 3 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 3,18 file=./code/aria-0.0.0.js title='add "aria-labelledby" or "aria-label" property'
 ```
@@ -1043,7 +1044,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx file=./code/aria-0.0.0.js
 ```
@@ -1064,7 +1065,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 2 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
@@ -1094,7 +1095,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 3 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 16 file=./code/aria-0.0.0.js title='add "tabindex" attribute'
 ```
@@ -1116,7 +1117,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 4 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 5,20 file=./code/aria-0.0.0.js
 ```
@@ -1147,7 +1148,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 5 -->
 
-<CodeSurfer>
+<CodeSurfer theme={github}>
 
 ```jsx 10 file=./code/aria-0.0.0.js
 ```

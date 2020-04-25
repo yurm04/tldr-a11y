@@ -1,4 +1,13 @@
 .layout {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.layout .childContainer {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
@@ -13,8 +22,6 @@
 } */
 
 footer {
-  border-top: solid 2px;
-  border-color: --theme-ui-colors-secondary;
   position: fixed;
   bottom: .5em;
   left: 0;
@@ -24,10 +31,35 @@ footer {
   padding: .5em 1em 0;
 }
 
-footer a {
-  font-size: 1.5rem;
+.footer a {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.footer .twitterBird {
+  position: relative;
+  left: -60px;
+  bottom: -60px;
+  display: inline;
+}
+
+.footer .twitterHandle {
+  z-index: 1;
+  position: relative;
+  display: block;
 }
 
 table td {
   border: none
+}
+
+button {
+  padding: 20px;
+  font-size: 4rem;
+}
+
+p.accentText {
+  font-family: 'Roboto Mono', monospace;
 }

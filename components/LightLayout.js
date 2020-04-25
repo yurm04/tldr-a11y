@@ -10,13 +10,9 @@ const lightTheme = {
 const themes = { dark: {}, light: lightTheme }
 
 const Layout = ({ children, hideFooter = false, theme = "dark" }) => (
-  <div className={`layout ${theme}`} style={themes[theme]}>
-    <div className="childContainer">
-      { children }
-    </div>
-    {!hideFooter && (
-      <Footer />
-    )}
+  <div className='layout' style={themes[theme]}>
+    { children }
+    HELLO
   </div>
 )
 
