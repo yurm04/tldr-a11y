@@ -31,6 +31,7 @@ import keyboardFocus2 from './assets/keyboardFocus2.gif'
 import Layout from './components/Layout.js'
 import FullImage from './components/FullImage.js'
 import List from './components/List.js'
+import Button from './components/Button.js'
 
 <Head>
   <title>TL;DR Accessible Components</title>
@@ -656,7 +657,7 @@ There are over 100 elements available in HTML.
 
 <Layout>
 
-# 🚨 ARIA 🚨
+# ⚠️ WARNING ⚠️
 The best ARIA is no ARIA at all.
 
 </Layout>
@@ -680,7 +681,7 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-# TL;DR ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
+# ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
 
 </Layout>
 
@@ -761,8 +762,8 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-  <button>Submit</button>
-  <p>Screen Reader: Submit, button</p>
+  <Button>Submit</Button>
+  <p>Screen Reader: <span class="bold">Submit</span>, button</p>
 
 </Layout>
 
@@ -780,8 +781,8 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-  <button>👋</button>
-  <p>Screen Reader: waving hand, button</p>
+  <Button>👋</Button>
+  <p>Screen Reader: <span className="bold">waving hand</span>, button</p>
 
 </Layout>
 
@@ -799,8 +800,8 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-  <button>👋</button>
-  <p>Screen Reader: waving hand, button</p>
+  <Button>👋</Button>
+  <p>Screen Reader: <span className="bold">waving hand</span>, button</p>
   <p>User: 😕 🤔</p>
 
 </Layout>
@@ -817,8 +818,8 @@ The best ARIA is no ARIA at all.
 
 <Layout>
 
-  <button>👋</button>
-  <p>Screen Reader: Submit form, button</p>
+  <Button>👋</Button>
+  <p>Screen Reader: <span className="bold">Submit form</span>, button</p>
   <p>User: 👍 😌</p>
 
 </Layout>
@@ -866,7 +867,7 @@ The best ARIA is no ARIA at all.
 <Layout>
 
   <code>aria-label=""</code>
-  <p>Screen Reader: button</p>
+  <p>Screen Reader: <span className="bold">button</span></p>
   <p>User: 😕 🤔</p>
 
 </Layout>
@@ -943,9 +944,9 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <Layout>
 
-# [ARIA `role`]()
+# ARIA roles
 <code>
-  <table>
+  <table className="table">
     <tr>
       <td>button</td>
       <td>radio</td>
@@ -979,9 +980,9 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <Layout>
 
-# [ARIA states and properties]()
+# ARIA states and properties
 <code>
-  <table>
+  <table className="table">
     <tr>
       <td>aria-checked</td>
       <td>aria-live</td>
@@ -1093,7 +1094,7 @@ How can a user interact with our components using only a keyboard?
 
 <Layout>
 
-# TL;DR [Button](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-3) Keyboard Navigation
+# [Button Keyboard Navigation](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-3) 
 
 </Layout>
 
@@ -1227,6 +1228,7 @@ How can a user interact with our components using only a keyboard?
 <Layout>
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
+<p style={{ opacity: 0 }}>Make sure your user knows where their keyboard focus is.</p>
 
 </Layout>
 
