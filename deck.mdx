@@ -41,7 +41,7 @@ import Button from './components/Button.js'
   </style>
 </Head>
 
-<Layout showWebsite={true}>
+<Layout showWebsite={true} theme="light" layout="bigHello">
 
 # 👋 Hello!
 
@@ -49,10 +49,10 @@ import Button from './components/Button.js'
 
 ---
 
-<Layout showWebsite={true}>
+<Layout showWebsite={true} theme="introLayout">
 
 # Yuraima Estevez
-<p class="accentText">Engineering Manager @ The New York Times</p>
+## Engineering Manager @ The New York Times
 
 </Layout>
 
@@ -66,7 +66,7 @@ import Button from './components/Button.js'
 
 <!-- intro -->
 
-<Layout>
+<Layout layout={["sectionBodyLayout", "leftAligned"]}>
 
 # What is accessibility?
 Websites, tools and technologies that are **designed** and **developed** so that people with disabilities can use them.
@@ -95,11 +95,11 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 <!-- intro and morality -->
 
-<Layout>
+<Layout layout="blockQuote">
 
 >"The power of the Web is in its universality.  Access by everyone regardless of disability is an essential aspect."
 
-*Tim Berners-Lee, W3C Director and inventor of the World Wide Web*
+Tim Berners-Lee, W3C Director and inventor of the World Wide Web
 
 </Layout>
 

@@ -10,5 +10,8 @@
     "code-surfer": "3.0.0",
     "mdx-deck": "3.0.13"
   },
-  "name": "my-deck"
+  "name": "my-deck",
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
 }
