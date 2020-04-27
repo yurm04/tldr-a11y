@@ -3,6 +3,8 @@
   --light-grey: #E5E5E5;
   --light-purple: #FAF5FE;
   --color-white: #fff;
+  --color-purple: #6D5ADF;
+  --color-black: #000;
   --light-bg-color: var(--color-white);
   --dark-bg-color: var(--dark-purple);
   --dark-text-shadow: 0px 4px 4px #000000;
@@ -89,7 +91,7 @@ table td {
   font-family: "Roboto Mono", monospace;
   font-size: var(--font-size-large);
   color: #fff;
-  background-color: #6D5ADF;
+  background-color: var(--color-purple);
   border-radius: 20px;
   letter-spacing: .3em;
   font-weight: bold;
@@ -124,6 +126,15 @@ table.table td {
 .layout.light {
   background-color: var(--light-bg-color);
   color: var(--dark-purple);
+}
+
+.layout.light p {
+  color: var(--dark-purple);
+}
+
+.layout.light .footer a {
+  color: var(--dark-purple);
+  text-shadow: var(--dark-purple-text-shadow);
 }
 
 .layout.introLayout h1 {
@@ -196,9 +207,59 @@ table.table td {
   margin-right: auto;
 }
 
+.layout.blockQuote.light blockquote p {
+  color: var(--color-black);
+}
+
+.layout.blockQuote.light blockquote + p{
+  color: var(--dark-purple);
+  text-shadow: var(--light-text-shadow);
+}
+
 .layout.light.bigHello h1{
   color: var(--dark-purple);
   text-shadow: var(--dark-purple-text-shadow);
   font-family: var(--font-roboto);
   font-size: 12.5rem;
 }
+
+/* layout section title */
+
+.layout.sectionTitle h1 {
+  font-size: var(--font-size-large);
+  line-height: 1.17;
+  font-weight: bold;
+  text-shadow: var(--light-text-shadow);
+}
+
+.layout.sectionTitle.dark h1 {
+  color: var(--color-white);
+}
+
+.layout.sectionTitle.light h1 {
+  color: var(--color-black);
+}
+
+/* layout section title body */
+
+.layout.sectionTitle h1 {
+  font-size: var(--font-size-xlarge);
+  font-family: var(--font-roboto);
+  line-height: 1.17;
+}
+
+.layout.sectionTitleBody h1 {
+  color: var(--color-purple);
+  text-shadow: var(--light-text-shadow);
+  font-size: var(--font-size-normal);
+  font-family: var(--font-roboto);
+  margin-bottom: 2.1875rem;
+}
+
+.layout.sectionTitleBody h1 + p {
+  font-family: var(--font-montseratt);
+  font-size: var(--font-size-large);
+  margin-top: 0;
+  line-height: 1.21;
+}
+

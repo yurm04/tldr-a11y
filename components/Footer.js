@@ -1,7 +1,8 @@
 import React from 'react'
 import { Styled } from 'theme-ui'
-import Bird from './twitterBirdDark'
-const Footer = ({ showWebsite }) => (
+import Bird from './TwitterBird'
+
+const Footer = ({ showWebsite, theme = "dark" }) => (
   <footer className="footer">
     <Styled.a 
       className={`websiteLink ${!showWebsite && 'hideWebsite'}`}
@@ -9,7 +10,7 @@ const Footer = ({ showWebsite }) => (
         tldr-a11y.yuraima.com
     </Styled.a>
     <div className="twitterContainer">
-      <Bird />
+      <Bird theme={theme} />
       <Styled.a 
         className="twitterHandle"
         href="https://www.twitter.com/yurm04">

@@ -49,7 +49,7 @@ import Button from './components/Button.js'
 
 ---
 
-<Layout showWebsite={true} theme="introLayout">
+<Layout showWebsite={true} layout="introLayout">
 
 # Yuraima Estevez
 ## Engineering Manager @ The New York Times
@@ -77,7 +77,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 <!-- intro -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Why is accessibility important?
 
@@ -95,7 +95,7 @@ Websites, tools and technologies that are **designed** and **developed** so that
 
 <!-- intro and morality -->
 
-<Layout layout="blockQuote">
+<Layout layout="blockQuote" theme="light">
 
 >"The power of the Web is in its universality.  Access by everyone regardless of disability is an essential aspect."
 
@@ -119,11 +119,11 @@ Tim Berners-Lee, W3C Director and inventor of the World Wide Web
 
 <!-- intro and morality cont'd -->
 
-<Layout>
+<Layout layout="blockQuote" theme="light">
 
 >"The power of the Web is in its universality.  Access by everyone regardless of disability is an essential aspect."
 
-*Tim Berners-Lee, W3C Director and inventor of the World Wide Web*
+Tim Berners-Lee, W3C Director and inventor of the World Wide Web
 
 </Layout>
 
@@ -141,7 +141,7 @@ Tim Berners-Lee, W3C Director and inventor of the World Wide Web
 
 <!-- discuss components -->
 
-<Layout>
+<Layout layout="sectionTitleBody">
 
 # Components
 Encapsulated, reusable, and custom elements.
@@ -174,7 +174,7 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Accessible Components
 
@@ -204,7 +204,7 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Accessible Components
 
@@ -219,10 +219,10 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
-<Layout>
+<Layout layout="sectionTitleBody" theme="light">
 
 # TL;DR
-### Too Long; Didn't Read
+Too Long; Didn't Read
 
 </Layout>
 
@@ -234,7 +234,7 @@ Encapsulated, reusable, and custom elements.
 
 ---
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # TL;DR Accessible Components
 
@@ -327,7 +327,7 @@ So let's Start with Semantic HTML
 
 <!-- Start semantic HTML topic -->
 
-<Layout>
+<Layout layout="sectionTitleBody" theme="light">
 
 # [Semantic HTML](https://www.w3.org/TR/wai-aria-1.1/#dfn-semantics)
 Provides your content and components with meaning beyond their visual representation.
@@ -386,7 +386,7 @@ Provides your content and components with meaning beyond their visual representa
 
 <!-- lots of html elements, all semantic -->
 
-<Layout>
+<Layout layout="sectionTitleBody">
 
 # Semantic HTML
 There are over 100 elements available in HTML.
@@ -435,7 +435,7 @@ There are over 100 elements available in HTML.
 
 <!-- semantic html wrap up -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Semantic HTML
 
@@ -519,7 +519,7 @@ There are over 100 elements available in HTML.
 
 <!-- what is aria 1 -->
 
-<Layout>
+<Layout layout="sectionTitleBody" theme="light">
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 **A**ccessible **R**ich **I**nternet **A**pplications
@@ -539,7 +539,7 @@ There are over 100 elements available in HTML.
 
 <!-- what is aria 2 -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
@@ -564,7 +564,7 @@ There are over 100 elements available in HTML.
 
 <!-- aria - different kinds of attributes -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
@@ -601,8 +601,12 @@ There are over 100 elements available in HTML.
 
 <!-- what is wai-aria -->
 
+<Layout layout="sectionTitleBody" theme="light">
+
 # WAI-ARIA
 **W**eb **A**ccessiblity **I**nitiative ARIA
+
+</Layout>
 
 <Notes>
 
@@ -655,7 +659,7 @@ There are over 100 elements available in HTML.
 
 <!-- aria warning -->
 
-<Layout>
+<Layout layout="sectionTitleBody" theme="light">
 
 # ⚠️ WARNING ⚠️
 The best ARIA is no ARIA at all.
@@ -679,7 +683,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria button component -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # ARIA [Button](https://www.w3.org/TR/wai-aria-practices/#wai-aria-roles-states-and-properties-3)
 
@@ -925,7 +929,7 @@ The best ARIA is no ARIA at all.
 
 <!-- aria wrap up -->
 
-<Layout>
+<Layout layout="sectionTitleBody">
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 HTML attributes that help define/enhance the semantics of our components to make them accessible.
@@ -942,7 +946,7 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <!-- roles wrap up -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # ARIA roles
 <code>
@@ -978,7 +982,7 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <!-- states and properties wrap up -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # ARIA states and properties
 <code>
@@ -1016,7 +1020,7 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <!-- aria wrap up -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # [ARIA Attributes](https://www.w3.org/TR/wai-aria-1.1/#usage)
 
@@ -1060,7 +1064,7 @@ HTML attributes that help define/enhance the semantics of our components to make
 
 <!-- keyboard nav intro 2 -->
 
-<Layout>
+<Layout layout="sectionTitleBody" theme="light">
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
 How can a user interact with our components using only a keyboard?
@@ -1092,9 +1096,8 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav -->
 
-<Layout>
-
-# [Button Keyboard Navigation](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-3) 
+<Layout layout="sectionTitle">
+<h1>Keyboard Navigation: <br /><a href="https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-3">Button</a></h1>
 
 </Layout>
 
@@ -1225,10 +1228,9 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 6 -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
-<p style={{ opacity: 0 }}>Make sure your user knows where their keyboard focus is.</p>
 
 </Layout>
 
@@ -1243,7 +1245,7 @@ How can a user interact with our components using only a keyboard?
 
 <!-- button keyboard nav code 7 -->
 
-<Layout>
+<Layout layout="sectionTitleBody">
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
 Make sure your user knows where their keyboard focus is.
@@ -1275,7 +1277,7 @@ Make sure your user knows where their keyboard focus is.
 
 <!-- manage focus -->
 
-<Layout>
+<Layout layout="sectionTitleBody">
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
 Manage focus so that it persists between interaction events.
@@ -1311,7 +1313,7 @@ Manage focus so that it persists between interaction events.
 
 <!-- keyboard recap -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # [Keyboard Navigation](https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/#keyboard)
 
@@ -1386,7 +1388,7 @@ Manage focus so that it persists between interaction events.
 
 <!-- other things to consider -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Accessible design
   
@@ -1404,7 +1406,7 @@ Manage focus so that it persists between interaction events.
 
 <!-- other things to consider 2 -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Accessible SPAs
   
@@ -1419,7 +1421,7 @@ Manage focus so that it persists between interaction events.
 
 ---
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # Testing accessibility
   
@@ -1436,7 +1438,7 @@ Manage focus so that it persists between interaction events.
 
 <!-- other things to consider 3 -->
 
-<Layout>
+<Layout layout="sectionTitle">
 
 # The user
   
